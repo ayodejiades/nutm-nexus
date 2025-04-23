@@ -1,10 +1,11 @@
 {
     "title": "Introduction to Computer Science",
-    "code": "COS102",
+    "code": "CSC101",
     "description": "Fundamentals of computer science, algorithms, and programming.",
-    "instructor": "Dr. Philip Okposo",
+    "instructor": "Dr. Ada Lovelace",
     "credits": 3,
     "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-    "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123",
-    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456"
-}
+    "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123", 
+    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",  
+    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"  
+  }
