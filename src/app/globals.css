@@ -1,0 +1,85 @@
+/* src/app/globals.css */
+
+/* Non-standard Tailwind import (as requested) */
+@import "tailwindcss"; /* Note: Standard is @tailwind base/components/utilities */
+
+:root {
+  /* Light Mode Defaults (using hex as requested, but defining HSL for primary) */
+  --background: #ffffff;       /* light background */
+  --foreground: #171717;       /* light text */
+  --primary-hsl: 158 100% 26%; /* HSL for Nigerian Green (#008751) */
+  --primary-light-hsl: 157 100% 34%; /* HSL for lighter green (#00A86B) */
+  --primary-dark-hsl: 158 100% 20%; /* HSL for darker green (#00643A) */
+
+  /* --- Mappings inspired by the non-standard @theme inline block --- */
+  /* Map specific theme vars, using primary HSL */
+  --color-background: var(--background); /* Directly map hex */
+  --color-foreground: var(--foreground); /* Directly map hex */
+  --color-primary: hsl(var(--primary-hsl));
+  --color-primary-light: hsl(var(--primary-light-hsl));
+  --color-primary-dark: hsl(var(--primary-dark-hsl));
+  /* Font variables (assuming these are provided externally) */
+  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif); /* Add fallbacks */
+  --font-mono: var(--font-geist-mono, monospace);
+  /* --- End Mappings --- */
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode values */
+    --background: #0a0a0a;       /* dark background */
+    --foreground: #ededed;       /* dark text */
+    /* Primary HSL might stay the same or be adjusted for dark mode */
+    /* --primary-hsl: 158 100% 30%; /* Example: Slightly lighter primary for dark */
+
+    /* --- Update Mappings for Dark Mode --- */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    /* Primary colors will update if --primary-hsl vars are changed above */
+    --color-primary: hsl(var(--primary-hsl));
+    --color-primary-light: hsl(var(--primary-light-hsl));
+    --color-primary-dark: hsl(var(--primary-dark-hsl));
+    /* --- End Dark Mode Mappings --- */
+  }
+}
+
+/* Base Body Styling (as requested) */
+body {
+  background: var(--background); /* Uses the direct --background */
+  color: var(--foreground);   /* Uses the direct --foreground */
+  font-family: var(--font-sans); /* Apply the mapped font variable */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* UI/UX Base Styles (Injecting using standard CSS) */
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base Link Styling (using the mapped --color-primary) */
+a {
+  color: var(--color-primary);
+  text-decoration: none; /* Optional: remove default underline */
+  transition: color 0.15s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-primary-dark); /* Use darker primary on hover */
+  /* text-decoration: underline; */ /* Optional: underline on hover */
+}
+
+/* --- Non-standard @theme block (kept as comment for reference) --- */
+/*
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+*/
+/* Note: The functionality intended by the commented-out @theme block above
+   has been implemented by directly defining --color-background, --color-foreground,
+   --color-primary, etc., within the :root block and the dark mode media query. */
