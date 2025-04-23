@@ -1,0 +1,10 @@
+{
+    "title": "Elementary Mathematics",
+    "code": "MTH102",
+    "description": "Fundamentals of calculus",
+    "instructor": "Dr. Paul Avnebake",
+    "credits": 3,
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123",
+    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456"
+}
