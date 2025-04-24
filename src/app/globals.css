@@ -3,83 +3,108 @@
 /* Non-standard Tailwind import (as requested) */
 @import "tailwindcss"; /* Note: Standard is @tailwind base/components/utilities */
 
+/* Define CSS variables for BOTH light and dark themes */
 :root {
-  /* Light Mode Defaults (using hex as requested, but defining HSL for primary) */
-  --background: #ffffff;       /* light background */
-  --foreground: #171717;       /* light text */
-  --primary-hsl: 158 100% 26%; /* HSL for Nigerian Green (#008751) */
-  --primary-light-hsl: 157 100% 34%; /* HSL for lighter green (#00A86B) */
-  --primary-dark-hsl: 158 100% 20%; /* HSL for darker green (#00643A) */
+  /* Light Mode Defaults */
+  --background-light: #ffffff;       /* Light background hex */
+  --foreground-light: #171717;       /* Light text hex */
+  --primary-light-hsl: 158 100% 26%; /* HSL #008751 (Nigerian Green) */
+  --primary-lighter-light-hsl: 157 100% 34%; /* HSL lighter green */
+  --primary-darker-light-hsl: 158 100% 20%; /* HSL darker green */
+  /* Light Mode Accents */
+  --accent-light-hsl: 180 90% 45%;   /* Vibrant Teal/Cyan */
+  --accent-lighter-light-hsl: 180 90% 55%;
+  --accent-darker-light-hsl: 180 90% 35%;  /* Dark teal */
+  --accent-secondary-light-hsl: 45 100% 55%; /* Bright Yellow */
+  /* Light Hero Text Colors */
+  --hero-fg-light-hsl: 158 100% 15%; /* Very dark green */
+  --hero-accent-fg-light-hsl: 180 90% 30%; /* Dark teal */
 
-  /* --- Mappings inspired by the non-standard @theme inline block --- */
-  /* Map specific theme vars, using primary HSL */
-  --color-background: var(--background); /* Directly map hex */
-  --color-foreground: var(--foreground); /* Directly map hex */
-  --color-primary: hsl(var(--primary-hsl));
-  --color-primary-light: hsl(var(--primary-light-hsl));
-  --color-primary-dark: hsl(var(--primary-dark-hsl));
-  /* Font variables (assuming these are provided externally) */
-  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif); /* Add fallbacks */
+  /* Dark Mode Defaults */
+  --background-dark-hsl: 220 10% 6%;      /* HSL slightly bluish dark gray */
+  --foreground-dark-hsl: 210 20% 95%;    /* HSL off-white */
+  --primary-dark-hsl: 158 100% 30%;      /* HSL slightly brighter primary */
+  --primary-lighter-dark-hsl: 157 100% 38%;
+  --primary-darker-dark-hsl: 158 100% 24%;
+  /* Dark Mode Accents */
+  --accent-dark-hsl: 180 80% 50%;   /* Adjusted Teal/Cyan */
+  --accent-lighter-dark-hsl: 180 80% 60%;
+  --accent-darker-dark-hsl: 180 80% 40%;
+  --accent-secondary-dark-hsl: 45 90% 60%; /* Adjusted Yellow */
+  /* Dark Hero Text Colors */
+  --hero-fg-dark-hsl: 210 20% 98%; /* Near white */
+  --hero-accent-fg-dark-hsl: var(--accent-dark-hsl); /* Regular dark accent */
+
+  /* --- APPLY LIGHT MODE VARS BY DEFAULT --- */
+  --background: var(--background-light);
+  --foreground: var(--foreground-light);
+  --color-background: var(--background-light);
+  --color-foreground: var(--foreground-light);
+  --color-primary: hsl(var(--primary-light-hsl));
+  --color-primary-light: hsl(var(--primary-lighter-light-hsl));
+  --color-primary-dark: hsl(var(--primary-darker-light-hsl));
+  --color-accent: hsl(var(--accent-light-hsl));
+  --color-accent-light: hsl(var(--accent-lighter-light-hsl));
+  --color-accent-dark: hsl(var(--accent-darker-light-hsl));
+  --color-accent-secondary: hsl(var(--accent-secondary-light-hsl));
+  --color-hero-foreground: hsl(var(--hero-fg-light-hsl));
+  --color-hero-accent: hsl(var(--hero-accent-fg-light-hsl));
+
+  /* Font variables */
+  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
   --font-mono: var(--font-geist-mono, monospace);
-  /* --- End Mappings --- */
 }
 
-/* Dark Mode Overrides */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode values */
-    --background: #0a0a0a;       /* dark background */
-    --foreground: #ededed;       /* dark text */
-    /* Primary HSL might stay the same or be adjusted for dark mode */
-    /* --primary-hsl: 158 100% 30%; /* Example: Slightly lighter primary for dark */
-
-    /* --- Update Mappings for Dark Mode --- */
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    /* Primary colors will update if --primary-hsl vars are changed above */
-    --color-primary: hsl(var(--primary-hsl));
-    --color-primary-light: hsl(var(--primary-light-hsl));
-    --color-primary-dark: hsl(var(--primary-dark-hsl));
-    /* --- End Dark Mode Mappings --- */
-  }
+/* --- APPLY DARK MODE VARS WHEN .dark CLASS IS PRESENT --- */
+.dark {
+  --background: hsl(var(--background-dark-hsl));
+  --foreground: hsl(var(--foreground-dark-hsl));
+  --color-background: hsl(var(--background-dark-hsl));
+  --color-foreground: hsl(var(--foreground-dark-hsl));
+  --color-primary: hsl(var(--primary-dark-hsl));
+  --color-primary-light: hsl(var(--primary-lighter-dark-hsl));
+  --color-primary-dark: hsl(var(--primary-darker-dark-hsl));
+  --color-accent: hsl(var(--accent-dark-hsl));
+  --color-accent-light: hsl(var(--accent-lighter-dark-hsl));
+  --color-accent-dark: hsl(var(--accent-darker-dark-hsl));
+  --color-accent-secondary: hsl(var(--accent-secondary-dark-hsl));
+  --color-hero-foreground: hsl(var(--hero-fg-dark-hsl));
+  --color-hero-accent: hsl(var(--hero-accent-fg-dark-hsl));
 }
 
-/* Base Body Styling (as requested) */
+/* Base Body Styling */
 body {
-  background: var(--background); /* Uses the direct --background */
-  color: var(--foreground);   /* Uses the direct --foreground */
-  font-family: var(--font-sans); /* Apply the mapped font variable */
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition-property: color, background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
-/* UI/UX Base Styles (Injecting using standard CSS) */
-/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+  background-color: var(--background);
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
-/* Base Link Styling (using the mapped --color-primary) */
+/* Base Link Styling */
 a {
   color: var(--color-primary);
-  text-decoration: none; /* Optional: remove default underline */
+  text-decoration: none;
   transition: color 0.15s ease-in-out;
 }
-
 a:hover {
-  color: var(--color-primary-dark); /* Use darker primary on hover */
-  /* text-decoration: underline; */ /* Optional: underline on hover */
+  color: var(--color-primary-dark);
 }
 
-/* --- Non-standard @theme block (kept as comment for reference) --- */
-/*
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Focus Rings */
+*:focus-visible {
+   outline: 2px solid var(--color-primary);
+   outline-offset: 2px;
+   border-radius: 2px;
 }
-*/
-/* Note: The functionality intended by the commented-out @theme block above
-   has been implemented by directly defining --color-background, --color-foreground,
-   --color-primary, etc., within the :root block and the dark mode media query. */

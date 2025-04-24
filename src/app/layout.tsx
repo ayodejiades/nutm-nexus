@@ -1,14 +1,17 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar"; // Import Navbar
+import Navbar from "@/components/Navbar";
+// import AuthProvider from "@/components/AuthProvider"; // <-- REMOVE THIS IMPORT
 import "./globals.css";
-import AuthProvider from "@/components/AuthProvider";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NUTM Nexus",
   description: "Your NUTM Course Hub",
+  // metadataBase: new URL('https://your-deployment-url.com'),
 };
 
 export default function RootLayout({
@@ -17,17 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider> {/* Wrap everything inside AuthProvider */}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} bg-background text-foreground`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Navbar />
-          <main className="container mx-auto px-6 py-8">
+          <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {children}
           </main>
-          <footer className="text-center py-4 mt-8 text-gray-500 text-sm">
+          <footer className="text-center py-4 mt-8 text-foreground/70 dark:text-foreground/50 text-sm">
             © {new Date().getFullYear()} NUTM Nexus. Made by Ayodeji.
           </footer>
-        </AuthProvider> {/* Close AuthProvider */}
+        </ThemeProvider>
       </body>
     </html>
   );

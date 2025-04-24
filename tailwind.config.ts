@@ -2,6 +2,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class", // IMPORTANT: Enable class-based dark mode
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,33 +10,49 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // References CSS variables set in globals.css
       colors: {
-        // Define Nigerian Green and variants for Tailwind utility classes
         primary: {
-          DEFAULT: "hsl(var(--color-primary))", // Use HSL variable from CSS
+          DEFAULT: "hsl(var(--color-primary))",
           light: "hsl(var(--color-primary-light))",
           dark: "hsl(var(--color-primary-dark))",
         },
-        // Map background/foreground CSS variables for Tailwind use (optional but good practice)
         background: 'hsl(var(--color-background))',
         foreground: 'hsl(var(--color-foreground))',
+        accent: {
+           DEFAULT: "hsl(var(--color-accent))",
+           light: "hsl(var(--color-accent-light))",
+           dark: "hsl(var(--color-accent-dark))",
+        },
+        'accent-secondary': {
+            DEFAULT: "hsl(var(--color-accent-secondary))",
+        },
+        // Use direct CSS vars for hero text colors
+        'hero-foreground': 'hsl(var(--color-hero-foreground))',
+        'hero-accent': 'hsl(var(--color-hero-accent))',
       },
-      // Keep the backgroundImage extensions if you use them
+      // Add animation delay utility if needed for staggered animations
+      animationDelay: {
+        '400': '400ms',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      // If using Geist fonts via next/font, they might already be configured.
-      // If not, you can define them here as well, referencing the CSS vars.
-      // fontFamily: {
-      //   sans: ['var(--font-sans)', 'Arial', 'Helvetica', 'sans-serif'], // Add fallback
-      //   mono: ['var(--font-mono)', 'monospace'],
-      // },
     },
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'), // Ensure aspect-ratio plugin is added
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'), // For styling the search input
+     // Custom utility for animation delay (if needed and not using a plugin)
+     function ({ addUtilities }: { addUtilities: Function }) {
+        addUtilities({
+          '.animation-delay-400': {
+            'animation-delay': '400ms',
+          },
+        })
+     }
   ],
 };
 export default config;
