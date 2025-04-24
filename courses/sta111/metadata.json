@@ -1,11 +1,11 @@
 {
     "title": "Introduction to Statistics",
     "code": "STA 111",
-    "description": "Fundamentals of computer science, algorithms, and programming.",
+    "description": "Fundamentals of statistics",
     "instructor": "Dr. Nifemi Badmus",
     "credits": 3,
     "level": 100,
-    "department": ["Computer Science","Cybersecurity"],
+    "department": "Computer Science",
     "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
     "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",
