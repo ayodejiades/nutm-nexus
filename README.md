@@ -1,6 +1,6 @@
 # NUTM Nexus
 
-[![Vercel Deployment Status](https://vercel.com/button)](https://vercel.com) <!-- Optional: Replace with your actual Vercel deployment badge if desired -->
+[![Vercel Deployment Status](https://vercel.com/button)](https://vercel.com) 
 
 A simple, modern web application built with Next.js to serve as a centralized hub for accessing course materials and resources at NUTM. It uses a GitHub repository as its data source, keeping things lightweight and free.
 
@@ -19,7 +19,6 @@ A simple, modern web application built with Next.js to serve as a centralized hu
 *   **Dark/Light Mode:** Includes a theme toggle with system preference detection using `next-themes`.
 *   **Static Pages:** Includes "About" and "Team" pages.
 *   **Simple & Free:** Built entirely using free services (GitHub, Vercel) and open-source libraries.
-*   ~~Authentication Removed:~~ *(Previously included GitHub sign-in, now removed for simplicity).*
 
 ## 🚀 Technology Stack
 
@@ -42,11 +41,6 @@ Follow these instructions to get a local copy up and running for development pur
 *   **Git:** Version control system. [git-scm.com](https://git-scm.com/).
 *   **GitHub Account:** To clone the repository and generate an access token.
 *   **GitHub Personal Access Token (PAT):** Required for the application to fetch data from your GitHub repository via the API.
-    *   Generate a **Classic Token** from GitHub Settings -> Developer settings -> Personal access tokens -> Tokens (classic).
-    *   Give it a descriptive name (e.g., `nutm-nexus-local-dev`).
-    *   Set an expiration date (recommended).
-    *   Select the **`repo`** scope (required to read repository content, works for both public and private repos).
-    *   **Copy the generated token immediately** - you won't see it again.
 
 ### Installation
 
@@ -100,48 +94,6 @@ The application requires certain environment variables to connect to the GitHub 
     ```
 2.  Open your browser and navigate to `http://localhost:3000`.
 
-## 📦 Content Management
-
-Course content is managed directly within this GitHub repository in the `/courses` directory.
-
-1.  **Directory Structure:**
-    *   Create a subdirectory inside `/courses` for each course, typically using the course code (e.g., `/courses/csc101`).
-2.  **Metadata:**
-    *   Inside each course directory, create a `metadata.json` file.
-    *   This file **must** contain at least:
-        *   `title` (string): Full course title.
-        *   `code` (string): The course code (e.g., "CSC101").
-        *   `description` (string): A brief course description.
-    *   It **should** also contain (for filtering/display):
-        *   `department` (string): e.g., "Computer Science".
-        *   `level` (number): e.g., 100, 200, 300.
-        *   `credits` (number): e.g., 3.
-    *   **Optional** fields:
-        *   `instructor` (string): Instructor's name.
-        *   `youtubePlaylistId` (string): The ID of a YouTube playlist for the course.
-        *   `moodleCourseUrl` (string): Direct link to the Moodle course page.
-        *   `moodleForumUrl` (string): Direct link to the Moodle forum.
-        *   `moodleAssignmentsUrl` (string): Direct link to Moodle assignments.
-    *   **Example `metadata.json`:**
-        ```json
-        {
-          "title": "Introduction to Programming",
-          "code": "CSC101",
-          "description": "Fundamental concepts of programming using Python.",
-          "department": "Computer Science",
-          "level": 100,
-          "credits": 3,
-          "instructor": "Prof. Turing",
-          "youtubePlaylistId": "PL..."
-        }
-        ```
-3.  **Resource Files:**
-    *   Place actual resource files (PDFs, DOCX, lecture notes, images, etc.) directly inside the corresponding course directory (e.g., `/courses/csc101/lecture1.pdf`).
-4.  **Updating Content:**
-    *   Edit `metadata.json` or add/update/delete resource files locally.
-    *   Commit and push the changes to the `main` branch of the GitHub repository.
-    *   The changes will be fetched by the API (subject to caching/revalidation) and reflected on the deployed website.
-
 ## ☁️ Deployment
 
 This project is optimized for deployment on [Vercel](https://vercel.com/).
@@ -155,5 +107,3 @@ This project is optimized for deployment on [Vercel](https://vercel.com/).
     *   Ensure they are set for the **Production** environment.
 4.  **Deploy:** Click "Deploy". Vercel will build and deploy your site.
 5.  **Automatic Deployments:** Pushing to the connected GitHub branch (usually `main`) will automatically trigger new deployments on Vercel.
-
-## 📁 Folder Structure (Simplified)
