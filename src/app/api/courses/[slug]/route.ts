@@ -21,14 +21,14 @@ const owner = process.env.GITHUB_REPO_OWNER!;
 const repo = process.env.GITHUB_REPO_NAME!;
 const coursesPath = 'courses';
 
-// Correct type definition for the second argument containing params
-interface RouteParams {
-  params: { slug: string };
-}
+// Remove the separate RouteParams interface if it exists
 
-// FIX: Correctly type the second argument (context) containing params
-export async function GET(request: Request, { params }: RouteParams ) {
-    const { slug } = params; // Destructure slug directly from params
+// FIX: Correctly type the second argument directly inline
+export async function GET(
+    request: Request,
+    { params }: { params: { slug: string } } // Type the context object directly
+) {
+    const { slug } = params; // Destructure slug from the correctly typed params
 
     // Runtime checks
     if (!octokit || !owner || !repo || !slug) {
@@ -109,5 +109,5 @@ export async function GET(request: Request, { params }: RouteParams ) {
     }
 }
 
-// Optional: Set revalidation period (e.g., every 5 minutes)
-export const revalidate = 300;
+// Optional: Set revalidation period
+export const revalidate = 300; // Revalidate every 5 minutes
