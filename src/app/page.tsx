@@ -6,7 +6,7 @@ import CourseCard from '@/components/CourseCard';
 import CourseCardSkeleton from '@/components/CourseCardSkeleton';
 import ErrorDisplay from '@/components/ErrorDisplay';
 import EmptyState from '@/components/EmptyState';
-// FIX: Removed unused AdjustmentsHorizontalIcon from import
+// Removed unused AdjustmentsHorizontalIcon
 import { MagnifyingGlassIcon, ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
 
 // Interface including filterable fields
@@ -24,31 +24,32 @@ interface Course {
 async function fetchCourses(): Promise<Course[]> {
     const apiUrl = '/api/courses';
     try {
-        const res = await fetch(apiUrl, { cache: 'no-store' }); // Dev: no-store, Prod: consider revalidate
+        // Use no-store during dev, consider revalidate tag or time-based for prod
+        const res = await fetch(apiUrl, { cache: 'no-store' });
         if (!res.ok) {
              const errorText = await res.text().catch(() => `Status ${res.status}`);
              let details = `Status: ${res.status}. ${errorText}`;
+             // FIX: Omit variable name in catch if unused
              try {
-                 // FIX: Prefix unused var _ignoredError
                  const jsonError = JSON.parse(errorText);
                  details = jsonError.error || jsonError.message || details;
-             } catch (_ignoredError) { /* Ignore parsing error */ }
+             } catch { /* Ignore parsing error */ }
              console.error("Failed fetch courses. Details:", details);
              throw new Error(`Failed to fetch courses. ${details}`);
         }
         const data = await res.json();
         console.log(`Fetched ${data?.length ?? 0} courses.`);
         return data as Course[];
-    } catch (error: unknown) { // FIX: Use unknown type
+    } catch (error: unknown) { // Use unknown type
         console.error("Error caught in fetchCourses function:", error);
-        // FIX: Use type guard for message
+        // Use type guard for message
         const message = (error instanceof Error) ? error.message : "An unknown error occurred during data fetching.";
         throw new Error(message); // Re-throw as Error object
     }
 }
 
 
-// --- FilterSelect Component ---
+// --- FilterSelect Component --- (Keep definition here or import if moved)
 interface FilterSelectProps { label: string; value: string | number; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; options: Array<{ value: string | number; label: string }>; allLabel?: string; htmlForId?: string; }
 function FilterSelect({ label, value, onChange, options, allLabel = "All", htmlForId }: FilterSelectProps) {
     const id = htmlForId || label.toLowerCase().replace(/\s+/g, '-');
@@ -78,14 +79,22 @@ export default function HomePage() {
   // --- useEffect for Fetching ---
   useEffect(() => {
     setIsLoading(true); setError(null);
+    console.log("HomePage: useEffect fetching courses...");
     fetchCourses()
-      .then(data => { setCourses(data || []); })
-      .catch((err: unknown) => { // FIX: Use unknown
-        // FIX: Use type guard and prefix unused var 'e' if only using message
+      .then(data => {
+          console.log("HomePage: fetch successful, setting courses.");
+          setCourses(data || []); // Ensure courses is always an array
+       })
+      .catch((err: unknown) => { // Use unknown
+        console.error("HomePage: fetch failed.", err);
+         // FIX: Use type guard for message
         setError(err instanceof Error ? err.message : "Unknown fetch error");
-        setCourses([]);
+        setCourses([]); // Set empty on error
       })
-      .finally(() => { setIsLoading(false); });
+      .finally(() => {
+          console.log("HomePage: fetch finished.");
+          setIsLoading(false);
+       });
   }, []);
 
   // --- useMemo for Filter Options ---
@@ -110,6 +119,7 @@ export default function HomePage() {
 
   // --- useMemo for Processing Courses ---
   const processedCourses = useMemo(() => {
+    console.log(`Processing courses: Search='${searchQuery}', Dept='${selectedDept}', Level='${selectedLevel}', Credits='${selectedCredits}', Sort='${sortKey}-${sortOrder}'`);
     let filtered = courses;
     // Apply search
     if (searchQuery) {
@@ -141,6 +151,7 @@ export default function HomePage() {
         else if (typeof valA === 'string' && typeof valB === 'string'){ comparison = valA.localeCompare(valB); }
         return sortOrder === 'asc' ? comparison : -comparison;
     });
+    console.log(`Processed courses count: ${filtered.length}`);
     return filtered;
    }, [courses, searchQuery, selectedDept, selectedLevel, selectedCredits, sortKey, sortOrder]);
 
@@ -148,7 +159,7 @@ export default function HomePage() {
   const renderCourseList = () => {
     if (isLoading) { return ( <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> {[...Array(6)].map((_, index) => <CourseCardSkeleton key={index} />)} </div> ); }
     if (error) { return <ErrorDisplay message="Could Not Load Courses" details={error} />; }
-    if (processedCourses.length === 0) { return (searchQuery || selectedDept || selectedLevel || selectedCredits) ? <EmptyState title="No Matching Courses Found" message="Try adjusting your search or filters." /> : <EmptyState title="No Courses Available" message="Course materials haven't been added yet." />; }
+    if (processedCourses.length === 0) { return (searchQuery || selectedDept || selectedLevel || selectedCredits) ? <EmptyState title="No Matching Courses Found" message="Try adjusting your search or filters." /> : <EmptyState title="No Courses Available" message="Course materials haven't been added yet. Check back later!" />; }
     return ( <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> {processedCourses.map((course) => ( <CourseCard key={course.slug} {...course} /> ))} </div> );
   };
 
@@ -157,7 +168,6 @@ export default function HomePage() {
 
   // --- Clear Filters Handler ---
   const clearFilters = () => { setSearchQuery(''); setSelectedDept(''); setSelectedLevel(''); setSelectedCredits(''); setSortKey('code'); setSortOrder('asc'); };
-
 
   return (
     <div className="space-y-12 md:space-y-16 pb-10">
