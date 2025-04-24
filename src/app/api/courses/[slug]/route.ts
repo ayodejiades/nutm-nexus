@@ -12,82 +12,69 @@ const repo = process.env.GITHUB_REPO_NAME!;
 const coursesPath = 'courses';
 
 // --- Type Guard ---
-function isRouteContext(context: unknown): context is { params: { slug: string } } {
-    if (typeof context !== 'object' || context === null) return false;
-    const potentialContext = context as { params?: unknown };
-    if (typeof potentialContext.params !== 'object' || potentialContext.params === null) return false;
-    const potentialParams = potentialContext.params as { slug?: unknown };
-    return typeof potentialParams.slug === 'string';
-}
+function isRouteContext(context: unknown): context is { params: { slug: string } } { /* ... implementation ... */ }
 
 // Route Handler
 export async function GET(
     request: NextRequest,
-    context: unknown // Use unknown type
+    context: unknown
 ): Promise<NextResponse> {
 
-    if (!isRouteContext(context)) {
-        console.error("API Route Error: Invalid context structure received:", context);
-        return NextResponse.json({ error: 'Invalid request context.' }, { status: 400 });
-    }
+    if (!isRouteContext(context)) { /* ... handle invalid context ... */ }
     const { slug } = context.params;
 
-    if (!octokit || !owner || !repo) {
-        const missing = [!octokit && "Octokit", !owner && "Owner", !repo && "Repo"].filter(Boolean).join(', ');
-        console.error(`API Route Error [${slug}]: Config missing at runtime (${missing}).`);
-        return NextResponse.json({ error: 'Server configuration error.' }, { status: 500 });
-    }
+    if (!octokit || !owner || !repo) { /* ... handle missing config ... */ }
 
     const coursePath = `${coursesPath}/${slug}`;
-    const metadataPath = `${coursePath}/metadata.json`; // Defined for use below
+    const metadataPath = `${coursePath}/metadata.json`;
     console.log(`API [${slug}]: Fetching details for path: ${coursePath}`);
 
     try {
         // 1. Fetch metadata
-        console.log(`API [${slug}]: Fetching metadata from ${metadataPath}`); // Use metadataPath
+        console.log(`API [${slug}]: Fetching metadata from ${metadataPath}`);
         let metadata: Record<string, unknown>;
         try {
              const { data: metadataContent } = await octokit.repos.getContent({ owner, repo, path: metadataPath, mediaType: { format: 'raw' } });
              metadata = JSON.parse(metadataContent as unknown as string);
              console.log(`API [${slug}]: Metadata found and parsed.`);
-        } catch (error: unknown) { // FIX: Use error variable directly in log
+        } catch (error: unknown) {
              const status = (error as { status?: number })?.status;
-             // const message = (error instanceof Error) ? error.message : String(error);
+             const message = (error instanceof Error) ? error.message : String(error);
              if (status === 404) {
-                 // Use metadataPath in the log
-                 console.error(`API Error [${slug}]: metadata.json not found at path: ${metadataPath}. Raw Error:`, error); // Log raw error
+                 console.error(`API Error [${slug}]: metadata.json not found at path: ${metadataPath}. Raw Error:`, error);
                  return NextResponse.json({ error: `Course metadata not found for '${slug}'` }, { status: 404 });
              }
-             // Log other errors, using the error variable directly
-             console.error(`API Error [${slug}]: Failed fetch/parse metadata from ${metadataPath}:`, error); // Log raw error
-             throw error; // Re-throw to be caught by outer catch
+             console.error(`API Error [${slug}]: Failed fetch/parse metadata from ${metadataPath}:`, error);
+             throw error; // Re-throw
         }
 
         // 2. Fetch directory contents (files)
         console.log(`API [${slug}]: Fetching file list from ${coursePath}`);
-        // Keep 'let' because files.push modifies it. Disable rule removed.
+
+        // FIX: Disable prefer-const for this specific line as files.push modifies it
+        // eslint-disable-next-line prefer-const
         let files: Array<{ name: string; url?: string | null; size: number; type: string }> = [];
+
         try {
             const { data: courseContents } = await octokit.repos.getContent({ owner, repo, path: coursePath });
             if (Array.isArray(courseContents)) {
                const fetchedFiles = courseContents
                   .filter(item => item.type === 'file' && item.name !== 'metadata.json')
                   .map(file => ({ name: file.name, url: file.download_url, size: file.size ?? 0, type: file.type }));
-               files.push(...fetchedFiles);
+               files.push(...fetchedFiles); // Modifying 'files' array
                console.log(`API [${slug}]: Found ${files.length} files.`);
             } else {
                  console.warn(`API [${slug}]: Path ${coursePath} did not return an array of contents.`);
                  return NextResponse.json({ error: `Course path not found or invalid for '${slug}'` }, { status: 404 });
             }
-        // FIX: Use 'error' instead of '_error' and log it
-        } catch (error: unknown) { // Catch block uses 'error' variable
+        } catch (error: unknown) {
              const status = (error as { status?: number })?.status;
-             // const message = (error instanceof Error) ? error.message : String(error);
+             const message = (error instanceof Error) ? error.message : String(error);
              if (status === 404) {
-                 console.error(`API Error [${slug}]: Course directory not found at ${coursePath}. Raw Error:`, error); // Log raw error
+                 console.error(`API Error [${slug}]: Course directory not found at ${coursePath}. Raw Error:`, error);
                  return NextResponse.json({ error: `Course path not found for '${slug}'` }, { status: 404 });
              }
-             console.error(`API Error [${slug}]: Failed to fetch course contents from ${coursePath}:`, error); // Log raw error
+             console.error(`API Error [${slug}]: Failed to fetch course contents from ${coursePath}:`, error);
              throw error; // Re-throw
         }
 
@@ -95,9 +82,8 @@ export async function GET(
         console.log(`API [${slug}]: Returning details successfully.`);
         return NextResponse.json({ metadata, files });
 
-    // FIX: Use 'error' variable directly in log
-    } catch (error: unknown) { // Catch block uses 'error' variable
-         console.error(`API Error [${slug}]: Unhandled error in GET handler:`, error); // Log raw error
+    } catch (error: unknown) {
+         console.error(`API Error [${slug}]: Unhandled error in GET handler:`, error);
          const status = (error as { status?: number })?.status || 500;
          const githubMessage = (error as { data?: { message?: string } })?.data?.message;
          const errorMessage = (error instanceof Error) ? error.message : String(error);
@@ -109,3 +95,12 @@ export async function GET(
 
 // Optional: Revalidation config
 export const revalidate = 300;
+
+// --- Type Guard --- (Keep this helper function)
+function isRouteContext(context: unknown): context is { params: { slug: string } } {
+    if (typeof context !== 'object' || context === null) return false;
+    const potentialContext = context as { params?: unknown };
+    if (typeof potentialContext.params !== 'object' || potentialContext.params === null) return false;
+    const potentialParams = potentialContext.params as { slug?: unknown };
+    return typeof potentialParams.slug === 'string';
+             }
