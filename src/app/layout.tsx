@@ -36,6 +36,7 @@ export default function RootLayout({
             © {new Date().getFullYear()} NUTM Nexus. Made by <a href="https://ayodejiades.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-medium text-primary dark:text-primary-light underline hover:text-primary-dark dark:hover:text-primary transition-colors">Ayodeji</a>.
           </footer>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
