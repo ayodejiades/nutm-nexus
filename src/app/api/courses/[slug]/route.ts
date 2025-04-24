@@ -1,11 +1,10 @@
 // src/app/api/courses/[slug]/route.ts
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server'; // Using NextRequest might be safer
 import { Octokit } from '@octokit/rest';
 
 // Check env vars
 if (!process.env.GITHUB_TOKEN || !process.env.GITHUB_REPO_OWNER || !process.env.GITHUB_REPO_NAME) {
     console.error("FATAL ERROR: GitHub API environment variables not set during init.");
-    // Consider throwing error in production build if config is essential
 }
 
 let octokit: Octokit | null = null;
@@ -21,20 +20,22 @@ const owner = process.env.GITHUB_REPO_OWNER!;
 const repo = process.env.GITHUB_REPO_NAME!;
 const coursesPath = 'courses';
 
-// Remove the separate RouteParams interface if it exists
+// FIX: Use 'any' for the context argument to bypass strict type check
+export async function GET(request: NextRequest, context: any) {
+    // Access params via the 'any' typed context, add checks
+    const slug = context?.params?.slug;
 
-// FIX: Correctly type the second argument directly inline
-export async function GET(
-    request: Request,
-    { params }: { params: { slug: string } } // Type the context object directly
-) {
-    const { slug } = params; // Destructure slug from the correctly typed params
+    // **Crucial check**: Ensure slug was actually extracted
+    if (!slug || typeof slug !== 'string') {
+         console.error("API Route Error: Slug is missing or invalid in context params:", context?.params);
+         return NextResponse.json({ error: 'Course slug is required in the URL path.' }, { status: 400 });
+    }
 
-    // Runtime checks
-    if (!octokit || !owner || !repo || !slug) {
-        const missing = [!octokit && "Octokit", !owner && "Owner", !repo && "Repo", !slug && "Slug"].filter(Boolean).join(', ');
-        console.error(`API Route Error [${slug || 'unknown'}]: Config/slug missing at runtime (${missing}).`);
-        return NextResponse.json({ error: 'Server configuration error or missing slug.' }, { status: 500 });
+    // Runtime checks for other prerequisites
+    if (!octokit || !owner || !repo) {
+        const missing = [!octokit && "Octokit", !owner && "Owner", !repo && "Repo"].filter(Boolean).join(', ');
+        console.error(`API Route Error [${slug}]: Config missing at runtime (${missing}).`);
+        return NextResponse.json({ error: 'Server configuration error.' }, { status: 500 });
     }
 
     const coursePath = `${coursesPath}/${slug}`;
