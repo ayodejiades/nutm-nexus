@@ -18,7 +18,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="text-center mb-12 md:mb-16">
         <h1 className="text-4xl font-bold tracking-tight text-primary-dark dark:text-primary-light sm:text-5xl mb-4">
-          About NUTM Nexus
+          About
         </h1>
         <p className="text-lg text-foreground/80 dark:text-foreground/70">
           Your central hub for NUTM course materials and resources.
@@ -31,7 +31,7 @@ export default function AboutPage() {
         <section className={sectionStyle}>
           <h2 className={headingStyle}> Our Mission </h2>
           <p className={paragraphStyle}>
-            NUTM Nexus aims to provide students and faculty at NUTM with a simple, accessible, and centralized platform
+            NUTM Nexus aims to provide students at NUTM with a simple, accessible, and centralized platform
             for accessing course tutorials, lecture notes, syllabi, and supplementary video resources. We believe in
             leveraging modern, open technologies to create a streamlined learning experience, free from the clutter
             of complex systems.
