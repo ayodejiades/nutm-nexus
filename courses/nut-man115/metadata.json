@@ -1,0 +1,13 @@
+{
+    "title": "Introduction to Microeconomics",
+    "code": "NUT-MAN 115",
+    "description": "An overview of Microeconomics",
+    "instructor": "Dr. Habeeb Quadri",
+    "credits": 3,
+    "level": 100,
+    "department": "Computer Science",
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123",
+    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",
+    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"
+}

@@ -192,7 +192,7 @@ export default function CourseDetailPage() {
   // Common Styles defined for readability
   const sectionStyle = "mb-8 p-6 border border-gray-200 dark:border-gray-700/50 rounded-lg bg-white dark:bg-gray-800/30 shadow-sm";
   const sectionTitleStyle = "text-xl sm:text-2xl font-semibold mb-5 text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-700 pb-3";
-  const listItemStyle = "flex items-center group py-2.5"; // Consistent vertical padding
+  const listItemStyle = "flex items-center group py-2.5"; 
   const linkStyle = "font-medium text-primary hover:underline group-hover:text-primary-dark dark:text-primary-light dark:hover:text-primary flex items-center break-words transition-colors duration-150 min-w-0"; // Handle long links
   const moodleIconStyle = "w-5 h-5 mr-3 text-primary/70 dark:text-primary-light/70 flex-shrink-0";
   const fileIconStyle = "w-5 h-5 mr-3 text-gray-500 dark:text-gray-400 flex-shrink-0";
