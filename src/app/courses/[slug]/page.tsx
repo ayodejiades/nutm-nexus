@@ -66,10 +66,11 @@ async function fetchCourseDetails(slug: string): Promise<CourseDetails | null> {
       // Try to get more specific error from API response body
       const errorBody = await res.text().catch(() => `Status ${res.status}`);
       let details = `Status: ${res.status}. ${errorBody}`;
+      // FIX: Omit variable name in catch if unused
       try {
           const jsonError = JSON.parse(errorBody);
           details = jsonError.error || jsonError.message || details;
-       } catch (_ignoredError) { /* FIX: Ignore parsing error, prefix unused var */ }
+       } catch { /* Ignore parsing error */ }
       console.error(`Failed fetch course details for ${slug}:`, details);
       throw new Error(`Failed to fetch course details. ${details}`);
     }
@@ -81,9 +82,9 @@ async function fetchCourseDetails(slug: string): Promise<CourseDetails | null> {
         throw new Error("Invalid data structure received from server.");
     }
     return data as CourseDetails;
-  } catch (error: unknown) { // FIX: Use unknown type
+  } catch (error: unknown) { // Use unknown type
     console.error(`Error caught in fetchCourseDetails for ${slug}:`, error);
-    // FIX: Use type guard for error message
+    // Use type guard for error message
     const message = (error instanceof Error) ? error.message : "An unknown error occurred during data fetching.";
     throw new Error(message); // Re-throw as Error object
   }
@@ -131,11 +132,12 @@ export default function CourseDetailPage() {
           setError(null); // Clear any previous error
         }
       })
-      .catch((err: unknown) => { // FIX: Use unknown for catch
+      .catch((err: unknown) => { // Use unknown for catch
         // Handle errors during the fetch process
         console.error(`CourseDetail useEffect: Caught error while fetching for slug ${slug}:`, err);
-        // FIX: Use type guard for message
-        setError(err instanceof Error ? err.message : "An unknown error occurred fetching details.");
+        // Use type guard for message
+        // FIX: Prefix unused parameter `_e` if not using the caught error directly inside block
+        setError(err instanceof Error ? err.message : "Unknown fetch error");
         setCourseDetails(null); // Clear details on error
         setIsNotFound(false); // This is an error state, not "not found"
       })
@@ -230,21 +232,32 @@ export default function CourseDetailPage() {
              {files.map((file) => {
                 // Handle potential missing name gracefully (though unlikely from GitHub API)
                 const fileName = file?.name || 'Unnamed File';
-                const IconComponent = getFileIcon(fileName);
+                const IconComponent = getFileIcon(fileName); // Get icon based on name
                 return (
                     // Use name and potentially URL as key for better stability
                     <li key={`${fileName}-${file.url || ''}`} className={`${listItemStyle} justify-between gap-4`}>
                         {/* Link file only if URL exists */}
-                        <a href={file.url || '#'} target="_blank" rel="noopener noreferrer" className={linkStyle} download={!file.url?.startsWith('http')} aria-disabled={!file.url} title={file.url ? fileName : `${fileName} (Link unavailable)`}>
+                        <a
+                            href={file.url || '#'} // Provide fallback href
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`${linkStyle} ${!file.url ? 'opacity-50 pointer-events-none' : ''}`} // Style disabled links
+                            download={!file.url?.startsWith('http')} // Suggest download for non-HTTP links
+                            aria-disabled={!file.url} // Accessibility for disabled links
+                            title={file.url ? fileName : `${fileName} (Link unavailable)`} // Tooltip
+                        >
                             <IconComponent className={fileIconStyle} aria-hidden="true"/>
+                             {/* Use min-w-0 and truncate on span for better control */}
                             <span className="truncate">{fileName}</span>
                         </a>
+                         {/* Ensure size doesn't wrap */}
                         <span className="text-gray-500 dark:text-gray-400 text-xs ml-2 flex-shrink-0 whitespace-nowrap">{formatBytes(file.size)}</span>
                     </li>
                 );
              })}
            </ul>
          ) : (
+            // Provide an empty state if no files are found
             <EmptyState title="No Resources Found" message="No files or resources have been uploaded for this course yet." />
          )}
       </div>
@@ -271,7 +284,7 @@ export default function CourseDetailPage() {
             <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900">
               {/* Add a key to iframe to help React re-render if the src changes */}
               <iframe
-                key={slug + '-' + metadata.youtubePlaylistId}
+                key={slug + '-' + metadata.youtubePlaylistId} // More robust key
                 src={`https://www.youtube.com/embed/videoseries?list=${metadata.youtubePlaylistId}`}
                 title="YouTube video playlist player"
                 frameBorder="0"
@@ -286,4 +299,4 @@ export default function CourseDetailPage() {
       )}
     </div>
   );
-}
+    }
