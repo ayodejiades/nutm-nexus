@@ -5,22 +5,35 @@ import { Octokit } from '@octokit/rest';
 // Check env vars
 if (!process.env.GITHUB_TOKEN || !process.env.GITHUB_REPO_OWNER || !process.env.GITHUB_REPO_NAME) {
     console.error("FATAL ERROR: GitHub API environment variables not set during init.");
+    // Consider throwing error in production build if config is essential
 }
 
 let octokit: Octokit | null = null;
-try { octokit = new Octokit({ auth: process.env.GITHUB_TOKEN }); } catch (e) { console.error("Failed to initialize Octokit", e); }
+try {
+    if (process.env.GITHUB_TOKEN) {
+        octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+    } else {
+        console.error("Octokit not initialized: GITHUB_TOKEN missing.");
+    }
+} catch (e) { console.error("Failed to initialize Octokit", e); }
 
 const owner = process.env.GITHUB_REPO_OWNER!;
 const repo = process.env.GITHUB_REPO_NAME!;
 const coursesPath = 'courses';
 
-interface RequestContext { params: { slug: string }; }
+// Correct type definition for the second argument containing params
+interface RouteParams {
+  params: { slug: string };
+}
 
-export async function GET(request: Request, context: RequestContext) {
-    const { slug } = context.params;
+// FIX: Correctly type the second argument (context) containing params
+export async function GET(request: Request, { params }: RouteParams ) {
+    const { slug } = params; // Destructure slug directly from params
 
+    // Runtime checks
     if (!octokit || !owner || !repo || !slug) {
-        console.error(`API Route Error [${slug || 'unknown'}]: Octokit or GitHub env vars/slug missing at runtime.`);
+        const missing = [!octokit && "Octokit", !owner && "Owner", !repo && "Repo", !slug && "Slug"].filter(Boolean).join(', ');
+        console.error(`API Route Error [${slug || 'unknown'}]: Config/slug missing at runtime (${missing}).`);
         return NextResponse.json({ error: 'Server configuration error or missing slug.' }, { status: 500 });
     }
 
@@ -31,30 +44,29 @@ export async function GET(request: Request, context: RequestContext) {
     try {
         // 1. Fetch metadata
         console.log(`API [${slug}]: Fetching metadata from ${metadataPath}`);
-        let metadata: Record<string, unknown>; // Use a more generic object type initially
+        let metadata: Record<string, unknown>;
         try {
             const { data: metadataContent } = await octokit.repos.getContent({
                 owner, repo, path: metadataPath, mediaType: { format: 'raw' },
             });
             const metadataString = metadataContent as unknown as string;
-            metadata = JSON.parse(metadataString); // Parse JSON
-             // Add type validation if needed here
+            metadata = JSON.parse(metadataString);
             console.log(`API [${slug}]: Metadata found and parsed.`);
-        } catch (error: unknown) { // FIX: Use unknown
-             // FIX: Use type assertion carefully or type guard
-             const status = (error as { status?: number })?.status;
-             const message = (error instanceof Error) ? error.message : String(error);
-             if (status === 404) {
-                 console.error(`API Error [${slug}]: metadata.json not found at ${metadataPath}.`);
-                 return NextResponse.json({ error: `Course metadata not found for '${slug}'` }, { status: 404 });
-             }
-             console.error(`API Error [${slug}]: Failed to fetch/parse metadata:`, message);
-             throw new Error(`Failed to fetch or parse metadata: ${message}`); // Re-throw other errors
+        } catch (error: unknown) {
+            const status = (error as { status?: number })?.status;
+            const message = (error instanceof Error) ? error.message : String(error);
+            if (status === 404) {
+                console.error(`API Error [${slug}]: metadata.json not found at ${metadataPath}.`);
+                return NextResponse.json({ error: `Course metadata not found for '${slug}'` }, { status: 404 });
+            }
+            console.error(`API Error [${slug}]: Failed to fetch/parse metadata:`, message);
+            throw new Error(`Failed to fetch or parse metadata: ${message}`);
         }
+
 
         // 2. Fetch directory contents (files)
         console.log(`API [${slug}]: Fetching file list from ${coursePath}`);
-        let files: Array<{ name: string; url?: string | null; size: number; type: string }> = []; // Allow url to be null
+        let files: Array<{ name: string; url?: string | null; size: number; type: string }> = [];
         try {
             const { data: courseContents } = await octokit.repos.getContent({ owner, repo, path: coursePath });
             if (Array.isArray(courseContents)) {
@@ -62,8 +74,8 @@ export async function GET(request: Request, context: RequestContext) {
                   .filter(item => item.type === 'file' && item.name !== 'metadata.json')
                   .map(file => ({
                     name: file.name,
-                    url: file.download_url, // download_url can be null for submodule links etc.
-                    size: file.size ?? 0, // Use nullish coalescing for size
+                    url: file.download_url,
+                    size: file.size ?? 0,
                     type: file.type,
                   }));
                console.log(`API [${slug}]: Found ${files.length} files.`);
@@ -71,32 +83,31 @@ export async function GET(request: Request, context: RequestContext) {
                  console.warn(`API [${slug}]: Path ${coursePath} did not return an array of contents.`);
                  return NextResponse.json({ error: `Course path not found or invalid for '${slug}'` }, { status: 404 });
             }
-        } catch (error: unknown) { // FIX: Use unknown
-             // FIX: Use type assertion carefully or type guard
+        } catch (error: unknown) {
             const status = (error as { status?: number })?.status;
-             const message = (error instanceof Error) ? error.message : String(error);
-             if (status === 404) {
-                 console.error(`API Error [${slug}]: Course directory not found at ${coursePath}.`);
-                 return NextResponse.json({ error: `Course path not found for '${slug}'` }, { status: 404 });
-             }
-             console.error(`API Error [${slug}]: Failed to fetch course contents:`, message);
-             throw new Error(`Failed to fetch course contents: ${message}`); // Re-throw other errors
+            const message = (error instanceof Error) ? error.message : String(error);
+            if (status === 404) {
+                console.error(`API Error [${slug}]: Course directory not found at ${coursePath}.`);
+                return NextResponse.json({ error: `Course path not found for '${slug}'` }, { status: 404 });
+            }
+            console.error(`API Error [${slug}]: Failed to fetch course contents:`, message);
+            throw new Error(`Failed to fetch course contents: ${message}`);
         }
 
         // 3. Return combined data
         console.log(`API [${slug}]: Returning details successfully.`);
         return NextResponse.json({ metadata, files });
 
-    } catch (error: unknown) { // FIX: Use unknown for main catch
-        console.error(`API Error [${slug}]: Failed to fetch course details:`, error);
-         // FIX: Use type assertion carefully or type guard
+    } catch (error: unknown) {
+        console.error(`API Error [${slug}]: Unhandled error fetching course details:`, error);
         const status = (error as { status?: number })?.status || 500;
         const githubMessage = (error as { data?: { message?: string } })?.data?.message;
         const errorMessage = (error instanceof Error) ? error.message : String(error);
-        const message = status === 500 ? `Failed to fetch details for course '${slug}'` : `GitHub API Error (${status})`;
+        const message = status === 500 ? `Server error processing request for course '${slug}'` : `GitHub API Error (${status})`;
         const details = githubMessage || errorMessage;
-
         return NextResponse.json({ error: message, details: details }, { status });
     }
 }
-// export const revalidate = 300;
+
+// Optional: Set revalidation period (e.g., every 5 minutes)
+export const revalidate = 300;
