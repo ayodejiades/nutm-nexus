@@ -39,3 +39,40 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.lol
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+*.xdv
+*.tex
+
+# Bibliography files
+*.bib.bak
+*.bbl.bak
+*.blg.bak
+
+# Build tool files
+latexmkrc
+
+# Temporary files
+*.swp
+*~
+
+# Editor files
+*.backup
+*.swo
