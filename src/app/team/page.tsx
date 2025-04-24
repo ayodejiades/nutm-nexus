@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const teamMembers = [
   {
     name: 'Ayodeji A.',
-    role: 'Chief Mathematical Officer',
+    role: 'Lead',
     imageUrl: '/ayodeji.png', 
     linkedin: 'https://www.linkedin.com/in/ayodejiades/',
     github: 'https://github.com/ayodejiades',  
