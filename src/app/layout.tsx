@@ -32,7 +32,7 @@ export default function RootLayout({
             {children}
           </main>
           <footer className="text-center py-4 mt-8 text-foreground/70 dark:text-foreground/50 text-sm">
-            © {new Date().getFullYear()} NUTM Nexus. Made by <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="font-medium text-primary dark:text-primary-light underline hover:text-primary-dark dark:hover:text-primary transition-colors">Ayodeji</a>.
+            © {new Date().getFullYear()} NUTM Nexus. Made by <a href="https://ayodejiades.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-medium text-primary dark:text-primary-light underline hover:text-primary-dark dark:hover:text-primary transition-colors">Ayodeji</a>.
           </footer>
         </ThemeProvider>
       </body>
