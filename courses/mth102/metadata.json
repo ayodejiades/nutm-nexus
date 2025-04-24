@@ -1,11 +1,13 @@
 {
-    "title": "Elementary Mathematics II",
-    "code": "MTH 102",
-    "description": "Fundamentals of calculus",
-    "instructor": "Dr. Paul Avnebake",
-    "credits": 3,
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-    "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123", 
-    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",  
-    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"  
-  }
+  "title": "Elementary Mathematics II",
+  "code": "MTH 102",
+  "description": "Fundamentals of calculus",
+  "instructor": "Dr. Paul Avnebake",
+  "credits": 3,
+  "level": 100,
+  "department": "Computer Science",
+  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+  "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123",
+  "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",
+  "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"
+}

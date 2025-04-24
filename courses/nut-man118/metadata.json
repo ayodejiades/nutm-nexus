@@ -1,11 +1,13 @@
 {
-    "title": "Digital Transformation",
-    "code": "NUT-MAN 118",
-    "description": "Fundamentals",
-    "instructor": "Dr. Chuka J. Uzo",
-    "credits": 3,
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-    "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123", 
-    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",  
-    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"  
-  }
+  "title": "Digital Transformation",
+  "code": "NUT-MAN 118",
+  "description": "Fundamentals",
+  "instructor": "Dr. Chuka J. Uzo",
+  "credits": 3,
+  "level": 100,
+  "department": "Computer Science",
+  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+  "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123",
+  "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",
+  "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"
+}
