@@ -40,7 +40,7 @@ async function fetchCourseDetails(slug: string): Promise<CourseDetails | null> {
       if (res.status === 404) return null;
       const errorBody = await res.text().catch(() => `Status ${res.status}`);
       let details = `Status: ${res.status}. ${errorBody}`;
-      try { details = JSON.parse(errorBody).error || details; } catch (_e) {}
+      try { details = JSON.parse(errorBody).error || details; } catch {}
       console.error(`Failed fetch course details for ${slug}:`, details);
       throw new Error(`Failed to fetch details. ${details}`);
     }
