@@ -1,6 +1,6 @@
 // src/app/about/page.tsx
 import type { Metadata } from 'next';
-import Link from 'next/link'; // Import Link
+import Link from 'next/link'; 
 
 export const metadata: Metadata = {
   title: 'About | NUTM Nexus',
@@ -38,7 +38,6 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* Technology Section */}
         <section className={sectionStyle}>
           <h2 className={headingStyle}> How It Works </h2>
           <p className={`${paragraphStyle} mb-4`}>
@@ -47,15 +46,12 @@ export default function AboutPage() {
           <ul className="list-disc list-outside space-y-3 pl-5 text-base text-foreground/80 dark:text-foreground/70">
              <li> <strong>Frontend:</strong> Built with <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer" className={linkStyle}>Next.js</a> & <a href="https://react.dev/" target="_blank" rel="noopener noreferrer" className={linkStyle}>React</a>, styled using <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" className={linkStyle}>Tailwind CSS</a> for a modern, responsive interface. Written in <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer" className={linkStyle}>TypeScript</a>. </li>
              <li> <strong>Data Storage:</strong> All course metadata and tutorial files are stored directly within a single <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className={linkStyle}>GitHub</a> repository. </li>
-             {/* Removed Authentication line previously */}
              <li> <strong>Hosting:</strong> Deployed globally and hosted for free on <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer" className={linkStyle}>Vercel</a>. </li>
           </ul>
         </section>
 
-        {/* Simplicity & Openness Section */}
         <section className={sectionStyle}>
           <h2 className={headingStyle}> Simplicity First </h2>
-          {/* ESLint Fix: Rewritten to avoid potential quote issues */}
           <p className={paragraphStyle}>
              By utilizing GitHub for data storage and Vercel for hosting, NUTM Nexus minimizes infrastructure overhead
              and costs. Updates to course materials are as simple as pushing changes to the GitHub repository. This approach
@@ -63,7 +59,6 @@ export default function AboutPage() {
           </p>
         </section>
 
-         {/* Contact/Contribution */}
          <section className="text-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
              <p className={paragraphStyle}>
                 Have questions or want to contribute? {' '}

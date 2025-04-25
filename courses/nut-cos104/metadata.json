@@ -1,5 +1,5 @@
 {
-    "title": "Dr. Rukayat Koleoso",
+    "title": "Computer Architecture and Organisation",
     "code": "NUT-COS 104",
     "description": "Principles of computer hardware and instruction set architecture. Internal CPU organisation and implementation. Instruction format and types, memory, and I/O instructions. Dataflow, arithmetic, and flow control instructions, addressing modes, stack operations, and interrupts. Data path and control unit design. RTL, microprogramming and hardwired control. The practice of assembly language programming. Memory hierarchy. Cache memory, Virtual memory. Cache performance. Compiler support for cache performance. I/O organisations.",
     "instructor": "Dr. Rukayat Koleoso",

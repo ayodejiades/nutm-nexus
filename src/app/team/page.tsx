@@ -10,11 +10,19 @@ export const metadata: Metadata = {
 const teamMembers = [
   {
     name: 'Ayodeji A.',
-    role: 'Lead',
-    imageUrl: '/ayodeji.png', 
+    role: 'Tech Team Lead',
+    imageUrl: '/ayodeji.png',
     linkedin: 'https://www.linkedin.com/in/ayodejiades/',
-    github: 'https://github.com/ayodejiades',  
-    website: 'https://ayodejiades.vercel.app/', 
+    github: 'https://github.com/ayodejiades',
+    website: 'https://ayodejiades.vercel.app/',
+  },
+  {
+    name: 'Opemipo A.',
+    role: 'Tech Team Member',
+    imageUrl: '/opemipo.png',
+    linkedin: 'https://www.linkedin.com/in/opemipo-akinwumi/',
+    github: 'https://github.com/opemipoakinwumi',
+    website: 'https://www.linkedin.com/in/opemipo-akinwumi/',
   },
   // Add more members here:
   // {
@@ -28,7 +36,6 @@ const teamMembers = [
 export default function TeamPage() {
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8 sm:py-12">
-      {/* Page Header */}
       <div className="text-center mb-10 md:mb-16">
         <h1 className="text-4xl font-bold tracking-tight text-primary-dark dark:text-primary-light sm:text-5xl mb-4">
           Meet the Team
@@ -49,7 +56,7 @@ export default function TeamPage() {
           ))}
         </div>
       ) : (
-         <p className="text-center text-gray-600 dark:text-gray-400">Team information coming soon.</p>
+        <p className="text-center text-gray-600 dark:text-gray-400">Team information coming soon.</p>
       )}
     </div>
   );
