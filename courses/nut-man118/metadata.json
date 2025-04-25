@@ -5,7 +5,11 @@
   "instructor": "Dr. Chuka J. Uzo",
   "credits": 3,
   "level": 100,
-  "department": "Computer Science",
+  "semester": "II",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
   "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
   "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54",
   "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54",

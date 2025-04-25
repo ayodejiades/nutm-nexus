@@ -1,0 +1,17 @@
+{
+  "title": "Problem Solving",
+  "code": "NUT-COS 102",
+  "description": "Core concepts of computing. Identification of problems. Types of problems (routine problems and non-routine problems). Problem-solving. Methods of solving computing problems. Algorithms and heuristics. Solvable and unsolvable problems. Solution techniques of solving problems; abstraction; analogy; brainstorming; trial and error; hypothesis testing; reduction; literal thinking; means-end analysis. Method of the focal object; morphological analysis; research; root cause analysis; proof; divide and conquer. General Problem-solving process. Computing 183 New Solution formulation and design; flowchart; pseudocode; decision table; decision tree. programming in any language. ",
+  "instructor": "Dr. Philip Okposo",
+  "credits": 3,
+  "level": 100,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
+  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
+  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50"
+}

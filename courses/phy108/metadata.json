@@ -1,0 +1,17 @@
+{
+    "title": "General  Practical Physics II",
+    "code": "PHY 108",
+    "description": "This practical course is a continuation of PHY 107 and is intended to be taught during the second semester of the 100 level to cover the practical aspect of the theoretical courses that have been covered with emphasis on quantitative measurements, the treatment of measurement errors, and graphical analysis. However, emphasis should be placed on the basic physical techniques for observation, measurements, data collection, analysis and deduction. ",
+    "instructor": "Mr. Haliru Yusuf",
+    "credits": 1,
+    "level": 100,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=49",
+    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=49",
+    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=49"
+}

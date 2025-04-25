@@ -5,7 +5,11 @@
   "instructor": "Dr. Philip Okposo",
   "credits": 3,
   "level": 100,
-  "department": "Computer Science",
+  "semester": "I",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
   "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
   "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48",
   "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48",

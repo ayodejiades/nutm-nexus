@@ -1,13 +1,17 @@
 {
-  "title": "Elementary Mathematics II",
-  "code": "MTH 102",
-  "description": "Fundamentals of calculus",
+  "title": "Elementary Mathematics I",
+  "code": "MTH 101",
+  "description": "Elementary set theory, subsets, and union, intersection, complements, and Venn diagrams. Real numbers, integers, rational and irrational numbers, mathematical induction, real sequences and series, theory of quadratic equations, binomial theorem. Complex numbers; algebra of complex numbers, the Argand diagram. De-Moivre’s theorem, nth roots of unity. Circular measure, trigonometric functions of angles of any magnitude, addition, and factor formulae. ",
   "instructor": "Dr. Paul Avnebake",
-  "credits": 3,
+  "credits": 2,
   "level": 100,
-  "department": "Computer Science",
+  "semester": "I",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
   "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46"
+  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35",
+  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35",
+  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35"
 }

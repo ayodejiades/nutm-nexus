@@ -1,13 +1,17 @@
 {
-  "title": "Introduction to Macroeconomics",
+  "title": "Macroeconomics",
   "code": "NUT-MAN 116",
   "description": "An overview of Macroeconomics",
   "instructor": "Dr. Habeeb Quadri",
   "credits": 3,
   "level": 100,
-  "department": "Computer Science",
+  "semester": "II",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
   "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=123",
-  "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",
-  "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"
+  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
+  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
+  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53"
 }

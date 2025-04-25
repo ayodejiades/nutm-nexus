@@ -1,13 +1,17 @@
 {
     "title": "Microeconomics",
     "code": "NUT-MAN 115",
-    "description": "Microeconomics is the study of how individuals and firms make choices in a world with limited resources. This course provides students with a comprehensive understanding of the fundamental principles of microeconomics, enabling them to analyze the behavior of consumers and producers and the allocation of resources in various markets. By exploring topics such as supply and demand, market structures, consumer choice, and the role of government in the economy, students will gain valuable insights into the microeconomic forces that shape our everyday lives and impact decision-making on both a personal and societal level.",
+    "description": "An overview of Microeconomics",
     "instructor": "Dr. Habeeb Quadri",
     "credits": 3,
     "level": 100,
-    "department": "Computer Science",
+    "semester": "I",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
     "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=42",
-    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=42",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=42"
+    "moodleCourseUrl": "https://your-moodle-instance.com/course/view.php?id=42",
+    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=42",
+    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=42"
 }

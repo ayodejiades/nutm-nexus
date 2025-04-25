@@ -1,13 +1,17 @@
 {
-    "title": "Probability",
-    "code": "STA 112",
-    "description": "Fundamentals of statistics and probability",
-    "instructor": "Dr. Nifemi I. Badmus",
-    "credits": 3,
-    "level": 100,
-    "department": "Computer Science",
-    "youtubePlaylistId": "https://www.youtube.com/watch?v=oHcrna8Fk18&list=PLvxOuBpazmsNIHP5cz37oOPZx0JKyNszN",
-    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
-    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=456",
-    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=123"
-  }
+  "title": "Probability",
+  "code": "STA 112",
+  "description": "Fundamentals of statistics and probability",
+  "instructor": "Dr. Nifemi I. Badmus",
+  "credits": 3,
+  "level": 100,
+  "semester": "II",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
+  "youtubePlaylistId": "PLvxOuBpazmsNIHP5cz37oOPZx0JKyNszN",
+  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51",
+  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51",
+  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51"
+}

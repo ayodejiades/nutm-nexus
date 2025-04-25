@@ -1,0 +1,17 @@
+{
+    "title": "General Physics II",
+    "code": "PHY 102",
+    "description": "Forces in nature. Electrostatics (electric charge and its properties, methods of charging). Coulomb’s law and superposition. Electric field and potential. Gauss’s law. Capacitance. Electric dipoles. Energy in electric fields. Conductors and insulators. DC circuits (current, voltage and resistance. Ohm’s law. Resistor combinations. Analysis of DC circuits. Magnetic fields. Lorentz force. Biot-Savart and Ampère’s laws. Magnetic dipoles. Dielectrics. Energy in magnetic fields. Electromotive force. Electromagnetic induction. Self and mutual inductances. Faraday and Lenz’s laws. Step up and step down transformers. Maxwell's equations. Electromagnetic oscillations and waves. AC voltages and currents applied to inductors, capacitors, and resistance. ",
+    "instructor": "Dr. Paul Avnebake",
+    "credits": 2,
+    "level": 100,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=36",
+    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=36",
+    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=36"
+}

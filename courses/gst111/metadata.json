@@ -1,0 +1,17 @@
+{
+    "title": "Communication in English",
+    "code": "GST 111",
+    "description": "Communication In English",
+    "instructor": "Dr. Abiodun Adeniji",
+    "credits": 2,
+    "level": 100,
+    "semester": "I",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=34",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=34",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=34"
+}

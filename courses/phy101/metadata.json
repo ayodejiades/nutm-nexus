@@ -1,0 +1,17 @@
+{
+    "title": "General Physics I",
+    "code": "PHY 101",
+    "description": "Space and time, units and dimension, vectors and scalars, differentiation of vectors. Displacement, velocity, and acceleration; kinematics. Newton laws of motion (Inertial frames, Impulse, force and action at a distance, momentum conservation). Relative motion. Application of Newtonian mechanics. Equations of motion. Conservation principles in physics. Conservative forces. Conservation of linear momentum. Kinetic energy, and work, Potential energy, System of particles, centre of mass. Rotational motion; Torque, vector product, moment, rotation of coordinate axes and angular momentum. Polar coordinates, conservation of angular momentum. Circular motion. Moments of inertia, gyroscopes, and precession. Gravitation: Newton’s Law of Gravitation, Kepler’s Laws of Planetary Motion, Gravitational Potential Energy, Escape velocity, Satellites motion, and orbits.",
+    "instructor": "Dr. Oduah Uzoma",
+    "credits": 2,
+    "level": 100,
+    "semester": "I",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=36",
+    "moodleForumUrl": "https://your-moodle-instance.com/mod/forum/view.php?id=36",
+    "moodleAssignmentsUrl": "https://your-moodle-instance.com/mod/assign/index.php?id=36"
+  }

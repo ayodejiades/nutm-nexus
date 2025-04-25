@@ -1,11 +1,15 @@
 {
-  "title": "Elementary Mathematics I",
-  "code": "MTH 101",
-  "description": "Alegbra and Trigonometry",
+  "title": "Elementary Mathematics II",
+  "code": "MTH 102",
+  "description": "The function of a real variable, graphs, limits, and the idea of continuity. The derivative, as the limit of the rate of change. Techniques of differentiation. Extreme curve sketching; Integration as an inverse of differentiation. Methods of integration, Definite integrals. Application to areas, volumes.",
   "instructor": "Dr. Paul Avnebake",
-  "credits": 3,
+  "credits": 2,
   "level": 100,
-  "department": "Computer Science",
+  "semester": "II",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
   "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
   "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
   "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",

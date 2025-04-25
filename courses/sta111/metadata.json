@@ -1,13 +1,17 @@
 {
-    "title": "Descriptive Statistics",
-    "code": "STA 111",
-    "description": "Fundamentals of statistics",
-    "instructor": "Dr. Nifemi I. Badmus",
-    "credits": 3,
-    "level": 100,
-    "department": "Computer Science",
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
-    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38"
-  }
+  "title": "Descriptive Statistics",
+  "code": "STA 111",
+  "description": "Fundamentals of statistics",
+  "instructor": "Dr. Nifemi I. Badmus",
+  "credits": 3,
+  "level": 100,
+  "semester": "I",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
+  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
+  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
+  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38"
+}
