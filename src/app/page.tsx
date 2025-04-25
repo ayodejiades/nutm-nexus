@@ -36,7 +36,7 @@ async function fetchCourses(): Promise<Course[]> {
         // Try parsing JSON error from backend API route
         const jsonError = JSON.parse(errorText);
         details = jsonError.error || jsonError.message || details;
-      } catch (_ignoredError) { /* Ignore if body wasn't JSON */ }
+      } catch { /* Ignore if body wasn't JSON */ }
       console.error("Failed fetch courses. Details:", details);
       // Throw an error to be caught by the component
       throw new Error(`Failed to fetch courses. ${details}`);
