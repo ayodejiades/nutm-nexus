@@ -98,7 +98,6 @@ export default function CourseDetailPage() {
       <div className="mb-5 border-b border-gray-700 pb-5">
         <div className="flex items-center gap-2 flex-wrap mb-2">
             <span className="inline-block bg-primary/20 text-primary-light px-2.5 py-1 rounded-full text-sm font-semibold">{metadata.code}</span>
-            {metadata.departments && <span className={metadataBadgeStyle}>Dept: {metadata.departments}</span>}
             {metadata.level && <span className={metadataBadgeStyle}>Level: {metadata.level}</span>}
             {metadata.credits && <span className={metadataBadgeStyle}>Credits: {metadata.credits}</span>}
             {metadata.semester && <span className={metadataBadgeStyle}>Semester: {metadata.semester}</span>}
