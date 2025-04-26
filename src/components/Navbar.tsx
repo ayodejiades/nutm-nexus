@@ -3,7 +3,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ThemeSwitcher } from './ThemeSwitcher';
 
 export default function Navbar() {
   const secondaryLinkClasses = "text-sm font-medium text-foreground/80 hover:text-primary dark:text-foreground/70 dark:hover:text-white transition-colors duration-150";
