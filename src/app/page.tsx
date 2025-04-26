@@ -339,8 +339,8 @@ export default function HomePage() {
             <Image
               src="/hero-illustration.png"
               alt="Illustration of students studying"
-              width={1200}
-              height={1200}
+              width={300}
+              height={300}
               className="w-full h-auto object-contain"
               priority
             />

@@ -1,76 +1,31 @@
 /* src/app/globals.css */
 
-/* Non-standard Tailwind import (as requested) */
-@import "tailwindcss"; /* Note: Standard is @tailwind base/components/utilities */
+/* Non-standard Tailwind import */
+@import "tailwindcss";
 
-/* Define CSS variables for BOTH light and dark themes */
+/* Define CSS variables DIRECTLY for DARK MODE ONLY */
 :root {
-  /* === Light Mode Defaults === */
-  /* Base Colors */
-  --background-light: #ffffff;       /* Light background hex */
-  --foreground-light: #171717;       /* Light text hex */
-  /* Primary (Nigerian Green) */
-  --primary-light-hsl: 158 100% 26%; /* HSL for #008751 */
-  --primary-lighter-light-hsl: 157 100% 34%; /* HSL for lighter green */
-  --primary-darker-light-hsl: 158 100% 20%; /* HSL for darker green */
-  /* Accent Colors */
-  --accent-light-hsl: 180 90% 45%;   /* Vibrant Teal/Cyan */
-  --accent-lighter-light-hsl: 180 90% 55%;
-  --accent-darker-light-hsl: 180 90% 35%;
-  --accent-secondary-light-hsl: 45 100% 55%; /* Bright Yellow */
-  /* Hero Text Colors */
-  --hero-fg-light-hsl: 158 100% 15%; /* Very dark green for hero text on light */
-  --hero-accent-fg-light-hsl: 180 90% 30%; /* Dark teal for hero accent on light */
-
-  /* === Dark Mode Defaults === */
-  /* Base Colors */
-  --background-dark-hsl: 220 15% 12%;   /* Dark Slate Blue/Gray */
+  /* Base Colors (Dark Mode Values) */
+  --background-dark-hsl: 220 15% 12%;   /* Dark Slate */
   --foreground-dark-hsl: 210 25% 96%;   /* Soft Off-White */
-  /* Primary (Adjusted for Dark) */
-  --primary-dark-hsl: 158 80% 35%;     /* Slightly Desaturated/Brighter Green */
+  /* Primary (Dark Mode Values) */
+  --primary-dark-hsl: 158 80% 35%;     /* Dk Green */
   --primary-lighter-dark-hsl: 157 80% 42%;
   --primary-darker-dark-hsl: 158 80% 28%;
-  /* Accent Colors (Adjusted for Dark) */
-  --accent-dark-hsl: 180 75% 55%;    /* Adjusted Teal */
+  /* Accent Colors (Dark Mode Values) */
+  --accent-dark-hsl: 180 75% 55%;    /* Dk Teal */
   --accent-lighter-dark-hsl: 180 75% 65%;
   --accent-darker-dark-hsl: 180 75% 45%;
-  --accent-secondary-dark-hsl: 45 90% 65%; /* Adjusted Yellow */
-  /* Hero Text Colors (Adjusted for Dark) */
-  --hero-fg-dark-hsl: 210 25% 98%;      /* Near White for hero text on dark */
-  --hero-accent-fg-dark-hsl: var(--accent-dark-hsl); /* Use regular dark teal for hero accent */
+  --accent-secondary-dark-hsl: 45 90% 65%; /* Dk Yellow */
+  /* Hero Text Colors (Dark Mode Values) */
+  --hero-fg-dark-hsl: 210 25% 98%;      /* Near White */
+  --hero-accent-fg-dark-hsl: var(--accent-dark-hsl); /* Dk Teal */
 
-
-  /* --- APPLY LIGHT MODE VARS BY DEFAULT --- */
-  /* Base values used directly by body/html */
-  --background: var(--background-light);
-  --foreground: var(--foreground-light);
-  /* Mapped HSL values potentially used by Tailwind config or custom CSS */
-  --color-background: var(--background-light); /* Use direct value or convert hex to HSL */
-  --color-foreground: var(--foreground-light); /* Use direct value or convert hex to HSL */
-  --color-primary: hsl(var(--primary-light-hsl));
-  --color-primary-light: hsl(var(--primary-lighter-light-hsl));
-  --color-primary-dark: hsl(var(--primary-darker-light-hsl));
-  --color-accent: hsl(var(--accent-light-hsl));
-  --color-accent-light: hsl(var(--accent-lighter-light-hsl));
-  --color-accent-dark: hsl(var(--accent-darker-light-hsl));
-  --color-accent-secondary: hsl(var(--accent-secondary-light-hsl));
-  --color-hero-foreground: hsl(var(--hero-fg-light-hsl));
-  --color-hero-accent: hsl(var(--hero-accent-fg-light-hsl));
-
-  /* Font variables (assuming provided externally by next/font) */
-  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
-  --font-mono: var(--font-geist-mono, monospace);
-}
-
-/* --- APPLY DARK MODE VARS WHEN .dark CLASS IS PRESENT --- */
-/* This class will be added to <html> by next-themes */
-.dark {
-  /* Update base values used directly */
-  --background: hsl(var(--background-dark-hsl));
-  --foreground: hsl(var(--foreground-dark-hsl));
-  /* Update mapped values */
-  --color-background: hsl(var(--background-dark-hsl));
-  --color-foreground: hsl(var(--foreground-dark-hsl));
+  /* --- Mapped variables now use DARK values directly --- */
+  --background: hsl(var(--background-dark-hsl)); /* Base for body/html */
+  --foreground: hsl(var(--foreground-dark-hsl)); /* Base for body/html */
+  --color-background: hsl(var(--background-dark-hsl)); /* For tailwind bg-background */
+  --color-foreground: hsl(var(--foreground-dark-hsl)); /* For tailwind text-foreground */
   --color-primary: hsl(var(--primary-dark-hsl));
   --color-primary-light: hsl(var(--primary-lighter-dark-hsl));
   --color-primary-dark: hsl(var(--primary-darker-dark-hsl));
@@ -80,44 +35,42 @@
   --color-accent-secondary: hsl(var(--accent-secondary-dark-hsl));
   --color-hero-foreground: hsl(var(--hero-fg-dark-hsl));
   --color-hero-accent: hsl(var(--hero-accent-fg-dark-hsl));
+
+  /* Font variables */
+  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  --font-mono: var(--font-geist-mono, monospace);
 }
 
-/* Base Body Styling (using the direct --background/--foreground vars) */
+/* REMOVED the .dark { ... } block */
+
+/* Base Body Styling */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Add transition directly */
-  transition-property: color, background-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
 }
 
 /* Base HTML Styling */
 html {
   scroll-behavior: smooth;
-  /* Ensure html background also transitions */
-   background-color: var(--background);
-   transition-property: background-color;
-   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-   transition-duration: 300ms;
+  background-color: var(--background);
 }
 
-/* Base Link Styling (using the mapped --color-primary vars) */
+/* Base Link Styling (uses dark mode primary vars now) */
 a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color 0.15s ease-in-out;
 }
 a:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-primary-light); /* Use lighter for hover */
 }
 
-/* Focus Rings - ensure visibility in both modes */
+/* Focus Rings - ensure visibility */
 *:focus-visible {
    outline: 2px solid var(--color-primary);
    outline-offset: 2px;
-   border-radius: 2px; /* Optional consistency */
+   border-radius: 2px;
 }

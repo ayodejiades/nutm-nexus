@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,7 +24,7 @@ const SiteFooter = () => {
             <p className="text-xs text-foreground/60 dark:text-foreground/50">
               © {new Date().getFullYear()} NUTM Nexus.
               <br />
-              Made by <Link href="/" className={linkStyle}>Ayodeji</Link>.
+              Made by <Link href="https://ayodejiades.vercel.app/" className={linkStyle}>Ayodeji</Link>.
             </p>
           </div>
           <div>
@@ -57,18 +56,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground flex flex-col min-h-screen`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 flex-grow">
-            {children}
-          </main>
-          <SiteFooter />
-        </ThemeProvider>
+        <Navbar />
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 flex-grow">
+          {children}
+        </main>
+        <SiteFooter />
       </body>
     </html>
   );
