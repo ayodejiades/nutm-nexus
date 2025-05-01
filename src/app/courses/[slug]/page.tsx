@@ -16,7 +16,7 @@ import { getFileIcon } from '@/lib/utils';
 // --- Interfaces ---
 interface CourseFile {
   name: string;
-  url?: string | null; // download_url can sometimes be null
+  url?: string | null; 
   size: number;
 }
 interface CourseMetadata {
@@ -67,7 +67,7 @@ async function fetchCourseDetails(slug: string): Promise<CourseDetails | null> {
       try {
           const jsonError = JSON.parse(errorBody);
           details = jsonError.error || jsonError.message || details;
-       } catch (_ignoredError) { /* ignore parsing error */ }
+       } catch { /* ignore parsing error */ }
       console.error(`Failed fetch course details for ${slug}:`, details);
       throw new Error(`Failed to fetch course details. ${details}`);
     }
