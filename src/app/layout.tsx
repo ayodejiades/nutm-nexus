@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
+import {Analytics} from "@vercel/analytics/next";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -61,6 +62,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
