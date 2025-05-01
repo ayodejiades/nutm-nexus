@@ -8,8 +8,7 @@ export default function Navbar() {
   const secondaryLinkClasses = "text-sm font-medium text-foreground/80 hover:text-primary dark:text-foreground/70 dark:hover:text-white transition-colors duration-150";
 
   return (
-    <nav className="fixed w-full top-0 z-50 text-foreground shadow-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-300 bg-white dark:bg-[#151a21]">
-    {/*  ^-- Applied bg-white dark:bg-[#151a21] directly (example dark HSL 220 15% 12%) */}
+    <nav className="fixed w-full top-0 z-50 text-foreground shadow-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-300 bg-[#151a21] dark:bg-[#151a21]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
 
