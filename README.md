@@ -7,7 +7,7 @@ A simple, modern web application built with Next.js to serve as a centralized hu
 <!-- ![NUTM Nexus Screenshot](link/to/your/screenshot.png) -->
 <!-- **TODO:** Add a screenshot of the application homepage here! -->
 
-## ✨ Features
+## Features
 
 *   **Course Listing:** Displays available courses fetched directly from the GitHub repository.
 *   **Course Detail Pages:** Shows detailed information for each course, including metadata, associated files (notes, assignments), Moodle links, and embedded YouTube playlists.
@@ -20,7 +20,7 @@ A simple, modern web application built with Next.js to serve as a centralized hu
 *   **Static Pages:** Includes "About" and "Team" pages.
 *   **Simple & Free:** Built entirely using free services (GitHub, Vercel) and open-source libraries.
 
-## 🚀 Technology Stack
+## Technology Stack
 
 *   **Framework:** [Next.js](https://nextjs.org/) (v15.x.x - React App Router)
 *   **Language:** [TypeScript](https://www.typescriptlang.org/)
@@ -30,7 +30,7 @@ A simple, modern web application built with Next.js to serve as a centralized hu
 *   **Themeing:** [next-themes](https://github.com/pacocoursey/next-themes)
 *   **Deployment:** [Vercel](https://vercel.com/)
 
-## ⚙️ Getting Started
+## Getting Started
 
 Follow these instructions to get a local copy up and running for development purposes.
 
@@ -94,7 +94,7 @@ The application requires certain environment variables to connect to the GitHub 
     ```
 2.  Open your browser and navigate to `http://localhost:3000`.
 
-## ☁️ Deployment
+## Deployment
 
 This project is optimized for deployment on [Vercel](https://vercel.com/).
 
