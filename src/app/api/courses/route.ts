@@ -61,8 +61,14 @@ export async function GET() {
           const { data: metadataContent } = await octokit.repos.getContent({
             owner, repo, path: metadataPath, mediaType: { format: 'raw' },
           });
-          const metadataString = metadataContent as unknown as string;
-          const metadata = JSON.parse(metadataString);
+          let metadata;
+          try {
+            const metadataString = metadataContent as unknown as string;
+            metadata = JSON.parse(metadataString);
+          } catch (e) {
+            console.error(`API Error: Failed to parse JSON for ${dir.name}:`, e);
+            return null;
+          }
 
           // Basic validation of metadata content
           if (!metadata.title || !metadata.code || !metadata.description) {

@@ -75,7 +75,12 @@ export async function GET(
              const { data: metadataContent } = await octokit.repos.getContent({
                  owner, repo, path: metadataPath, mediaType: { format: 'raw' }
                 });
-             metadata = JSON.parse(metadataContent as unknown as string);
+             try {
+                 metadata = JSON.parse(metadataContent as unknown as string);
+             } catch (e) {
+                 console.error(`API Error [${slug}]: Failed to parse metadata.json:`, e);
+                 return NextResponse.json({ error: 'Invalid course metadata format.' }, { status: 500 });
+             }
              console.log(`API [${slug}]: Metadata found and parsed.`);
         } catch (error: unknown) { // Catch block uses 'error' variable
              const status = (error as { status?: number })?.status;

@@ -1,140 +1,99 @@
-/* src/app/globals.css */
 @import "tailwindcss";
 
 :root {
-  /* Base Colors (Dark Mode Values) */
-  --background-dark-hsl: 220 15% 12%;   /* Dark Slate */
+  /* --- Original NUTM Slate & Green Palette --- */
+  --background-dark-hsl: 220 15% 12%;   /* Original Dark Slate #1B1F24ish */
   --foreground-dark-hsl: 210 25% 96%;   /* Soft Off-White */
-  /* Primary (Dark Mode Values) */
-  --primary-dark-hsl: 158 80% 35%;     /* Dk Green */
-  --primary-lighter-dark-hsl: 157 80% 42%;
-  --primary-darker-dark-hsl: 158 80% 28%;
-  /* Accent Colors (Dark Mode Values) */
-  --accent-dark-hsl: 180 75% 55%;    /* Dk Teal */
-  --accent-lighter-dark-hsl: 180 75% 65%;
-  --accent-darker-dark-hsl: 180 75% 45%;
-  --accent-secondary-dark-hsl: 45 90% 65%; /* Dk Yellow */
-  /* Hero Text Colors (Dark Mode Values) */
-  --hero-fg-dark-hsl: 210 25% 98%;      /* Near White */
-  --hero-accent-fg-dark-hsl: var(--accent-dark-hsl); /* Dk Teal */
+  
+  --primary-hsl: 158 80% 35%;          /* NUTM Green */
+  --primary-light-hsl: 157 80% 42%;
+  --primary-dark-hsl: 158 80% 28%;
+  
+  --accent-hsl: 180 75% 55%;           /* Deep Teal */
+  --accent-secondary-hsl: 45 90% 65%;  /* NUTM Gold/Yellow */
 
-  /* --- Mapped variables now use DARK values directly --- */
-  --background: hsl(var(--background-dark-hsl)); /* Base for body/html */
-  --foreground: hsl(var(--foreground-dark-hsl)); /* Base for body/html */
-  --color-background: hsl(var(--background-dark-hsl)); /* For tailwind bg-background */
-  --color-foreground: hsl(var(--foreground-dark-hsl)); /* For tailwind text-foreground */
-  --color-primary: hsl(var(--primary-dark-hsl));
-  --color-primary-light: hsl(var(--primary-lighter-dark-hsl));
-  --color-primary-dark: hsl(var(--primary-darker-dark-hsl));
-  --color-accent: hsl(var(--accent-dark-hsl));
-  --color-accent-light: hsl(var(--accent-lighter-dark-hsl));
-  --color-accent-dark: hsl(var(--accent-darker-dark-hsl));
-  --color-accent-secondary: hsl(var(--accent-secondary-dark-hsl));
-  --color-hero-foreground: hsl(var(--hero-fg-dark-hsl));
-  --color-hero-accent: hsl(var(--hero-accent-fg-dark-hsl));
+  /* Mappings */
+  --background: hsl(var(--background-dark-hsl));
+  --foreground: hsl(var(--foreground-dark-hsl));
+  --color-primary: hsl(var(--primary-hsl));
+  --color-primary-light: hsl(var(--primary-light-hsl));
+  --color-primary-dark: hsl(var(--primary-dark-hsl));
+  --color-accent: hsl(var(--accent-hsl));
+  --color-accent-secondary: hsl(var(--accent-secondary-hsl));
 
-  /* Font variables */
-  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
-  --font-mono: var(--font-geist-mono, monospace);
+  /* Fonts */
+  --font-sans: var(--font-inter, sans-serif);
 }
 
-/* REMOVED the .dark { ... } block */
+@theme {
+  --font-sans: var(--font-inter);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  
+  --color-accent: var(--color-accent);
+  --color-accent-secondary: var(--color-accent-secondary);
+}
 
-/* Base Body Styling */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Base HTML Styling */
 html {
   scroll-behavior: smooth;
-  background-color: var(--background);
 }
 
-/* Base Link Styling (uses dark mode primary vars now) */
 a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color 0.15s ease-in-out;
 }
+
 a:hover {
-  color: var(--color-primary-light); /* Use lighter for hover */
+  color: var(--color-primary-light);
 }
 
-/* Focus Rings - ensure visibility */
-*:focus-visible {
-   outline: 2px solid var(--color-primary);
-   outline-offset: 2px;
-   border-radius: 2px;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
-/* Add these animations to your globals.css file */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
 
-@keyframes gradient-x {
-  0%, 100% {
-    background-size: 200% 200%;
-    background-position: 0% 50%;
-  }
-  50% {
-    background-size: 200% 200%;
-    background-position: 100% 50%;
-  }
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-gradient-x {
-  animation: gradient-x 3s ease infinite;
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #6366f1, #a855f7);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #4f46e5, #9333ea);
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Link from "next/link";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 interface CourseCardProps {
   slug: string;
@@ -10,41 +11,55 @@ interface CourseCardProps {
   semester?: "I" | "II";
 }
 
-export default function CourseCard({ slug, title, code, description, departments, level, semester }: CourseCardProps) {
-  const displayDepartment = departments?.[0] || '';
+export default function CourseCard({
+  slug,
+  title,
+  code,
+  description,
+  departments,
+  level,
+  semester,
+}: CourseCardProps) {
+  const displayDepartment = departments?.[0] || "";
 
   return (
     <Link
       href={`/courses/${slug}`}
-      className="group block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 shadow-sm transition duration-300 ease-in-out hover:shadow-lg hover:border-primary/40 dark:hover:border-primary/60 hover:-translate-y-1 overflow-hidden"
+      className="group block rounded-xl border border-white/5 bg-white/[0.02] p-6 shadow-sm transition-all duration-300 hover:border-primary/50 hover:bg-white/[0.04] hover:-translate-y-1"
     >
-      <div className="flex justify-between items-center mb-3 flex-wrap gap-x-2 gap-y-1">
-          <span className="inline-block bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light px-2.5 py-0.5 rounded-full text-xs font-semibold">
-            {code}
-          </span>
-          <div className="flex items-center gap-x-2">
-            {level && <span className="text-xs text-gray-500 dark:text-gray-400">{level} Level</span>}
-            {semester && <span className="text-xs text-gray-500 dark:text-gray-400 border-l border-gray-300 dark:border-gray-600 pl-2">Sem {semester}</span>}
-          </div>
+      <div className="flex justify-between items-center mb-4">
+        <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-md text-xs font-bold tracking-wider">
+          {code}
+        </span>
+        <div className="flex items-center gap-x-3 text-[10px] font-bold uppercase tracking-widest text-foreground/40">
+          {level && <span>Lvl {level}</span>}
+          {semester && (
+            <span className="border-l border-white/10 pl-3">
+              SEM {semester}
+            </span>
+          )}
+        </div>
       </div>
 
-      <h3 className="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-primary-light transition-colors duration-200">
+      <h3 className="mb-2 text-xl font-bold tracking-tight text-foreground group-hover:text-primary-light transition-colors">
         {title}
       </h3>
 
       {displayDepartment && (
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 truncate" title={departments?.join(', ')}>
-              {displayDepartment}{departments && departments.length > 1 ? '...' : ''}
-          </p>
+        <p className="text-xs font-semibold text-primary/60 mb-3 uppercase tracking-wide">
+          {displayDepartment}
+          {departments && departments.length > 1 ? "..." : ""}
+        </p>
       )}
 
-      <p className="text-sm font-normal text-gray-700 dark:text-gray-400 line-clamp-3 mb-4">
+      <p className="text-sm font-normal text-foreground/60 line-clamp-2 mb-6 leading-relaxed">
         {description}
       </p>
 
-       <span className="mt-2 text-xs font-medium text-primary/80 dark:text-primary-light/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out block">
-         View Details →
-       </span>
+      <div className="flex items-center text-xs font-bold text-primary group-hover:gap-2 transition-all">
+        <span>VIEW RESOURCES</span>
+        <ArrowRightIcon className="w-4 h-4 ml-1" />
+      </div>
     </Link>
   );
 }
