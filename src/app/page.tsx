@@ -27,13 +27,26 @@ async function fetchCourses(): Promise<Course[]> {
   return await res.json();
 }
 
+interface FilterOption {
+  value: string;
+  label: string;
+}
+
+interface FilterSelectProps {
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  options: FilterOption[];
+  allLabel?: string;
+}
+
 const FilterSelect = ({
   label,
   value,
   onChange,
   options,
   allLabel = "All",
-}: any) => (
+}: FilterSelectProps) => (
   <div className="flex flex-col gap-1.5">
     <label className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest ml-1">
       {label}
@@ -44,7 +57,7 @@ const FilterSelect = ({
       className="bg-[#1B222B] border border-white/5 text-sm rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-primary/50 transition-colors cursor-pointer"
     >
       <option value="">{allLabel}</option>
-      {options.map((opt: any) => (
+      {options.map((opt) => (
         <option key={opt.value} value={opt.value}>
           {opt.label}
         </option>
@@ -172,19 +185,25 @@ export default function HomePage() {
           <FilterSelect
             label="Department"
             value={selectedDept}
-            onChange={(e: any) => setSelectedDept(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setSelectedDept(e.target.value)
+            }
             options={filterOptions.departments}
           />
           <FilterSelect
             label="Level"
             value={selectedLevel}
-            onChange={(e: any) => setSelectedLevel(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setSelectedLevel(e.target.value)
+            }
             options={filterOptions.levels}
           />
           <FilterSelect
             label="Semester"
             value={selectedSemester}
-            onChange={(e: any) => setSelectedSemester(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setSelectedSemester(e.target.value as "" | "I" | "II")
+            }
             options={filterOptions.semesters}
           />
           {(searchQuery ||
