@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  /* --- Original NUTM Slate & Green Palette --- */
+  --background-dark-hsl: 220 15% 12%;   /* Original Dark Slate #1B1F24ish */
+  --foreground-dark-hsl: 210 25% 96%;   /* Soft Off-White */
+  
+  --primary-hsl: 158 80% 35%;          /* NUTM Green */
+  --primary-light-hsl: 157 80% 42%;
+  --primary-dark-hsl: 158 80% 28%;
+  
+  --accent-hsl: 180 75% 55%;           /* Deep Teal */
+  --accent-secondary-hsl: 45 90% 65%;  /* NUTM Gold/Yellow */
+
+  /* Surface Colors for Layering (Coursera-style depth) */
+  --surface-1: hsl(220 15% 15%);
+  --surface-2: hsl(220 15% 18%);
+  --surface-3: hsl(220 15% 22%);
+
+  /* Mappings */
+  --background: hsl(var(--background-dark-hsl));
+  --foreground: hsl(var(--foreground-dark-hsl));
+  --color-primary: hsl(var(--primary-hsl));
+  --color-primary-light: hsl(var(--primary-light-hsl));
+  --color-primary-dark: hsl(var(--primary-dark-hsl));
+  --color-accent: hsl(var(--accent-hsl));
+  --color-accent-secondary: hsl(var(--accent-secondary-hsl));
+
+  /* Hero Section Variables */
+  --color-hero-foreground: var(--foreground);
+  --color-hero-accent: var(--color-primary);
+
+  /* Fonts */
+  --font-sans: var(--font-inter, sans-serif);
+}
+
+@theme {
+  --font-sans: var(--font-inter);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  
+  --color-accent: var(--color-accent);
+  --color-accent-secondary: var(--color-accent-secondary);
+  
+  --color-hero-foreground: var(--color-hero-foreground);
+  --color-hero-accent: var(--color-hero-accent);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography Enhancements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover {
+  color: var(--color-primary-light);
+}
+
+/* Coursera-style Card & Component Styling */
+.coursera-card {
+  background: var(--surface-1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+.coursera-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--primary-hsl), 0.3);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+}
+
+.glass-nav {
+  background: rgba(var(--background-dark-hsl), 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
