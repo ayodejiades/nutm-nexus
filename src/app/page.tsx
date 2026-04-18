@@ -144,7 +144,7 @@ export default function HomePage() {
 
         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto px-4">
           <h1 className="text-6xl md:text-8xl font-black tracking-tightest leading-[0.95] mb-8 animate-fade-in">
-            Enhance <span className="text-gradient-primary">Learning</span>.
+            Learn <span className="text-gradient-primary">Everything</span>.
           </h1>
 
           <p className="text-xl text-foreground/50 mb-12 max-w-2xl font-medium leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
