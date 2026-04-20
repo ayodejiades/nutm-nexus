@@ -149,9 +149,9 @@ export default function TeamPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="text-center py-12 border-t border-white/5">
-        <h2 className="text-xl font-black text-white mb-3">Want to Contribute?</h2>
-        <p className="text-sm text-foreground/40 max-w-md mx-auto mb-8">
+      <section className="text-center py-8 border-t border-white/5">
+        <h2 className="text-lg font-black text-white mb-2">Want to Contribute?</h2>
+        <p className="text-xs text-foreground/40 max-w-sm mx-auto mb-6">
           NUTM Nexus is open source. If you&apos;re a student who wants to help improve the platform, we&apos;d love to hear from you.
         </p>
         <a
