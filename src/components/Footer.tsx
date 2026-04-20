@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import logo from "@/assets/images/nexus-icon.png";
 import {
   GlobeAltIcon,
   AcademicCapIcon,
@@ -24,10 +25,8 @@ export default function Footer() {
             <Link href="/" className="flex items-center space-x-3 group w-fit">
               <div className="transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-3">
                 <Image
-                  src="/nexus-icon.png"
+                  src={logo}
                   alt="Nexus"
-                  width={28}
-                  height={28}
                   className="h-7 w-auto"
                 />
               </div>

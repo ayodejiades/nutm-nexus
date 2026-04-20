@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import logo from "@/assets/images/nexus-icon.png";
 import { useState } from "react";
 
 import { useSession, signOut } from "next-auth/react";
@@ -20,12 +21,9 @@ export default function Navbar() {
             <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group">
               <div className="transition-all duration-300 transform group-hover:scale-110">
                 <Image
-                  src="/nexus-icon.png"
+                  src={logo}
                   alt="Nexus"
-                  width={28}
-                  height={28}
                   className="h-6 sm:h-7 w-auto"
-                  style={{ height: 'auto' }}
                   priority
                 />
               </div>
@@ -64,7 +62,7 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
-            {session ? (
+            {session && (
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="hidden md:flex flex-col items-end">
                   <span className="text-sm font-black text-white">{session.user?.name}</span>

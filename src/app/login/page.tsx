@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import logo from "@/assets/images/nexus-icon.png";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 const ERROR_MESSAGES: Record<string, string> = {
@@ -30,10 +31,8 @@ function LoginForm() {
       <div className="flex flex-col items-center mb-8 sm:mb-10">
         <div className="transition-all duration-300 transform hover:scale-110 mb-5">
           <Image
-            src="/nexus-icon.png"
+            src={logo}
             alt="Nexus"
-            width={48}
-            height={48}
             className="w-12 h-12"
           />
         </div>

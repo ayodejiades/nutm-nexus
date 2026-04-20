@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import logo from "@/assets/images/nexus-icon.png";
 import { useSession } from "next-auth/react";
 import CourseCard from "@/components/CourseCard";
 import CourseCardSkeleton from "@/components/CourseCardSkeleton";
@@ -276,10 +277,8 @@ export default function HomePage() {
             <>
               <div className="mb-6 animate-fade-in">
                 <Image
-                  src="/nexus-icon.png"
+                  src={logo}
                   alt="Nexus"
-                  width={64}
-                  height={64}
                   className="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-[0_0_20px_rgba(34,197,94,0.3)]"
                   priority
                 />
