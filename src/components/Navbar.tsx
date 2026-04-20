@@ -94,13 +94,6 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-            ) : (
-              <Link
-                href="/login"
-                className="h-9 sm:h-10 px-4 sm:px-6 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/30 text-white text-[10px] sm:text-[11px] font-black rounded-xl flex items-center justify-center transition-all uppercase tracking-widest group shadow-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
-              >
-                Sign In
-              </Link>
             )}
 
             {/* Mobile Hamburger */}
