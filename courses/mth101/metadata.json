@@ -1,17 +1,74 @@
 {
-  "title": "Elementary Mathematics I",
-  "code": "MTH 101",
-  "description": "Elementary set theory, subsets, and union, intersection, complements, and Venn diagrams. Real numbers, integers, rational and irrational numbers, mathematical induction, real sequences and series, theory of quadratic equations, binomial theorem. Complex numbers; algebra of complex numbers, the Argand diagram. De-Moivre’s theorem, nth roots of unity. Circular measure, trigonometric functions of angles of any magnitude, addition, and factor formulae. ",
-  "instructor": "Engr. (Dr.) Paul Avbenake",
-  "credits": 2,
-  "level": 100,
-  "semester": "I",
-  "departments": [
-    "Computer Science",
-    "Cybersecurity"
-  ],
-  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35"
+    "title": "Elementary Mathematics I",
+    "code": "MTH 101",
+    "description": "Elementary set theory, subsets, and union, intersection, complements, and Venn diagrams. Real numbers, integers, rational and irrational numbers, mathematical induction, real sequences and series, theory of quadratic equations, binomial theorem. Complex numbers; algebra of complex numbers, the Argand diagram. De-Moivre’s theorem, nth roots of unity. Circular measure, trigonometric functions of angles of any magnitude, addition, and factor formulae. ",
+    "instructor": "Engr. (Dr.) Paul Avbenake",
+    "credits": 2,
+    "level": 100,
+    "semester": "I",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PL0o_zxa4K1BWYThyV4Yz_L_iFvS6o7n_3",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=35",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "What is the value of log₁₀(1000)?",
+            "options": [
+                "2",
+                "3",
+                "4",
+                "10"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "In set theory, A ∪ B represents:",
+            "options": [
+                "Elements in both A and B only",
+                "All elements in either A or B or both",
+                "Elements in A but not B",
+                "Elements in neither A nor B"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "The quadratic formula solves equations of the form:",
+            "options": [
+                "ax + b = 0",
+                "ax² + bx + c = 0",
+                "ax³ + bx² + cx = 0",
+                "a/x + b = 0"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "What is the value of 5! (5 factorial)?",
+            "options": [
+                "25",
+                "60",
+                "120",
+                "720"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 5,
+            "text": "A function f(x) is one-to-one if:",
+            "options": [
+                "It maps every x to the same y",
+                "Different inputs always produce different outputs",
+                "It has no inverse",
+                "It's defined for all real numbers"
+            ],
+            "correct": 1
+        }
+    ]
 }

@@ -1,17 +1,85 @@
 {
-  "title": "Problem Solving",
-  "code": "NUT-COS 102",
-  "description": "Core concepts of computing. Identification of problems. Types of problems (routine problems and non-routine problems). Problem-solving. Methods of solving computing problems. Algorithms and heuristics. Solvable and unsolvable problems. Solution techniques of solving problems; abstraction; analogy; brainstorming; trial and error; hypothesis testing; reduction; literal thinking; means-end analysis. Method of the focal object; morphological analysis; research; root cause analysis; proof; divide and conquer. General Problem-solving process. Computing 183 New Solution formulation and design; flowchart; pseudocode; decision table; decision tree. programming in any language. ",
-  "instructor": "Dr. Philip Okposo",
-  "credits": 3,
-  "level": 100,
+    "title": "Problem Solving",
+    "code": "NUT-COS 102",
+    "description": "Core concepts of computing. Identification of problems. Types of problems (routine problems and non-routine problems). Problem-solving. Methods of solving computing problems. Algorithms and heuristics. Solvable and unsolvable problems. Solution techniques of solving problems; abstraction; analogy; brainstorming; trial and error; hypothesis testing; reduction; literal thinking; means-end analysis. Method of the focal object; morphological analysis; research; root cause analysis; proof; divide and conquer. General Problem-solving process. Computing 183 New Solution formulation and design; flowchart; pseudocode; decision table; decision tree. programming in any language. ",
+    "instructor": "Dr. Philip Okposo",
+    "credits": 3,
+    "level": 100,
     "semester": "II",
     "departments": [
         "Computer Science",
         "Cybersecurity"
     ],
-  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50"
+    "youtubePlaylistId": "PLUl4u3cNGP63WbdFstE9t3_A9L5LInVId",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=50",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "A step-by-step procedure for solving a computing problem is called:",
+            "options": [
+                "Analogy",
+                "Algorithm",
+                "Heuristic",
+                "Abstraction"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Which technique involves breaking a large problem into smaller parts?",
+            "options": [
+                "Divide and Conquer",
+                "Trial and Error",
+                "Brainstorming",
+                "Root Cause Analysis"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 3,
+            "text": "A flowchart is primarily used for:",
+            "options": [
+                "Writing code directly",
+                "Visual representation of an algorithm",
+                "Testing hardware",
+                "Database management"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "What is the difference between routine and non-routine problems?",
+            "options": [
+                "Routine problems have no solutions",
+                "Routine problems have established solution methods",
+                "Non-routine problems are always unsolvable",
+                "There is no difference"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "Pseudocode is best described as:",
+            "options": [
+                "A compiled programming language",
+                "An informal description of an algorithm using structured English",
+                "A visual diagram of data flow",
+                "A type of binary code"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 6,
+            "text": "Which problem-solving method uses educated guesses to find solutions?",
+            "options": [
+                "Algorithm",
+                "Heuristic",
+                "Proof",
+                "Reduction"
+            ],
+            "correct": 1
+        }
+    ]
 }

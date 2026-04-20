@@ -7,11 +7,68 @@
     "level": 100,
     "semester": "I",
     "departments": [
-      "Computer Science",
-      "Cybersecurity"
+        "Computer Science",
+        "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PL30C13C91CFFEFEA6",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53"
-  }
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The growth mindset concept was developed by:",
+            "options": [
+                "Tony Robbins",
+                "Carol Dweck",
+                "Stephen Covey",
+                "Dale Carnegie"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "In time management, the Eisenhower Matrix categorizes tasks by:",
+            "options": [
+                "Size and color",
+                "Urgency and Importance",
+                "Difficulty and length",
+                "Cost and benefit"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Self-esteem is best described as:",
+            "options": [
+                "How others perceive you",
+                "Your overall sense of self-worth",
+                "Your academic achievements",
+                "Your physical appearance"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "A fixed mindset believes that abilities are:",
+            "options": [
+                "Always improvable with effort",
+                "Innate and unchangeable",
+                "Only related to physical skills",
+                "Determined by luck"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "Active learning involves:",
+            "options": [
+                "Passively listening to lectures",
+                "Engaging with material through discussion, practice, and reflection",
+                "Simply reading textbooks",
+                "Memorizing without understanding"
+            ],
+            "correct": 1
+        }
+    ]
+}

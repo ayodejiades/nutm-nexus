@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PL_SInI5_V-38fLpW7QosT-dI8F2D0vY0q",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=49",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=49",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=49"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=49",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "A Wheatstone bridge is used to measure:",
+            "options": [
+                "Voltage",
+                "Unknown resistance",
+                "Temperature",
+                "Magnetic field"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Propagation of errors involves:",
+            "options": [
+                "Ignoring measurement uncertainties",
+                "Calculating how uncertainties in measurements affect the final result",
+                "Eliminating all random errors",
+                "Using only digital instruments"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "The principle of superposition applies to:",
+            "options": [
+                "Non-linear systems",
+                "Linear systems where effects can be added",
+                "Only mechanical waves",
+                "Only electromagnetic waves"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "A vernier caliper provides measurements with accuracy up to:",
+            "options": [
+                "1 mm",
+                "0.1 mm",
+                "0.01 mm",
+                "10 mm"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "Graphical analysis in physics experiments is important because:",
+            "options": [
+                "It makes reports longer",
+                "It reveals relationships between variables visually",
+                "It replaces calculations",
+                "It is required by law"
+            ],
+            "correct": 1
+        }
+    ]
 }

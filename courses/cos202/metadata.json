@@ -1,16 +1,16 @@
 {
-    "title": "Computer Programming II",
-    "code": "COS 202",
-    "description": "This course is a continuation of CSC 201. Review and coverage of advanced object-oriented programming - polymorphism, abstract classes and interfaces. Class hierarchies and programme organisation using packages/namespaces. Use of API – use of iterators/enumerators, List, Stack, Queue from API; Searching; sorting; Recursive algorithms; Event-driven programming: event-handling methods; event propagation; exception handling. Applications in Graphical User Interface (GUI) programming."
-    "instructor": "Dr. Faki Ageebee",
-    "credits": 3,
-    "level": 200,
-    "semester": "II",
-    "departments": [
-      "Computer Science",
-      "Cybersecurity"
-    ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
-  }
+  "title": "Computer Programming II",
+  "code": "COS 202",
+  "description": "This course is a continuation of CSC 201. Review and coverage of advanced object-oriented programming - polymorphism, abstract classes and interfaces. Class hierarchies and programme organisation using packages/namespaces. Use of API - use of iterators/enumerators, List, Stack, Queue from API; Searching; sorting; Recursive algorithms; Event-driven programming: event-handling methods; event propagation; exception handling. Applications in Graphical User Interface (GUI) programming.",
+  "instructor": "Dr. Faki Ageebee",
+  "credits": 3,
+  "level": 200,
+  "semester": "II",
+  "departments": [
+    "Computer Science",
+    "Cybersecurity"
+  ],
+  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
+}

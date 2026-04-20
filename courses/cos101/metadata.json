@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLhQjrBD2T382_R182iL21sLCu786JHPu7",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=39",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=39",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=39"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=39",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "What are the three main components of a computing system?",
+            "options": [
+                "Hardware, Software, Humanware",
+                "CPU, RAM, Storage",
+                "Input, Process, Output",
+                "Logic, Data, Network"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 2,
+            "text": "Which device is classified as an output peripheral?",
+            "options": [
+                "Keyboard",
+                "Scanner",
+                "Monitor",
+                "Microphone"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "text": "What does 'Information Processing' primarily refer to?",
+            "options": [
+                "Manufacturing hardware",
+                "Converting raw data into useful information",
+                "Designing websites",
+                "Installing software"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "The Internet's most significant impact on modern society is:",
+            "options": [
+                "Reduced electricity usage",
+                "Global information exchange and connectivity",
+                "Replacement of all physical devices",
+                "Elimination of printed media"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "Which of the following is NOT a computing discipline area?",
+            "options": [
+                "Computer Science",
+                "Information Technology",
+                "Mechanical Engineering",
+                "Cybersecurity"
+            ],
+            "correct": 2
+        }
+    ]
 }

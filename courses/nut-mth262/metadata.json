@@ -1,0 +1,16 @@
+{
+    "title": "Numerical Analysis",
+    "code": "NUT-MTH 262",
+    "description": "This course delves into the core principles, methods, and algorithms that underpin numerical analysis, a field crucial for solving complex mathematical problems in a computational context. This course offers a comprehensive understanding of the theoretical foundations of numerical techniques and their practical applications. Students will explore topics such as approximation theory, error analysis, interpolation, numerical integration, differential equations, and iterative methods. By the end of this course, students will possess the knowledge and skills necessary to develop, analyze, and implement numerical algorithms for a wide range of scientific and engineering problems.",
+    "instructor": "Prof. Akinfenwa Oluseye",
+    "credits": 3,
+    "level": 200,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
+}

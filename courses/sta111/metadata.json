@@ -1,17 +1,74 @@
 {
-  "title": "Descriptive Statistics",
-  "code": "STA 111",
-  "description": "Fundamentals of statistics",
-  "instructor": "Dr. Nifemi I. Badmus",
-  "credits": 3,
-  "level": 100,
-  "semester": "I",
-  "departments": [
-    "Computer Science",
-    "Cybersecurity"
-  ],
-  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38"
+    "title": "Descriptive Statistics",
+    "code": "STA 111",
+    "description": "Fundamentals of statistics",
+    "instructor": "Dr. Nifemi I. Badmus",
+    "credits": 3,
+    "level": 100,
+    "semester": "I",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PL6B4C4472F41864E3",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=38",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The mean of a dataset is:",
+            "options": [
+                "The most frequent value",
+                "The middle value",
+                "The sum of values divided by the count",
+                "The range of values"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 2,
+            "text": "The median is preferred over the mean when:",
+            "options": [
+                "Data is normally distributed",
+                "Data contains extreme outliers",
+                "All values are equal",
+                "The dataset is small"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Standard deviation measures:",
+            "options": [
+                "Central tendency",
+                "The spread of data around the mean",
+                "The most common value",
+                "The total of all values"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "A histogram displays:",
+            "options": [
+                "Categorical data",
+                "The frequency distribution of continuous data",
+                "Correlation between variables",
+                "Time series data only"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "The mode of a dataset is:",
+            "options": [
+                "The average value",
+                "The value that appears most frequently",
+                "The difference between max and min",
+                "The middle value"
+            ],
+            "correct": 1
+        }
+    ]
 }

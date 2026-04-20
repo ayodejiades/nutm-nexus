@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLhQjrBD2T382_R182iL21sLCu786JHPu7",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=40",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=40",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=40"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=40",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The CPU stands for:",
+            "options": [
+                "Computer Processing Unit",
+                "Central Processing Unit",
+                "Central Program Unit",
+                "Computer Program Unit"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Cache memory is used to:",
+            "options": [
+                "Store permanent data",
+                "Speed up access to frequently used data",
+                "Replace RAM entirely",
+                "Connect to external devices"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "An instruction set architecture (ISA) defines:",
+            "options": [
+                "The physical layout of circuits",
+                "The interface between hardware and software",
+                "Only input/output devices",
+                "The operating system kernel"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "Virtual memory allows:",
+            "options": [
+                "Faster CPU clock speeds",
+                "Programs larger than physical RAM to run",
+                "Wireless data transfer",
+                "Permanent data storage"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "In addressing modes, 'immediate addressing' means:",
+            "options": [
+                "The operand is a memory address",
+                "The operand value is in the instruction itself",
+                "The operand is in a register",
+                "The operand is on the stack"
+            ],
+            "correct": 1
+        }
+    ]
 }

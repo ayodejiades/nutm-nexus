@@ -1,17 +1,85 @@
 {
-  "title": "Elementary Mathematics II",
-  "code": "MTH 102",
-  "description": "The function of a real variable, graphs, limits, and the idea of continuity. The derivative, as the limit of the rate of change. Techniques of differentiation. Extreme curve sketching; Integration as an inverse of differentiation. Methods of integration, Definite integrals. Application to areas, volumes.",
-  "instructor": "Engr. (Dr.) Paul Avbenake",
-  "credits": 2,
-  "level": 100,
-  "semester": "II",
-  "departments": [
-    "Computer Science",
-    "Cybersecurity"
-  ],
-  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46"
+    "title": "Elementary Mathematics II",
+    "code": "MTH 102",
+    "description": "The function of a real variable, graphs, limits, and the idea of continuity. The derivative, as the limit of the rate of change. Techniques of differentiation. Extreme curve sketching; Integration as an inverse of differentiation. Methods of integration, Definite integrals. Application to areas, volumes.",
+    "instructor": "Engr. (Dr.) Paul Avbenake",
+    "credits": 2,
+    "level": 100,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PL9bUU4NXFdcW-C226d7iW72-LzWqVfO7I",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=46",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The derivative of f(x) = x³ is:",
+            "options": [
+                "x²",
+                "3x²",
+                "3x",
+                "x⁴/4"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Integration is fundamentally the inverse of:",
+            "options": [
+                "Addition",
+                "Multiplication",
+                "Differentiation",
+                "Exponentiation"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "text": "The limit of sin(x)/x as x→0 is:",
+            "options": [
+                "0",
+                "1",
+                "∞",
+                "Undefined"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "What is the integral of 2x dx?",
+            "options": [
+                "2x²",
+                "x²",
+                "x² + C",
+                "2x² + C"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 5,
+            "text": "A function is continuous at point 'a' if:",
+            "options": [
+                "f(a) is undefined",
+                "The limit at 'a' equals f(a)",
+                "The function is always increasing",
+                "The derivative is zero at 'a'"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 6,
+            "text": "The chain rule is used when differentiating:",
+            "options": [
+                "Constants",
+                "Composite functions",
+                "Linear functions only",
+                "Polynomials only"
+            ],
+            "correct": 1
+        }
+    ]
 }

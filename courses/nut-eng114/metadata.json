@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLUl4u3cNGP63z5HAguqleEbsICfHgDPaG",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=52",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=52",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=52"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=52",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "Critical reading involves:",
+            "options": [
+                "Skimming for keywords only",
+                "Analyzing, questioning, and evaluating a text",
+                "Reading as fast as possible",
+                "Only looking at headings"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "A thesis statement should:",
+            "options": [
+                "Be vague and broad",
+                "Present a clear, arguable claim",
+                "Only ask questions",
+                "Appear in the conclusion only"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Primary sources in research are:",
+            "options": [
+                "Encyclopedia articles",
+                "Original documents, data, or firsthand accounts",
+                "Textbook summaries",
+                "Wikipedia entries"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "The purpose of a topic sentence in a paragraph is to:",
+            "options": [
+                "End the discussion",
+                "State the main idea of the paragraph",
+                "List references",
+                "Provide a transition to a new chapter"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "Which citation style uses author-date format?",
+            "options": [
+                "MLA",
+                "APA",
+                "Chicago footnotes",
+                "IEEE"
+            ],
+            "correct": 1
+        }
+    ]
 }

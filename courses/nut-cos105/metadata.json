@@ -1,17 +1,74 @@
 {
-  "title": "Principles of Computer Systems",
-  "code": "NUT-COS 105",
-  "description": "Fundamentals of computer science, algorithms, and programming.",
-  "instructor": "Dr. Philip Okposo",
-  "credits": 3,
-  "level": 100,
-  "semester": "I",
-  "departments": [
-    "Computer Science",
-    "Cybersecurity"
-  ],
-  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48"
+    "title": "Principles of Computer Systems",
+    "code": "NUT-COS 105",
+    "description": "Fundamentals of computer science, algorithms, and programming.",
+    "instructor": "Dr. Philip Okposo",
+    "credits": 3,
+    "level": 100,
+    "semester": "I",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLUl4u3cNGP63WbdFstE9t3_A9L5LInVId",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=48",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "An algorithm must be:",
+            "options": [
+                "Infinite in steps",
+                "Unambiguous and finite",
+                "Written in Python only",
+                "Executed by hardware directly"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Which data structure follows FIFO (First In, First Out)?",
+            "options": [
+                "Stack",
+                "Queue",
+                "Tree",
+                "Graph"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "What does 'abstraction' mean in computer science?",
+            "options": [
+                "Making code longer",
+                "Hiding complex details and showing essential features",
+                "Removing all comments",
+                "Using only binary code"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "A variable in programming is:",
+            "options": [
+                "A fixed constant",
+                "A named storage location for data",
+                "A type of loop",
+                "An error message"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "The binary representation of decimal 10 is:",
+            "options": [
+                "1100",
+                "1010",
+                "1001",
+                "1110"
+            ],
+            "correct": 1
+        }
+    ]
 }

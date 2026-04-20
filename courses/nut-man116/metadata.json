@@ -1,17 +1,85 @@
 {
-  "title": "Macroeconomics",
-  "code": "NUT-MAN 116",
-  "description": "An overview of Macroeconomics",
-  "instructor": "Dr. Habeeb Quadri",
-  "credits": 3,
-  "level": 100,
-  "semester": "II",
-  "departments": [
-    "Computer Science",
-    "Cybersecurity"
-  ],
-  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53"
+    "title": "Macroeconomics",
+    "code": "NUT-MAN 116",
+    "description": "An overview of Macroeconomics",
+    "instructor": "Dr. Habeeb Quadri",
+    "credits": 3,
+    "level": 100,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLp8nMTvWVXVH2L6z7m3eAozKjP2W_I9iR",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=53",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "GDP stands for:",
+            "options": [
+                "General Domestic Price",
+                "Gross Domestic Product",
+                "Government Deficit Plan",
+                "Global Distribution Protocol"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Inflation is defined as:",
+            "options": [
+                "A decrease in GDP",
+                "A sustained increase in the general price level",
+                "An increase in unemployment",
+                "A decrease in government spending"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Fiscal policy involves:",
+            "options": [
+                "Central bank interest rates",
+                "Government spending and taxation decisions",
+                "Foreign exchange rates",
+                "Private investment decisions"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "The unemployment rate measures:",
+            "options": [
+                "Total population without jobs",
+                "Percentage of the labor force that is jobless and seeking work",
+                "Number of retired workers",
+                "Students not in employment"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "An expansionary monetary policy typically involves:",
+            "options": [
+                "Raising interest rates",
+                "Lowering interest rates to stimulate spending",
+                "Increasing taxes",
+                "Reducing government spending"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 6,
+            "text": "The multiplier effect in macroeconomics describes:",
+            "options": [
+                "How savings reduce GDP",
+                "How an initial spending change creates a larger change in income",
+                "How taxes multiply revenue",
+                "How exports equal imports"
+            ],
+            "correct": 1
+        }
+    ]
 }

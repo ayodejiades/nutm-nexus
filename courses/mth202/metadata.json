@@ -1,0 +1,15 @@
+{
+    "title": "Elementary Differential Equations",
+    "code": "MTH 202",
+    "description": "Derivation of differential equations from primitive, geometry, physics, etc. order and degree of differential equation. Techniques for solving first and second order linear and non-linear equations. Solutions of systems of first order linear equations. Finite linear difference equations. Application to geometry and physics.",
+    "instructor": "Dr. Adebayo Adedugba",
+    "credits": 2,
+    "level": 200,
+    "semester": "II",
+    "departments": [
+        "Computer Science"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
+}

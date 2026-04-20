@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLtKNX4SfKpzX_bhh4LOEWEGy3pkLmFDmk",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=45",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=45",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=45"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=45",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "Logic is the study of:",
+            "options": [
+                "Historical events",
+                "The principles of valid reasoning",
+                "Physical phenomena",
+                "Chemical reactions"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Philosophy literally means:",
+            "options": [
+                "Love of science",
+                "Love of wisdom",
+                "Love of power",
+                "Love of money"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "An argument is valid when:",
+            "options": [
+                "The conclusion is true",
+                "The premises guarantee the conclusion if they are true",
+                "Everyone agrees with it",
+                "It has many premises"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "A deductive argument moves from:",
+            "options": [
+                "Specific to general",
+                "General to specific",
+                "Cause to effect",
+                "Effect to cause"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "Which logical fallacy involves attacking a person instead of their argument?",
+            "options": [
+                "Straw man",
+                "Ad hominem",
+                "Slippery slope",
+                "Begging the question"
+            ],
+            "correct": 1
+        }
+    ]
 }

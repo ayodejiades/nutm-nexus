@@ -1,17 +1,85 @@
 {
-  "title": "Probability",
-  "code": "STA 112",
-  "description": "Fundamentals of statistics and probability",
-  "instructor": "Dr. Nifemi I. Badmus",
-  "credits": 3,
-  "level": 100,
-  "semester": "II",
-  "departments": [
-    "Computer Science",
-    "Cybersecurity"
-  ],
-  "youtubePlaylistId": "PLvxOuBpazmsNIHP5cz37oOPZx0JKyNszN",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51"
+    "title": "Probability",
+    "code": "STA 112",
+    "description": "Fundamentals of statistics and probability",
+    "instructor": "Dr. Nifemi I. Badmus",
+    "credits": 3,
+    "level": 100,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PL6B4C4472F41864E3",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=51",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The probability of a certain event is:",
+            "options": [
+                "0",
+                "0.5",
+                "1",
+                "Undefined"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 2,
+            "text": "Two events are mutually exclusive if:",
+            "options": [
+                "They always occur together",
+                "They cannot occur at the same time",
+                "They are independent",
+                "Their probabilities add to zero"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Bayes' Theorem is used to:",
+            "options": [
+                "Calculate the mean",
+                "Update probabilities given new evidence",
+                "Find standard deviation",
+                "Graph linear equations"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "If P(A) = 0.3 and P(B) = 0.4, and A and B are independent, P(A∩B) =",
+            "options": [
+                "0.7",
+                "0.12",
+                "0.1",
+                "0.34"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "The normal distribution is characterized by:",
+            "options": [
+                "A uniform shape",
+                "A bell-shaped, symmetric curve",
+                "Always being skewed",
+                "Having no mean"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 6,
+            "text": "In a binomial distribution, each trial has:",
+            "options": [
+                "Multiple outcomes",
+                "Exactly two outcomes",
+                "No fixed probability",
+                "Dependent events"
+            ],
+            "correct": 1
+        }
+    ]
 }

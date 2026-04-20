@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PL_SInI5_V-38fLpW7QosT-dI8F2D0vY0q",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=37",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=37",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=37"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=37",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The purpose of error analysis in experiments is to:",
+            "options": [
+                "Eliminate all errors",
+                "Quantify the uncertainty in measurements",
+                "Make results look better",
+                "Ignore inaccurate data"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "A systematic error is characterized by:",
+            "options": [
+                "Random fluctuations",
+                "Consistent deviation in the same direction",
+                "Being completely unpredictable",
+                "Affecting only one measurement"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "The best-fit line in a graph:",
+            "options": [
+                "Must pass through all points",
+                "Minimizes the overall distance from data points",
+                "Is always a straight line",
+                "Ignores outliers"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "Significant figures in measurement indicate:",
+            "options": [
+                "The number of decimal places",
+                "The precision of the measurement",
+                "The accuracy of the instrument",
+                "How many times the measurement was repeated"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "An oscilloscope is used to measure:",
+            "options": [
+                "Temperature",
+                "Voltage waveforms over time",
+                "Mass",
+                "Chemical composition"
+            ],
+            "correct": 1
+        }
+    ]
 }

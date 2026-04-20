@@ -153,6 +153,17 @@ export default function CourseDetailPage() {
       .finally(() => setIsLoading(false));
   }, [slug]);
 
+  // Track recently visited courses
+  useEffect(() => {
+    if (!slug) return;
+    try {
+      const key = "nexus_recent";
+      const recent: string[] = JSON.parse(localStorage.getItem(key) || "[]");
+      const updated = [slug, ...recent.filter((s) => s !== slug)].slice(0, 10);
+      localStorage.setItem(key, JSON.stringify(updated));
+    } catch {}
+  }, [slug]);
+
   // --- Memoize the sorted files list ---
   // This recalculates only when the source files or sort criteria change
   const sortedFiles = useMemo(() => {
@@ -283,10 +294,26 @@ export default function CourseDetailPage() {
                 <BookOpenIcon className="w-4 h-4 text-primary" />
                 Course Overview
               </h2>
-              <p className="text-xl text-foreground/60 leading-relaxed font-medium">
-                {metadata.description}
+              <p className="text-xl text-foreground/50 max-w-2xl font-medium leading-relaxed mb-8 italic">
+                {courseDetails.metadata.description}
               </p>
+
+              {/* Action Bar */}
+              <div className="flex flex-wrap gap-4">
+                {courseDetails.metadata.moodleCourseUrl && (
+                  <a
+                    href={courseDetails.metadata.moodleCourseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all border border-white/5 flex items-center gap-2"
+                  >
+                    Enter Moodle Core
+                    <ArrowTopRightOnSquareIcon className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
             </div>
+
 
             {/* Resources Section */}
             <div className="coursera-card bg-surface-1/40 p-1">

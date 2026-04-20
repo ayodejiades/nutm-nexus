@@ -1,16 +1,16 @@
 {
-    "title": "Object Oriented Programming",
-    "code": "NUT-COS 205",
-    "description": "This course provides students with a deep, hands‑on understanding of object‑oriented programming (OOP) and its application in professional software development. As a foundational paradigm in computer science, OOP enables the creation of complex, maintainable, and scalable systems. Students will explore the core concepts of classes, objects, inheritance, polymorphism, and encapsulation, and learn to translate real‑world problems into robust object‑oriented solutions. Emphasis is placed on design patterns, clean and efficient code, and collaborative development practices. Through guided projects and peer collaboration, students will gain the skills to design, implement, and evaluate object‑oriented software in a team environment.",
-    "instructor": "Prof. Mba Odim",
-    "credits": 3,
-    "level": 200,
-    "semester": "II",
-    "departments": [
-      "Computer Science",
-    ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
-    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
-  }
+  "title": "Object Oriented Programming",
+  "code": "NUT-COS 205",
+  "description": "This course provides students with a deep, hands‑on understanding of object‑oriented programming (OOP) and its application in professional software development. As a foundational paradigm in computer science, OOP enables the creation of complex, maintainable, and scalable systems. Students will explore the core concepts of classes, objects, inheritance, polymorphism, and encapsulation, and learn to translate real‑world problems into robust object‑oriented solutions. Emphasis is placed on design patterns, clean and efficient code, and collaborative development practices. Through guided projects and peer collaboration, students will gain the skills to design, implement, and evaluate object‑oriented software in a team environment.",
+  "instructor": "Prof. Mba Odim",
+  "credits": 3,
+  "level": 200,
+  "semester": "II",
+  "departments": [
+    "Computer Science"
+  ],
+  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
+}

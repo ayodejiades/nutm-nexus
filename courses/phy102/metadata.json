@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLUl4u3cNGP63L80_K2y9E_v3Iaxrcc3N6",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=47",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=47",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=47"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=47",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "Coulomb's Law describes the force between:",
+            "options": [
+                "Magnets",
+                "Two electric charges",
+                "Gravity and mass",
+                "Light waves"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "The unit of electric charge is:",
+            "options": [
+                "Volt",
+                "Ampere",
+                "Coulomb",
+                "Ohm"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "text": "Ohm's Law states that V equals:",
+            "options": [
+                "I × R",
+                "I / R",
+                "I + R",
+                "I² × R"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 4,
+            "text": "Faraday's Law of electromagnetic induction relates to:",
+            "options": [
+                "Static charges",
+                "Changing magnetic flux producing an EMF",
+                "Gravitational fields",
+                "Sound waves"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "A capacitor stores energy in:",
+            "options": [
+                "A magnetic field",
+                "An electric field",
+                "Chemical bonds",
+                "Kinetic energy"
+            ],
+            "correct": 1
+        }
+    ]
 }

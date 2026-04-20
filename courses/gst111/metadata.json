@@ -10,8 +10,65 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLwhZLOpaRi21rwNQQ5buFToiQ3MMZoeIr",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=34",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=34",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=34"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=34",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "What is the primary purpose of General Studies courses in Nigerian universities?",
+            "options": [
+                "To replace professional courses",
+                "To provide broad-based knowledge and skills",
+                "To extend graduation time",
+                "To focus on one subject area"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Which of these is a key component of effective communication?",
+            "options": [
+                "Using jargon exclusively",
+                "Active listening",
+                "Speaking without pausing",
+                "Ignoring non-verbal cues"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Critical thinking primarily involves:",
+            "options": [
+                "Accepting information without questioning",
+                "Analyzing and evaluating information objectively",
+                "Memorizing facts",
+                "Avoiding complex problems"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "In academic writing, plagiarism refers to:",
+            "options": [
+                "Proper citation of sources",
+                "Using your own original ideas",
+                "Presenting someone else's work as your own",
+                "Paraphrasing with attribution"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 5,
+            "text": "Civic responsibility in Nigeria includes:",
+            "options": [
+                "Avoiding community participation",
+                "Understanding and fulfilling one's duties to society",
+                "Focusing only on personal interests",
+                "Ignoring government policies"
+            ],
+            "correct": 1
+        }
+    ]
 }

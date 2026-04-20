@@ -10,8 +10,76 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLp8nMTvWVXVH2L6z7m3eAozKjP2W_I9iR",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=42",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=42",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=42"
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=42",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The Production Possibility Curve (PPC) illustrates:",
+            "options": [
+                "Market equilibrium price",
+                "Maximum output combinations with given resources",
+                "Government tax revenue",
+                "International trade routes"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "The law of demand states that as price increases:",
+            "options": [
+                "Quantity demanded increases",
+                "Quantity demanded decreases",
+                "Supply increases",
+                "Income increases"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Opportunity cost is best defined as:",
+            "options": [
+                "The monetary price of a good",
+                "The value of the next best alternative forgone",
+                "Total production costs",
+                "The cost of raw materials only"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "In a perfectly competitive market:",
+            "options": [
+                "There is one seller",
+                "Many buyers and sellers exist with identical products",
+                "Firms set their own prices",
+                "Entry is restricted"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "A price floor set above equilibrium results in:",
+            "options": [
+                "Shortage",
+                "Surplus",
+                "No change",
+                "Increased demand"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 6,
+            "text": "Elasticity of demand measures:",
+            "options": [
+                "Total revenue",
+                "How responsive quantity demanded is to price changes",
+                "Production costs",
+                "Profit margins"
+            ],
+            "correct": 1
+        }
+    ]
 }

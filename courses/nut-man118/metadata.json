@@ -1,17 +1,74 @@
 {
-  "title": "Digital Transformation",
-  "code": "NUT-MAN 118",
-  "description": "An overview of digital transformation",
-  "instructor": "Dr. Chuka J. Uzo",
-  "credits": 3,
-  "level": 100,
-  "semester": "II",
-  "departments": [
-    "Computer Science",
-    "Cybersecurity"
-  ],
-  "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
-  "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54",
-  "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54",
-  "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54"
+    "title": "Digital Transformation",
+    "code": "NUT-MAN 118",
+    "description": "An overview of digital transformation",
+    "instructor": "Dr. Chuka J. Uzo",
+    "credits": 3,
+    "level": 100,
+    "semester": "II",
+    "departments": [
+        "Computer Science",
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLUl4u3cNGP632J0o48d88M_M3_aH1D2Ff",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=54",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "Digital transformation primarily refers to:",
+            "options": [
+                "Buying new computers",
+                "Integrating digital technology into all areas of a business",
+                "Creating a website",
+                "Using email for communication"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "Which technology is central to Industry 4.0?",
+            "options": [
+                "Telegraph",
+                "Steam engine",
+                "Internet of Things (IoT)",
+                "Typewriter"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "text": "Cloud computing enables businesses to:",
+            "options": [
+                "Only store photos",
+                "Access computing resources on-demand over the internet",
+                "Eliminate all hardware",
+                "Avoid using software"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "Big Data is characterized by:",
+            "options": [
+                "Only volume",
+                "Volume, Velocity, and Variety",
+                "Being always accurate",
+                "Small datasets"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "Artificial Intelligence in business is primarily used for:",
+            "options": [
+                "Replacing all employees",
+                "Automating tasks and generating insights from data",
+                "Increasing office space",
+                "Manual data entry"
+            ],
+            "correct": 1
+        }
+    ]
 }

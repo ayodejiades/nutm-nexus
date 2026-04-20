@@ -1,0 +1,15 @@
+{
+    "title": "System Network Administration",
+    "code": "NUT-CSC 207",
+    "description": "This course provides a practical and conceptual foundation in system and network administration. Students will gain hands-on experience managing users, configuring systems, securing networks, and administering services on Linux and Windows platforms. The course emphasizes key administrative tasks, tools, and troubleshooting techniques required to maintain reliable and secure computing environments in enterprise networks.",
+    "instructor": "Dr. Faki Ageebee",
+    "credits": 3,
+    "level": 200,
+    "semester": "II",
+    "departments": [
+        "Cybersecurity"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
+}

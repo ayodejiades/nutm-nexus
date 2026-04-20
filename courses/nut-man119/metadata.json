@@ -7,11 +7,68 @@
     "level": 100,
     "semester": "II",
     "departments": [
-      "Computer Science",
-      "Cybersecurity"
+        "Computer Science",
+        "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLUl4u3cNGP62EXoZ4B3_Ob7lRRwpGQxkb",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
-  }
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "The first step in the rational decision-making model is:",
+            "options": [
+                "Choosing an alternative",
+                "Identifying the problem",
+                "Evaluating results",
+                "Generating alternatives"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "A SWOT analysis examines:",
+            "options": [
+                "Sales, Wages, Output, Tax",
+                "Strengths, Weaknesses, Opportunities, Threats",
+                "Speed, Width, Orientation, Time",
+                "Staff, Work, Operations, Tasks"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "text": "Confirmation bias in decision-making means:",
+            "options": [
+                "Considering all evidence equally",
+                "Favoring information that supports existing beliefs",
+                "Making decisions randomly",
+                "Consulting with experts"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "Group decision-making is prone to 'groupthink', which means:",
+            "options": [
+                "Diverse opinions are encouraged",
+                "The group prioritizes harmony over critical evaluation",
+                "Each member votes independently",
+                "Decisions are always optimal"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "The sunk cost fallacy involves:",
+            "options": [
+                "Ignoring past investments",
+                "Continuing a course of action because of past investments that cannot be recovered",
+                "Calculating future costs accurately",
+                "Investing wisely in new projects"
+            ],
+            "correct": 1
+        }
+    ]
+}

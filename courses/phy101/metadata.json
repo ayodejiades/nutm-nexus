@@ -10,8 +10,76 @@
         "Computer Science",
         "Cybersecurity"
     ],
-    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "youtubePlaylistId": "PLUl4u3cNGP606T2V-80vEqt_f7YnOnlP5",
     "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=36",
     "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=36",
-    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=36"
-  }
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=36",
+    "quizzes": [
+        {
+            "id": 1,
+            "text": "Newton's First Law of Motion states that an object:",
+            "options": [
+                "Always accelerates",
+                "Remains at rest or in uniform motion unless acted upon by a force",
+                "Moves in circles naturally",
+                "Cannot be at rest"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 2,
+            "text": "The SI unit of force is:",
+            "options": [
+                "Joule",
+                "Watt",
+                "Newton",
+                "Pascal"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "text": "Momentum is defined as:",
+            "options": [
+                "Mass × Acceleration",
+                "Mass × Velocity",
+                "Force × Time",
+                "Energy × Distance"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "text": "Kepler's first law states that planetary orbits are:",
+            "options": [
+                "Circular",
+                "Elliptical",
+                "Parabolic",
+                "Linear"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "text": "The escape velocity from Earth's surface is approximately:",
+            "options": [
+                "5.2 km/s",
+                "8.9 km/s",
+                "11.2 km/s",
+                "15.7 km/s"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 6,
+            "text": "Angular momentum is conserved when:",
+            "options": [
+                "Friction is present",
+                "No external torque acts on the system",
+                "Velocity is constant",
+                "Mass increases"
+            ],
+            "correct": 1
+        }
+    ]
+}
