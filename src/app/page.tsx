@@ -273,9 +273,21 @@ export default function HomePage() {
               </h1>
             </>
           ) : (
-            <h1 className="text-5xl sm:text-6xl md:text-[7rem] font-black tracking-tightest leading-[0.85] mb-6 sm:mb-8 animate-fade-in drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-              Nexus.
-            </h1>
+            <>
+              <div className="mb-6 animate-fade-in">
+                <Image
+                  src="/nexus-icon.png"
+                  alt="Nexus"
+                  width={64}
+                  height={64}
+                  className="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+                  priority
+                />
+              </div>
+              <h1 className="text-5xl sm:text-6xl md:text-[7rem] font-black tracking-tightest leading-[0.85] mb-6 sm:mb-8 animate-fade-in drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                Nexus.
+              </h1>
+            </>
           )}
 
           <p className="text-base sm:text-xl text-foreground/50 mb-8 sm:mb-12 max-w-2xl font-medium leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
