@@ -1,0 +1,17 @@
+{
+    "title": "Computer Architecture and Organisation",
+    "code": "IFT 212",
+    "description": "Principles of computer hardware and instruction set architecture. Internal CPU organisation and implementation. Instruction format and types, memory, and I/O instructions. Dataflow, arithmetic, and flow control instructions, addressing modes, stack operations, and interrupts. Data path and control unit design. RTL, microprogramming and hardwired control. The practice of assembly language programming. Memory hierarchy. Cache memory, Virtual memory. Cache performance. Compiler support for cache performance. I/O organisations.",
+    "instructor": "Prof. Mba Odim",
+    "credits": 2,
+    "level": 200,
+    "semester": "II",
+    "departments": [
+      "Computer Science",
+      "Information Technology"
+    ],
+    "youtubePlaylistId": "PLXXXXXXXXXXXXXXXXXXXX",
+    "moodleCourseUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+    "moodleForumUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44",
+    "moodleAssignmentsUrl": "https://www.nutm.edu.ng/elearn/course/view.php?id=44"
+  }
