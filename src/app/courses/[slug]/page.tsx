@@ -47,10 +47,29 @@ const PATTERNS = [
 ];
 
 // --- Interfaces ---
+type Category = 'notes' | 'assignments' | 'tests' | 'exams';
+
 interface CourseFile {
   name: string;
   url?: string | null;
   size: number;
+  category?: Category;
+  cohort?: string | null;
+}
+
+// Display order + labels for the resource tabs.
+const CATEGORY_TABS: { key: Category; label: string }[] = [
+  { key: 'notes', label: 'Notes' },
+  { key: 'assignments', label: 'Assignments' },
+  { key: 'tests', label: 'Tests' },
+  { key: 'exams', label: 'Past Exams' },
+];
+
+// "2024-2025" -> "2024/2025"; "class-of-28" -> "Class of 28"; else humanize.
+function formatCohort(cohort: string): string {
+  if (/^\d{4}-\d{4}$/.test(cohort)) return cohort.replace('-', '/');
+  if (/^class-of-\d+$/i.test(cohort)) return `Class of ${cohort.split('-').pop()}`;
+  return cohort.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }
 interface CourseMetadata {
   title: string;
@@ -132,6 +151,9 @@ export default function CourseDetailPage() {
   // State for file sorting
   const [fileSortKey, setFileSortKey] = useState<'name' | 'size'>('name'); // Default sort by name
   const [fileSortOrder, setFileSortOrder] = useState<'asc' | 'desc'>('asc'); // Default ascending
+  // State for resource tabs + cohort filter
+  const [activeCategory, setActiveCategory] = useState<Category>('notes');
+  const [activeCohort, setActiveCohort] = useState<string>('all'); // 'all' or a cohort folder name
 
   // Fetch data effect
   useEffect(() => {
@@ -164,33 +186,56 @@ export default function CourseDetailPage() {
     } catch {}
   }, [slug]);
 
-  // --- Memoize the sorted files list ---
-  // This recalculates only when the source files or sort criteria change
+  // Files default to the "notes" category when the API didn't tag them (legacy data).
+  const categoryOf = (f: CourseFile): Category => f.category ?? 'notes';
+
+  // --- Which tabs to show (only categories that actually have files) ---
+  const availableCategories = useMemo(() => {
+    const present = new Set((courseDetails?.files ?? []).map(categoryOf));
+    return CATEGORY_TABS.filter((t) => present.has(t.key));
+  }, [courseDetails?.files]);
+
+  // When data loads (or the available tabs change), make sure the active tab exists.
+  useEffect(() => {
+    if (availableCategories.length === 0) return;
+    if (!availableCategories.some((t) => t.key === activeCategory)) {
+      setActiveCategory(availableCategories[0].key);
+    }
+  }, [availableCategories, activeCategory]);
+
+  // --- Cohorts available within the active category (newest first) ---
+  const availableCohorts = useMemo(() => {
+    const cohorts = new Set(
+      (courseDetails?.files ?? [])
+        .filter((f) => categoryOf(f) === activeCategory && f.cohort)
+        .map((f) => f.cohort as string)
+    );
+    return Array.from(cohorts).sort((a, b) => b.localeCompare(a));
+  }, [courseDetails?.files, activeCategory]);
+
+  // --- Memoize the filtered + sorted files list for the active tab ---
   const sortedFiles = useMemo(() => {
-    // Return empty array immediately if no files data
     if (!courseDetails?.files) return [];
 
-    // Create a mutable copy to avoid sorting the original state directly
-    const filesToSort = [...courseDetails.files];
+    const filesToSort = courseDetails.files.filter((f) => {
+      if (categoryOf(f) !== activeCategory) return false;
+      if (activeCohort !== 'all' && f.cohort !== activeCohort) return false;
+      return true;
+    });
 
-    // Sort the copy based on current key and order
+    // Sort a copy based on current key and order
     filesToSort.sort((a, b) => {
       let comparison = 0;
-      // Compare based on the selected sort key
       if (fileSortKey === 'name') {
-        // Case-insensitive string comparison for names
         comparison = (a.name || '').localeCompare(b.name || '');
       } else if (fileSortKey === 'size') {
-        // Numerical comparison for size (treat undefined size as 0)
         comparison = (a.size ?? 0) - (b.size ?? 0);
       }
-      // Apply ascending or descending order
       return fileSortOrder === 'asc' ? comparison : -comparison;
     });
 
-    console.log(`Sorted files by ${fileSortKey} ${fileSortOrder}. Count: ${filesToSort.length}`);
-    return filesToSort; // Return the sorted copy
-  }, [courseDetails?.files, fileSortKey, fileSortOrder]); // Dependencies
+    return filesToSort;
+  }, [courseDetails?.files, activeCategory, activeCohort, fileSortKey, fileSortOrder]);
 
 
   // --- Render Logic ---
@@ -340,6 +385,39 @@ export default function CourseDetailPage() {
                 )}
               </div>
 
+              {/* Category tabs + cohort filter */}
+              {availableCategories.length > 0 && (
+                <div className="px-6 py-4 border-b border-white/5 flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {availableCategories.map((tab) => (
+                      <button
+                        key={tab.key}
+                        onClick={() => { setActiveCategory(tab.key); setActiveCohort('all'); }}
+                        className={`text-[11px] font-black px-4 py-2 rounded-lg border transition-all uppercase tracking-widest ${activeCategory === tab.key ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/40 hover:bg-surface-3'}`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {availableCohorts.length > 0 && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-black text-foreground/30 uppercase tracking-widest">Cohort</span>
+                      <select
+                        value={activeCohort}
+                        onChange={(e) => setActiveCohort(e.target.value)}
+                        className="text-[11px] font-bold bg-surface-2 border border-white/5 text-foreground/80 rounded-lg px-3 py-2 focus:outline-none focus:border-primary/40 hover:bg-surface-3 transition-all cursor-pointer"
+                      >
+                        <option value="all">All cohorts</option>
+                        {availableCohorts.map((c) => (
+                          <option key={c} value={c}>{formatCohort(c)}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="p-2">
                 {sortedFiles && sortedFiles.length > 0 ? (
                   <div className="space-y-1">
@@ -363,7 +441,7 @@ export default function CourseDetailPage() {
                                 {fileName}
                               </p>
                               <span className="text-[10px] font-bold text-foreground/20 uppercase tracking-widest">
-                                {fileName.split('.').pop()} Resource
+                                {fileName.split('.').pop()}{file.cohort ? ` · ${formatCohort(file.cohort)}` : ' Resource'}
                               </span>
                             </div>
                           </div>
@@ -378,7 +456,14 @@ export default function CourseDetailPage() {
                     })}
                   </div>
                 ) : (
-                  <EmptyState title="No Files" message="No resources available for this course yet." />
+                  <EmptyState
+                    title="Nothing here yet"
+                    message={
+                      activeCohort !== 'all'
+                        ? `No ${CATEGORY_TABS.find((t) => t.key === activeCategory)?.label.toLowerCase() ?? 'files'} for ${formatCohort(activeCohort)}.`
+                        : `No ${CATEGORY_TABS.find((t) => t.key === activeCategory)?.label.toLowerCase() ?? 'resources'} available for this course yet.`
+                    }
+                  />
                 )}
               </div>
             </div>

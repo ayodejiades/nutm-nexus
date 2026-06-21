@@ -24,6 +24,72 @@ const owner = process.env.GITHUB_REPO_OWNER!;
 const repo = process.env.GITHUB_REPO_NAME!;
 const coursesPath = 'courses';
 
+// --- File categorization ---
+type Category = 'notes' | 'assignments' | 'tests' | 'exams';
+
+interface CourseFile {
+    name: string;
+    url?: string | null;
+    size: number;
+    type: string;
+    /** Path-derived category. Root-level files fall back to "notes". */
+    category: Category;
+    /** Cohort folder name (e.g. "2024-2025"), or null for shared/legacy files. */
+    cohort: string | null;
+}
+
+// Maps the first path segment (case-insensitive, with a few aliases) to a category.
+const CATEGORY_ALIASES: Record<string, Category> = {
+    notes: 'notes', note: 'notes', lectures: 'notes', lecture: 'notes', slides: 'notes',
+    assignments: 'assignments', assignment: 'assignments', homework: 'assignments', hw: 'assignments',
+    tests: 'tests', test: 'tests', quizzes: 'tests', quiz: 'tests', cat: 'tests',
+    exams: 'exams', exam: 'exams', 'past-exams': 'exams', 'pastexams': 'exams', finals: 'exams',
+};
+
+// Recursively lists files under a course directory, tagging each with category + cohort
+// derived from its path relative to the course root. Sibling directories are walked in parallel.
+async function walkCourseDir(
+    client: Octokit,
+    repoOwner: string,
+    repoName: string,
+    dirPath: string,
+    courseRoot: string,
+): Promise<CourseFile[]> {
+    const { data } = await client.repos.getContent({ owner: repoOwner, repo: repoName, path: dirPath });
+    if (!Array.isArray(data)) return [];
+
+    const directFiles: CourseFile[] = [];
+    const subdirWalks: Array<Promise<CourseFile[]>> = [];
+
+    for (const item of data) {
+        if (item.type === 'dir') {
+            subdirWalks.push(walkCourseDir(client, repoOwner, repoName, item.path, courseRoot));
+        } else if (item.type === 'file' && item.name !== 'metadata.json') {
+            // Relative path under the course root, e.g. "exams/2024-2025/final.pdf"
+            const relative = item.path.startsWith(`${courseRoot}/`)
+                ? item.path.slice(courseRoot.length + 1)
+                : item.name;
+            const segments = relative.split('/');
+            const category = segments.length > 1
+                ? (CATEGORY_ALIASES[segments[0].toLowerCase()] ?? 'notes')
+                : 'notes';
+            // Cohort = the folder between category and the file, when present.
+            const cohort = segments.length > 2 ? segments[1] : null;
+            directFiles.push({
+                name: item.name,
+                url: item.download_url,
+                size: item.size ?? 0,
+                type: item.type,
+                category,
+                cohort,
+            });
+        }
+    }
+
+    const nested = (await Promise.all(subdirWalks)).flat();
+    return [...directFiles, ...nested];
+}
+
 
 // Type for Route Context in Next.js 15+
 type RouteContext = {
@@ -82,26 +148,19 @@ export async function GET(
              throw error; // Re-throw to be caught by outer catch
         }
 
-        // 2. Fetch directory contents (files)
-        console.log(`API [${slug}]: Fetching file list from ${coursePath}`);
-        // Disable prefer-const for this specific line as files.push modifies it
-        // eslint-disable-next-line prefer-const
-        let files: Array<{ name: string; url?: string | null; size: number; type: string }> = [];
+        // 2. Fetch directory contents (files), recursing into category/cohort subfolders.
+        //
+        // Folder convention (all parts optional — flat root files still work):
+        //   courses/<slug>/<category>/<cohort>/<file>
+        //   category := notes | assignments | tests | exams  (root files default to "notes")
+        //   cohort   := academic-year folder, e.g. "2024-2025"  (null when absent)
+        console.log(`API [${slug}]: Fetching file tree from ${coursePath}`);
+        let files: CourseFile[];
         try {
-            const { data: courseContents } = await octokit.repos.getContent({ owner, repo, path: coursePath });
-            if (Array.isArray(courseContents)) {
-               const fetchedFiles = courseContents
-                  .filter(item => item.type === 'file' && item.name !== 'metadata.json')
-                  .map(file => ({ name: file.name, url: file.download_url, size: file.size ?? 0, type: file.type }));
-               files.push(...fetchedFiles); // Modifying 'files' array
-               console.log(`API [${slug}]: Found ${files.length} files.`);
-            } else {
-                 console.warn(`API [${slug}]: Path ${coursePath} did not return an array of contents.`);
-                 return NextResponse.json({ error: `Course path not found or invalid for '${slug}'` }, { status: 404 });
-            }
+            files = await walkCourseDir(octokit, owner, repo, coursePath, coursePath);
+            console.log(`API [${slug}]: Found ${files.length} files.`);
         } catch (error: unknown) { // Use 'error' directly
              const status = (error as { status?: number })?.status;
-             // const message = (error instanceof Error) ? error.message : String(error);
              if (status === 404) {
                  console.error(`API Error [${slug}]: Course directory not found at ${coursePath}. Raw Error:`, error); // Log raw error
                  return NextResponse.json({ error: `Course path not found for '${slug}'` }, { status: 404 });
