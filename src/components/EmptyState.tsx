@@ -18,7 +18,7 @@ export default function EmptyState({
           <Icon className="h-8 w-8 text-primary" aria-hidden="true" />
        </div>
        <h3 className="text-xl font-bold text-white mb-2 tracking-tight">{title}</h3>
-       <p className="text-foreground/40 text-sm font-medium">{message}</p>
+       <p className="text-foreground/70 text-sm font-medium">{message}</p>
     </div>
   );
 }

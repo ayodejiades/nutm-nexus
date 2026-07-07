@@ -67,7 +67,7 @@ function SocialLink({ href, children, label }: { href: string; children: React.R
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="p-2 bg-white/5 hover:bg-primary/10 border border-white/5 hover:border-primary/30 rounded-lg text-foreground/30 hover:text-primary transition-all"
+      className="p-2 bg-white/5 hover:bg-primary/10 border border-white/5 hover:border-primary/30 rounded-lg text-foreground/60 hover:text-primary transition-all"
     >
       {children}
     </a>
@@ -82,11 +82,11 @@ export default function TeamPage() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative z-10">
-          <p className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4">The People Behind Nexus</p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-6">
+          <p className="text-[10px] font-semibold text-primary uppercase tracking-[0.3em] mb-4">The People Behind Nexus</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-white tracking-tight mb-6">
             Meet the Team
           </h1>
-          <p className="text-base sm:text-lg text-foreground/40 max-w-xl mx-auto font-medium leading-relaxed">
+          <p className="text-base sm:text-lg text-foreground/70 max-w-xl mx-auto font-medium leading-relaxed">
             We&apos;re NUTM&apos;s Peer-2-Peer Tutorial  — building tools to make academic resources more accessible for every student.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function TeamPage() {
 
               {/* Role badge */}
               <div className="absolute top-4 left-4">
-                <span className="px-2.5 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-lg text-[9px] font-black text-white/60 uppercase tracking-widest">
+                <span className="px-2.5 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-lg text-[9px] font-semibold text-white/60 uppercase tracking-widest">
                   {idx === 0 ? "Lead" : "Member"}
                 </span>
               </div>
@@ -121,8 +121,8 @@ export default function TeamPage() {
 
             {/* Content */}
             <div className="px-6 pt-5 pb-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-black text-white tracking-tight leading-tight">{member.name}</h3>
-              <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mt-1 mb-4">{member.role}</p>
+              <h3 className="text-xl font-semibold text-white tracking-tight leading-tight">{member.name}</h3>
+              <p className="text-[10px] font-semibold text-primary uppercase tracking-[0.2em] mt-1 mb-4">{member.role}</p>
               <p className="text-[13px] text-foreground/50 leading-relaxed flex-grow">{member.bio}</p>
 
               {/* Divider + Social Links */}
@@ -150,15 +150,15 @@ export default function TeamPage() {
 
       {/* CTA Section */}
       <section className="text-center py-8 border-t border-white/5">
-        <h2 className="text-lg font-black text-white mb-2">Want to Contribute?</h2>
-        <p className="text-xs text-foreground/40 max-w-sm mx-auto mb-6">
+        <h2 className="text-lg font-semibold text-white mb-2">Want to Contribute?</h2>
+        <p className="text-xs text-foreground/70 max-w-sm mx-auto mb-6">
           NUTM Nexus is open source. If you&apos;re a student who wants to help improve the platform, we&apos;d love to hear from you.
         </p>
         <a
           href="https://github.com/ayodejiades/nutm-nexus"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all active:scale-95"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-xl font-semibold text-xs uppercase tracking-widest transition-all active:scale-95"
         >
           <GitHubIcon />
           View on GitHub

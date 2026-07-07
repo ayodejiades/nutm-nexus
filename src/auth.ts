@@ -14,10 +14,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   callbacks: {
     async signIn({ account, profile }: any) {
-      if (account?.provider === "google") {
-        return true;
-      }
-      return true;
+      if (account?.provider !== "google") return false;
+      // Only allow verified NUTM accounts. Domains are configurable via env
+      // (comma-separated); default covers nutm.edu.ng and any subdomain
+      // (e.g. student.nutm.edu.ng). Add your own domain locally to test.
+      if (profile?.email_verified === false) return false;
+      const allowed = (process.env.ALLOWED_EMAIL_DOMAINS ?? "nutm.edu.ng")
+        .split(",")
+        .map((d: string) => d.trim().toLowerCase())
+        .filter(Boolean);
+      const domain = String(profile?.email ?? "").toLowerCase().split("@")[1];
+      if (!domain) return false;
+      return allowed.some((d: string) => domain === d || domain.endsWith(`.${d}`));
     },
     async session({ session }: any) {
       return session;

@@ -84,14 +84,14 @@ export default function CourseImage({ title, code, className = "" }: CourseImage
       {/* Context Badge */}
       <div className="absolute top-4 left-4 z-20">
         <div className="px-2 py-0.5 bg-white/5 backdrop-blur-md rounded border border-white/10">
-          <span className="text-[8px] font-black text-white/40 tracking-[0.2em] uppercase">
+          <span className="text-[8px] font-semibold text-white/40 tracking-[0.2em] uppercase">
             MODULE
           </span>
         </div>
       </div>
 
       {/* Centered Large Code (Subtle) */}
-      <span className="relative z-10 text-5xl font-black text-white/5 tracking-tightest select-none uppercase">
+      <span className="relative z-10 text-5xl font-semibold text-white/5 tracking-tightest select-none uppercase">
         {code}
       </span>
     </div>

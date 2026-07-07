@@ -83,6 +83,14 @@ a:hover {
   color: var(--color-primary-light);
 }
 
+/* Accessibility: always show a visible keyboard-focus ring, even where a
+   component sets focus:outline-none for mouse users. */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* Coursera-style Card & Component Styling */
 .coursera-card {
   background: var(--surface-1);

@@ -60,7 +60,7 @@ export default function TeamMemberCard({
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground/30 hover:text-primary transition-colors"
+            className="text-foreground/60 hover:text-primary transition-colors"
           >
             <LinkedInIcon />
           </a>
@@ -70,7 +70,7 @@ export default function TeamMemberCard({
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground/30 hover:text-white transition-colors"
+            className="text-foreground/60 hover:text-white transition-colors"
           >
             <GitHubIcon />
           </a>
@@ -80,7 +80,7 @@ export default function TeamMemberCard({
             href={website}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground/30 hover:text-primary transition-colors"
+            className="text-foreground/60 hover:text-primary transition-colors"
           >
             <span className="text-[10px] font-bold">WWW</span>
           </a>

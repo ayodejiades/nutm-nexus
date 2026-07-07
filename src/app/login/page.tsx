@@ -13,7 +13,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   OAuthCreateAccount: "Could not create your account. Please contact support.",
   OAuthAccountNotLinked: "This email is already linked to another account.",
   Callback: "Something went wrong during sign-in. Please try again.",
-  AccessDenied: "Access denied. You may not have permission to sign in.",
+  AccessDenied: "Nexus is for NUTM accounts only. Please sign in with your NUTM (nutm.edu.ng) email.",
   default: "An unexpected error occurred. Please try again.",
 };
 
@@ -36,7 +36,7 @@ function LoginForm() {
             className="w-12 h-12"
           />
         </div>
-        <h1 className="text-3xl font-black text-white tracking-tight uppercase mb-2">
+        <h1 className="text-3xl font-semibold text-white tracking-tight uppercase mb-2">
           NUTM <span className="text-primary">Nexus</span>
         </h1>
       </div>
@@ -55,15 +55,15 @@ function LoginForm() {
 
         <div className="text-left space-y-2 mb-8">
           <h2 className="text-xl font-bold text-white tracking-tight">Welcome</h2>
-          <p className="text-sm text-foreground/50 font-medium">
-            Sign in with your Google account to access peer tutoring resources, study groups, and exclusive course materials.
+          <p className="text-sm text-foreground/60 font-medium">
+            Sign in with your NUTM Google account to access course materials, past papers, and quizzes. NUTM accounts only.
           </p>
         </div>
 
         {/* Google Sign In Button */}
         <button
           onClick={() => signIn("google", { callbackUrl: "/" })}
-          className="w-full h-14 bg-white hover:bg-white/90 text-black rounded-xl font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-4 group shadow-xl shadow-white/5 active:scale-95 cursor-pointer"
+          className="w-full h-14 bg-white hover:bg-white/90 text-black rounded-xl font-semibold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-4 group shadow-xl shadow-white/5 active:scale-95 cursor-pointer"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24">
             <path
@@ -87,7 +87,7 @@ function LoginForm() {
         </button>
 
         <div className="pt-6 border-t border-white/5">
-          <p className="text-[10px] text-foreground/20 leading-relaxed font-medium">
+          <p className="text-[10px] text-foreground/55 leading-relaxed font-medium">
             By signing in, you agree to the NUTM Peer-2-Peer Tutorial  Guidelines and Nexus Community Standards.
           </p>
         </div>
@@ -99,14 +99,11 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
-      {/* Decorative Orbs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full animate-pulse" />
-
       <div className="w-full max-w-md relative z-10 animate-fade-in">
         <Suspense fallback={
           <div className="bg-surface-1/40 backdrop-blur-2xl border border-white/5 rounded-[2rem] p-12 text-center shadow-2xl">
             <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-xs font-black text-foreground/40 uppercase tracking-widest">Initializing...</p>
+            <p className="text-xs font-semibold text-foreground/70 uppercase tracking-widest">Initializing...</p>
           </div>
         }>
           <LoginForm />

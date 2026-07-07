@@ -20,7 +20,7 @@ export default function ErrorDisplay({
       </div>
 
       <h3 className="text-xl font-bold text-white mb-2 tracking-tight">{message}</h3>
-      {details && <p className="text-foreground/40 text-sm font-medium italic">{details}</p>}
+      {details && <p className="text-foreground/70 text-sm font-medium italic">{details}</p>}
     </div>
   );
 }

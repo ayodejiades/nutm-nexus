@@ -13,7 +13,7 @@ import {
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const linkStyle = "text-sm text-foreground/50 hover:text-primary transition-all hover:translate-x-1 flex items-center gap-2 group/link";
-  const headerStyle = "text-[10px] font-black text-white uppercase tracking-[0.3em] mb-6 flex items-center gap-3";
+  const headerStyle = "text-[10px] font-semibold text-white uppercase tracking-[0.3em] mb-6 flex items-center gap-3";
 
   return (
     <footer className="relative border-t border-white/5 mt-20 bg-surface-1/30 backdrop-blur-xl overflow-hidden">
@@ -31,7 +31,7 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col -space-y-1">
-                <span className="text-xl font-black text-white tracking-tighter uppercase leading-none">NUTM</span>
+                <span className="text-xl font-semibold text-white tracking-tighter uppercase leading-none">NUTM</span>
                 <span className="text-[11px] font-bold text-primary tracking-[0.25em] uppercase leading-none mt-1">Nexus</span>
               </div>
             </Link>
@@ -98,7 +98,7 @@ export default function Footer() {
 
         {/* Footer Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] font-bold text-foreground/20 uppercase tracking-[0.3em]">
+          <p className="text-[10px] font-bold text-foreground/55 uppercase tracking-[0.3em]">
             © {currentYear} NUTM NEXUS. Developed by <span className="text-primary/60 hover:text-white transition-colors cursor-default">Ayodeji Adesegun</span>
           </p>
         </div>

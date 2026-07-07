@@ -290,24 +290,24 @@ export default function CourseDetailPage() {
         <div className="section-container relative z-10">
           <Link
             href="/"
-            className="inline-flex items-center text-xs font-black text-primary hover:text-primary-light uppercase tracking-widest mb-8 transition-colors"
+            className="inline-flex items-center text-xs font-semibold text-primary hover:text-primary-light uppercase tracking-widest mb-8 transition-colors"
           >
             ← Back to All Courses
           </Link>
 
           <div className="max-w-4xl">
             <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-black rounded-lg border border-primary/20 tracking-widest uppercase">
+              <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-semibold rounded-lg border border-primary/20 tracking-widest uppercase">
                 {metadata.code}
               </span>
               {metadata.level && (
-                <span className="px-3 py-1 bg-white/5 text-foreground/40 text-xs font-bold rounded-lg border border-white/5 tracking-widest uppercase">
+                <span className="px-3 py-1 bg-white/5 text-foreground/70 text-xs font-bold rounded-lg border border-white/5 tracking-widest uppercase">
                   Level {metadata.level}
                 </span>
               )}
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tightest mb-6 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-semibold text-white leading-tightest mb-6 tracking-tight">
               {metadata.title}
             </h1>
 
@@ -316,10 +316,10 @@ export default function CourseDetailPage() {
                 <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/20">
                   <UserIcon className="w-5 h-5 text-primary" />
                 </div>
-                <span className="font-black tracking-tight">By {metadata.instructor || "NUTM Faculty"}</span>
+                <span className="font-semibold tracking-tight">By {metadata.instructor || "NUTM Faculty"}</span>
               </div>
               <div className="h-4 w-px bg-white/10 hidden sm:block" />
-              <div className="flex items-center gap-3 text-foreground/50 font-black uppercase tracking-widest text-[10px]">
+              <div className="flex items-center gap-3 text-foreground/50 font-semibold uppercase tracking-widest text-[10px]">
                 <span className="px-2 py-0.5 bg-white/5 rounded-md border border-white/5">{metadata.credits || 3} Credits</span>
                 <span className="px-2 py-0.5 bg-white/5 rounded-md border border-white/5">Semester {metadata.semester || "I"}</span>
               </div>
@@ -335,7 +335,7 @@ export default function CourseDetailPage() {
           <div className="lg:flex-grow space-y-12">
             {/* Description Section */}
             <div>
-              <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+              <h2 className="text-sm font-semibold text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
                 <BookOpenIcon className="w-4 h-4 text-primary" />
                 Course Overview
               </h2>
@@ -350,7 +350,7 @@ export default function CourseDetailPage() {
                     href={courseDetails.metadata.moodleCourseUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all border border-white/5 flex items-center gap-2"
+                    className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold text-xs uppercase tracking-widest transition-all border border-white/5 flex items-center gap-2"
                   >
                     Enter Moodle Core
                     <ArrowTopRightOnSquareIcon className="w-4 h-4" />
@@ -363,7 +363,7 @@ export default function CourseDetailPage() {
             {/* Resources Section */}
             <div className="coursera-card bg-surface-1/40 p-1">
               <div className="p-6 border-b border-white/5 flex flex-wrap justify-between items-center gap-4">
-                <h2 className="text-lg font-black text-white tracking-tight">
+                <h2 className="text-lg font-semibold text-white tracking-tight">
                   Learning <span className="text-primary italic">Resources</span>
                 </h2>
 
@@ -371,13 +371,13 @@ export default function CourseDetailPage() {
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => handleFileSort('name')}
-                      className={`text-[10px] font-black px-3 py-1.5 rounded-lg border transition-all uppercase tracking-widest ${fileSortKey === 'name' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/40 hover:bg-surface-3'}`}
+                      className={`text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all uppercase tracking-widest ${fileSortKey === 'name' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/70 hover:bg-surface-3'}`}
                     >
                       Name {fileSortKey === 'name' && (fileSortOrder === 'asc' ? '↑' : '↓')}
                     </button>
                     <button
                       onClick={() => handleFileSort('size')}
-                      className={`text-[10px] font-black px-3 py-1.5 rounded-lg border transition-all uppercase tracking-widest ${fileSortKey === 'size' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/40 hover:bg-surface-3'}`}
+                      className={`text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all uppercase tracking-widest ${fileSortKey === 'size' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/70 hover:bg-surface-3'}`}
                     >
                       Size {fileSortKey === 'size' && (fileSortOrder === 'asc' ? '↑' : '↓')}
                     </button>
@@ -393,7 +393,7 @@ export default function CourseDetailPage() {
                       <button
                         key={tab.key}
                         onClick={() => { setActiveCategory(tab.key); setActiveCohort('all'); }}
-                        className={`text-[11px] font-black px-4 py-2 rounded-lg border transition-all uppercase tracking-widest ${activeCategory === tab.key ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/40 hover:bg-surface-3'}`}
+                        className={`text-[11px] font-semibold px-4 py-2 rounded-lg border transition-all uppercase tracking-widest ${activeCategory === tab.key ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/70 hover:bg-surface-3'}`}
                       >
                         {tab.label}
                       </button>
@@ -402,7 +402,7 @@ export default function CourseDetailPage() {
 
                   {availableCohorts.length > 0 && (
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-black text-foreground/30 uppercase tracking-widest">Cohort</span>
+                      <span className="text-[10px] font-semibold text-foreground/60 uppercase tracking-widest">Cohort</span>
                       <select
                         value={activeCohort}
                         onChange={(e) => setActiveCohort(e.target.value)}
@@ -434,22 +434,22 @@ export default function CourseDetailPage() {
                         >
                           <div className="flex items-center gap-4 min-w-0">
                             <div className="w-10 h-10 rounded-lg bg-surface-2 flex items-center justify-center group-hover:bg-primary/10 group-hover:scale-110 transition-all">
-                              <IconComponent className="w-5 h-5 text-foreground/40 group-hover:text-primary transition-colors" />
+                              <IconComponent className="w-5 h-5 text-foreground/70 group-hover:text-primary transition-colors" />
                             </div>
                             <div className="min-w-0">
                               <p className="text-sm font-bold text-foreground/80 group-hover:text-white truncate" title={fileName}>
                                 {fileName}
                               </p>
-                              <span className="text-[10px] font-bold text-foreground/20 uppercase tracking-widest">
+                              <span className="text-[10px] font-bold text-foreground/55 uppercase tracking-widest">
                                 {fileName.split('.').pop()}{file.cohort ? ` · ${formatCohort(file.cohort)}` : ' Resource'}
                               </span>
                             </div>
                           </div>
                           <div className="flex items-center gap-4 flex-shrink-0">
-                            <span className="text-[10px] font-bold text-foreground/30">
+                            <span className="text-[10px] font-bold text-foreground/60">
                               {formatBytes(file.size)}
                             </span>
-                            <ArrowTopRightOnSquareIcon className="w-4 h-4 text-foreground/20 group-hover:text-primary transition-colors" />
+                            <ArrowTopRightOnSquareIcon className="w-4 h-4 text-foreground/55 group-hover:text-primary transition-colors" />
                           </div>
                         </a>
                       );
@@ -471,7 +471,7 @@ export default function CourseDetailPage() {
             {/* Video Lectures */}
             {metadata.youtubePlaylistId && (
               <div className="space-y-6">
-                <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] flex items-center gap-2">
+                <h2 className="text-sm font-semibold text-white uppercase tracking-[0.2em] flex items-center gap-2">
                   <span className="w-4 h-4 bg-red-500 rounded flex items-center justify-center">
                     <span className="border-l-4 border-l-white border-y-4 border-y-transparent ml-0.5" />
                   </span>
@@ -495,14 +495,14 @@ export default function CourseDetailPage() {
           <aside className="lg:w-80 space-y-8 flex-shrink-0">
             {/* Quick Actions (Enroll/Moodle) */}
             <div className="p-8 rounded-3xl bg-surface-1 border border-white/5 shadow-2xl space-y-6">
-              <h3 className="text-xs font-black text-white uppercase tracking-[0.2em]">Quick Links</h3>
+              <h3 className="text-xs font-semibold text-white uppercase tracking-[0.2em]">Quick Links</h3>
 
               <div className="space-y-3">
                 {metadata.moodleCourseUrl && (
                   <a
                     href={metadata.moodleCourseUrl}
                     target="_blank"
-                    className="w-full h-14 bg-primary hover:bg-primary-light !text-white text-[11px] font-black rounded-xl flex items-center justify-center transition-all uppercase tracking-[0.15em] gap-3 shadow-xl shadow-primary/30 active:scale-95"
+                    className="w-full h-14 bg-primary hover:bg-primary-light !text-white text-[11px] font-semibold rounded-xl flex items-center justify-center transition-all uppercase tracking-[0.15em] gap-3 shadow-xl shadow-primary/30 active:scale-95"
                   >
                     Moodle Page <ArrowTopRightOnSquareIcon className="w-4 h-4 !text-white" />
                   </a>
@@ -511,7 +511,7 @@ export default function CourseDetailPage() {
                   <a
                     href={metadata.moodleForumUrl}
                     target="_blank"
-                    className="w-full h-14 bg-surface-2 hover:bg-surface-3 text-foreground/80 text-xs font-black rounded-xl flex items-center justify-center transition-all uppercase tracking-widest border border-white/5"
+                    className="w-full h-14 bg-surface-2 hover:bg-surface-3 text-foreground/80 text-xs font-semibold rounded-xl flex items-center justify-center transition-all uppercase tracking-widest border border-white/5"
                   >
                     Discussion Forum
                   </a>
@@ -520,7 +520,7 @@ export default function CourseDetailPage() {
                   <a
                     href={metadata.moodleAssignmentsUrl}
                     target="_blank"
-                    className="w-full h-14 bg-surface-2 hover:bg-surface-3 text-foreground/80 text-xs font-black rounded-xl flex items-center justify-center transition-all uppercase tracking-widest border border-white/5"
+                    className="w-full h-14 bg-surface-2 hover:bg-surface-3 text-foreground/80 text-xs font-semibold rounded-xl flex items-center justify-center transition-all uppercase tracking-widest border border-white/5"
                   >
                     View Assignments
                   </a>
@@ -528,7 +528,7 @@ export default function CourseDetailPage() {
               </div>
 
               <div className="pt-6 border-t border-white/5">
-                <p className="text-[11px] text-foreground/40 leading-relaxed font-medium">
+                <p className="text-[11px] text-foreground/70 leading-relaxed font-medium">
                   Resources on this page are fetched in real-time. Contact Faculty for missing file requests.
                 </p>
               </div>
@@ -537,18 +537,18 @@ export default function CourseDetailPage() {
             {/* Detailed Metadata Folder */}
             <div className="space-y-6 px-4">
               <div>
-                <h4 className="text-[10px] font-black text-primary uppercase tracking-widest mb-3">Academic Info</h4>
+                <h4 className="text-[10px] font-semibold text-primary uppercase tracking-widest mb-3">Academic Info</h4>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-[10px] font-bold text-foreground/30 uppercase">Departments</p>
+                    <p className="text-[10px] font-bold text-foreground/60 uppercase">Departments</p>
                     <p className="text-sm font-bold text-foreground/80">{metadata.departments?.join(', ') || 'General'}</p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-foreground/30 uppercase">Level</p>
+                    <p className="text-[10px] font-bold text-foreground/60 uppercase">Level</p>
                     <p className="text-sm font-bold text-foreground/80">{metadata.level || 'Unknown'} Level</p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-foreground/30 uppercase">Semester</p>
+                    <p className="text-[10px] font-bold text-foreground/60 uppercase">Semester</p>
                     <p className="text-sm font-bold text-foreground/80">Semester {metadata.semester || 'I'}</p>
                   </div>
                 </div>

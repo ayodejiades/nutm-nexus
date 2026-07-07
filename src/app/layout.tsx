@@ -10,9 +10,31 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nutm-nexus.vercel.app";
+const description =
+  "Notes, past exams, assignments and quizzes for NUTM courses — organised by department, level and cohort.";
+
 export const metadata: Metadata = {
-  title: "NUTM Nexus — Peer-2-Peer Tutorial",
-  description: "The official platform of NUTM's Peer-2-Peer Tutorial. Access course materials, study resources, and interactive quizzes.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "NUTM Nexus — course materials, past papers & quizzes",
+    template: "%s · NUTM Nexus",
+  },
+  description,
+  applicationName: "NUTM Nexus",
+  openGraph: {
+    type: "website",
+    siteName: "NUTM Nexus",
+    url: siteUrl,
+    title: "NUTM Nexus",
+    description: "Every NUTM course's notes, past papers and quizzes in one place.",
+    locale: "en_NG",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NUTM Nexus",
+    description: "Every NUTM course's notes, past papers and quizzes in one place.",
+  },
 };
 
 import AuthProvider from "@/components/auth/AuthProvider";

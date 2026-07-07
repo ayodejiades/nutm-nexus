@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/images/nexus-icon.png";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { useSession, signOut } from "next-auth/react";
 import { UserCircleIcon, ArrowRightOnRectangleIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -11,6 +11,27 @@ import { UserCircleIcon, ArrowRightOnRectangleIcon, Bars3Icon, XMarkIcon } from 
 export default function Navbar() {
   const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close the user menu on outside click or Escape.
+  useEffect(() => {
+    if (!userMenuOpen) return;
+    const onClick = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setUserMenuOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [userMenuOpen]);
 
   return (
     <nav className="fixed w-full top-0 z-50 bg-background border-b border-white/5 transition-all duration-300">
@@ -28,7 +49,7 @@ export default function Navbar() {
                 />
               </div>
               <div className="flex flex-col -space-y-1">
-                <span className="text-lg sm:text-xl font-black text-white tracking-tighter uppercase">
+                <span className="text-lg sm:text-xl font-semibold text-white tracking-tighter uppercase">
                   NUTM
                 </span>
                 <span className="text-[9px] sm:text-xs font-bold text-primary tracking-[0.2em] uppercase">
@@ -65,31 +86,40 @@ export default function Navbar() {
             {session && (
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="hidden md:flex flex-col items-end">
-                  <span className="text-sm font-black text-white">{session.user?.name}</span>
+                  <span className="text-sm font-semibold text-white">{session.user?.name}</span>
                 </div>
-                <div className="relative group/user">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-white/10 group-hover/user:border-primary/50 transition-colors cursor-pointer">
+                <div className="relative" ref={userMenuRef}>
+                  <button
+                    onClick={() => setUserMenuOpen((o) => !o)}
+                    aria-haspopup="menu"
+                    aria-expanded={userMenuOpen}
+                    aria-label="Account menu"
+                    className="block w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-white/10 hover:border-primary/50 transition-colors cursor-pointer"
+                  >
                     {session.user?.image ? (
-                      <Image src={session.user.image} alt={session.user.name || "User"} width={40} height={40} />
+                      <Image src={session.user.image} alt="" width={40} height={40} />
                     ) : (
-                      <UserCircleIcon className="w-full h-full text-foreground/20" />
+                      <UserCircleIcon className="w-full h-full text-foreground/55" />
                     )}
-                  </div>
-                  
+                  </button>
+
                   {/* Dropdown Menu */}
-                  <div className="absolute right-0 mt-2 w-48 bg-surface-1 border border-white/5 rounded-2xl p-2 shadow-2xl opacity-0 invisible group-hover/user:opacity-100 group-hover/user:visible transition-all duration-300 transform translate-y-2 group-hover/user:translate-y-0 z-50">
-                    <div className="p-3 border-b border-white/5 mb-2">
-                       <p className="text-[10px] font-black text-foreground/40 uppercase tracking-widest">Signed in as</p>
-                       <p className="text-xs font-bold text-white truncate">{session.user?.email}</p>
+                  {userMenuOpen && (
+                    <div role="menu" className="absolute right-0 mt-2 w-52 bg-surface-1 border border-white/5 rounded-2xl p-2 shadow-2xl z-50 animate-fade-in">
+                      <div className="p-3 border-b border-white/5 mb-2">
+                        <p className="text-[10px] font-semibold text-foreground/70 uppercase tracking-widest">Signed in as</p>
+                        <p className="text-xs font-bold text-white truncate">{session.user?.email}</p>
+                      </div>
+                      <button
+                        onClick={() => { setUserMenuOpen(false); signOut(); }}
+                        role="menuitem"
+                        className="w-full flex items-center gap-3 px-3 py-2 text-xs font-bold text-foreground/70 hover:text-red-400 hover:bg-red-400/5 rounded-xl transition-all"
+                      >
+                        <ArrowRightOnRectangleIcon className="w-4 h-4" />
+                        Sign Out
+                      </button>
                     </div>
-                    <button
-                      onClick={() => signOut()}
-                      className="w-full flex items-center gap-3 px-3 py-2 text-xs font-bold text-foreground/60 hover:text-red-400 hover:bg-red-400/5 rounded-xl transition-all"
-                    >
-                      <ArrowRightOnRectangleIcon className="w-4 h-4" />
-                      Sign Out
-                    </button>
-                  </div>
+                  )}
                 </div>
               </div>
             )}
@@ -97,6 +127,8 @@ export default function Navbar() {
             {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
               className="md:hidden p-2 text-foreground/50 hover:text-white transition-colors"
             >
               {mobileMenuOpen ? (

@@ -89,15 +89,15 @@ export default function QuickPeekModal({ course, onClose }: QuickPeekModalProps)
         {/* Content Area */}
         <div className="w-full md:w-3/5 p-8 md:p-10 overflow-y-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="px-2 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-black tracking-widest uppercase">
+            <span className="px-2 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-semibold tracking-widest uppercase">
               {course.departments?.[0] || "General"}
             </span>
-            <span className="text-[10px] font-bold text-foreground/40 tracking-widest uppercase italic">
+            <span className="text-[10px] font-bold text-foreground/70 tracking-widest uppercase italic">
               Level {course.level || 100}
             </span>
           </div>
 
-          <h2 className="text-3xl font-black text-white leading-tight mb-4 tracking-tight">
+          <h2 className="text-3xl font-semibold text-white leading-tight mb-4 tracking-tight">
             {course.title}
           </h2>
 
@@ -105,35 +105,35 @@ export default function QuickPeekModal({ course, onClose }: QuickPeekModalProps)
             <div className="flex items-center gap-2">
               <UserIcon className="w-4 h-4 text-primary" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Instructor</span>
+                <span className="text-[10px] font-bold text-foreground/70 uppercase tracking-widest">Instructor</span>
                 <span className="text-sm font-semibold text-white/80">{course.instructor || "NUTM Faculty"}</span>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <BeakerIcon className="w-4 h-4 text-accent" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Credits</span>
+                <span className="text-[10px] font-bold text-foreground/70 uppercase tracking-widest">Credits</span>
                 <span className="text-sm font-semibold text-white/80">{course.credits || 3} Credits</span>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <CalendarIcon className="w-4 h-4 text-accent-secondary" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">Semester</span>
+                <span className="text-[10px] font-bold text-foreground/70 uppercase tracking-widest">Semester</span>
                 <span className="text-sm font-semibold text-white/80">Semester {course.semester || "I"}</span>
               </div>
             </div>
           </div>
 
           <div className="prose prose-invert prose-sm max-w-none text-foreground/60 leading-relaxed mb-8">
-            <h4 className="text-white text-xs font-black uppercase tracking-widest mb-3">Overview</h4>
+            <h4 className="text-white text-xs font-semibold uppercase tracking-widest mb-3">Overview</h4>
             <p className="line-clamp-6">{course.description}</p>
           </div>
 
           <div className="flex items-center gap-4">
             <a
               href={`/courses/${course.slug}`}
-              className="flex-grow bg-primary hover:bg-primary-light text-black py-4 px-6 rounded-xl font-black text-xs uppercase tracking-widest transition-all text-center flex items-center justify-center gap-2"
+              className="flex-grow bg-primary hover:bg-primary-light text-black py-4 px-6 rounded-xl font-semibold text-xs uppercase tracking-widest transition-all text-center flex items-center justify-center gap-2"
             >
               <AcademicCapIcon className="w-4 h-4" />
               Full Course Details
