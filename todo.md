@@ -13,11 +13,15 @@ Nothing here is committed/pushed yet unless noted.
 - [x] **#6 Contrast pass** — bumped `text-foreground/20|30|40` to legible levels.
 - [x] **#7 Hover controls** — user menu is click/keyboard-accessible; Quick-Peek visible on touch.
 
+## Done (cont.)
+- [x] **#9 Server-render the catalog** — data moved to `src/lib/courses.ts` (server-only, React `cache`); home is a Server Component (ISR), all 30 course pages prerender as static HTML (`generateStaticParams`). Course content + per-course OG now baked into HTML (verified).
+- [x] **#11 Dedupe course "Quick Links"** — Forum/Assignments buttons render only when their URL differs from the others.
+- [x] **#13 Per-course OG metadata** — `generateMetadata` emits per-course `og:title`/`description` (verified in built HTML). *Optional follow-up:* a bespoke per-course OG **image** (code+title on the card) via `courses/[slug]/opengraph-image.tsx`.
+
 ## Next up
-- [ ] **#9 Server-render the catalog** (half day) — move course fetch to a Server Component or `generateStaticParams` + ISR. Fixes first paint + unlocks per-course OG. Biggest remaining item.
 - [ ] **#10 Consolidate design tokens** (~1h) — one green (kill hardcoded `rgba(34,197,94)`), two radii, drop `bg-[#1B222B]` & `scale-120`, define a 6-step type scale, remove the 9px tier.
-- [ ] **#11 Dedupe course "Quick Links"** (minutes) — render a Moodle button only when its URL is distinct.
-- [ ] **#13 Per-course dynamic OG** (medium) — `opengraph-image.tsx` under `courses/[slug]/` rendering course code + title. Depends on #9.
+- [ ] Remove now-unused API routes `src/app/api/courses/*` (home + detail read the lib directly now) — or keep if you still want a JSON endpoint.
+- [ ] **#13 (optional)** bespoke per-course OG image.
 
 ## Setup / verify (not code — don't forget)
 - [ ] Set `NEXT_PUBLIC_SITE_URL` in Vercel to the real domain (OG URLs are absolute).

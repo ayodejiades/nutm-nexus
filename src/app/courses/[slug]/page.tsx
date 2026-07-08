@@ -1,562 +1,61 @@
-// src/app/courses/[slug]/page.tsx
-"use client";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import type { Metadata } from "next";
+import CourseDetailClient from "./CourseDetailClient";
+import ErrorDisplay from "@/components/ErrorDisplay";
+import { getCourseDetails, getCourses } from "@/lib/courses";
 
-import React, { useState, useEffect, useMemo } from 'react'; // Import React and useMemo
-import Link from 'next/link';
-import CourseDetailSkeleton from '@/components/CourseDetailSkeleton';
-import ErrorDisplay from '@/components/ErrorDisplay';
-import EmptyState from '@/components/EmptyState';
-import { useParams } from 'next/navigation';
-// Ensure Arrow icons are imported for sorting controls
-import { ArrowDownIcon, ArrowUpIcon, ArrowTopRightOnSquareIcon, BookOpenIcon, ChatBubbleLeftRightIcon, DocumentTextIcon as MoodleDocIcon, UserIcon } from '@heroicons/react/24/outline';
+export const revalidate = 300;
 
-// Import the icon helper function (adjust path if necessary)
-import { getFileIcon } from '@/lib/utils';
+type Params = { params: Promise<{ slug: string }> };
 
-// Minimalist, professional SVG patterns (matching CourseImage)
-const PATTERNS = [
-  // 0: Tech / Engineering
-  (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full opacity-10">
-      <circle cx="50" cy="50" r="30" stroke="white" strokeWidth="0.5" strokeDasharray="2 2" />
-      <circle cx="50" cy="50" r="15" stroke="white" strokeWidth="0.5" />
-      <path d="M0 50H100M50 0V100" stroke="white" strokeWidth="0.2" />
-    </svg>
-  ),
-  // 1: Business / Leadership
-  (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full opacity-10">
-      <path d="M10 90 L40 50 L60 70 L90 20" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M0 80Q50 80 100 20" stroke="white" strokeWidth="0.5" opacity="0.3" />
-    </svg>
-  ),
-  // 2: Science / Research
-  (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full opacity-10">
-      <path d="M50 10L84.6 30V70L50 90L15.4 70V30L50 10Z" stroke="white" strokeWidth="0.5" />
-      <circle cx="50" cy="50" r="2" fill="white" />
-    </svg>
-  ),
-  // 3: Arts / Innovation
-  (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full opacity-10">
-      <path d="M0 50C20 30 40 70 60 50C80 30 100 70 120 50" stroke="white" strokeWidth="1" fill="none" />
-      <path d="M0 60C20 40 40 80 60 60C80 40 100 80 120 60" stroke="white" strokeWidth="0.5" opacity="0.5" />
-    </svg>
-  )
-];
-
-// --- Interfaces ---
-type Category = 'notes' | 'assignments' | 'tests' | 'exams';
-
-interface CourseFile {
-  name: string;
-  url?: string | null;
-  size: number;
-  category?: Category;
-  cohort?: string | null;
-}
-
-// Display order + labels for the resource tabs.
-const CATEGORY_TABS: { key: Category; label: string }[] = [
-  { key: 'notes', label: 'Notes' },
-  { key: 'assignments', label: 'Assignments' },
-  { key: 'tests', label: 'Tests' },
-  { key: 'exams', label: 'Past Exams' },
-];
-
-// "2024-2025" -> "2024/2025"; "class-of-28" -> "Class of 28"; else humanize.
-function formatCohort(cohort: string): string {
-  if (/^\d{4}-\d{4}$/.test(cohort)) return cohort.replace('-', '/');
-  if (/^class-of-\d+$/i.test(cohort)) return `Class of ${cohort.split('-').pop()}`;
-  return cohort.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-}
-interface CourseMetadata {
-  title: string;
-  code: string;
-  description: string;
-  instructor?: string;
-  youtubePlaylistId?: string;
-  moodleCourseUrl?: string;
-  moodleForumUrl?: string;
-  moodleAssignmentsUrl?: string;
-  departments?: string[]; // Array for multiple departments
-  level?: number;
-  credits?: number;
-  semester?: "I" | "II"; // Added semester
-}
-interface CourseDetails {
-  metadata: CourseMetadata;
-  files: CourseFile[];
-}
-
-// --- Format Bytes Helper ---
-function formatBytes(bytes: number, decimals = 1): string {
-  if (!bytes || bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  if (i >= sizes.length) return `${(bytes / Math.pow(k, sizes.length - 1)).toFixed(dm)} ${sizes[sizes.length - 1]}`;
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-}
-
-
-// --- Fetch Course Details Function ---
-async function fetchCourseDetails(slug: string): Promise<CourseDetails | null> {
-  const apiUrl = `/api/courses/${slug}`;
-  console.log(`[CourseDetail Page] Fetching from: ${apiUrl}`);
+// Prerender every course at build time (revalidated every 5 min via ISR).
+export async function generateStaticParams() {
   try {
-    const res = await fetch(apiUrl, { cache: 'no-store' }); // Dev only setting
-    console.log(`[CourseDetail Page] Fetch status for ${slug}: ${res.status}`);
-    if (!res.ok) {
-      if (res.status === 404) {
-        console.warn(`Course details not found for slug: ${slug} (API returned 404)`);
-        return null; // Treat 404 as course not found
-      }
-      const errorBody = await res.text().catch(() => `Status ${res.status}`);
-      let details = `Status: ${res.status}. ${errorBody}`;
-      try {
-        const jsonError = JSON.parse(errorBody);
-        details = jsonError.error || jsonError.message || details;
-      } catch { /* ignore parsing error */ }
-      console.error(`Failed fetch course details for ${slug}:`, details);
-      throw new Error(`Failed to fetch course details. ${details}`);
-    }
-    const data = await res.json();
-    console.log(`[CourseDetail Page] Successfully fetched details for ${slug}`);
-    if (!data || !data.metadata || !Array.isArray(data.files)) {
-      console.error("Received invalid data structure from API for", slug);
-      throw new Error("Invalid data structure received from server.");
-    }
-    return data as CourseDetails;
-  } catch (error: unknown) {
-    console.error(`Error caught in fetchCourseDetails for ${slug}:`, error);
-    const message = (error instanceof Error) ? error.message : "An unknown error occurred during data fetching.";
-    throw new Error(message);
+    const courses = await getCourses();
+    return courses.map((c) => ({ slug: c.slug }));
+  } catch {
+    return [];
   }
 }
 
+// Per-course title/description + OG so a shared /courses/<slug> link unfurls
+// with the actual course, not the generic site card.
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const details = await getCourseDetails(slug);
+    if (!details) return { title: "Course not found" };
+    const { metadata } = details;
+    const title = `${metadata.code} — ${metadata.title}`;
+    const description = (metadata.description ?? "NUTM course resources.").slice(0, 200);
+    return {
+      title,
+      description,
+      openGraph: { title: `${title} · NUTM Nexus`, description, type: "article" },
+      twitter: { card: "summary_large_image", title: `${title} · NUTM Nexus`, description },
+    };
+  } catch {
+    return {};
+  }
+}
 
-// --- Main Course Detail Page Component ---
-export default function CourseDetailPage() {
-  const params = useParams<{ slug: string }>();
-  const slug = params?.slug;
+export default async function CourseDetailPage({ params }: Params) {
+  const { slug } = await params;
 
-  // State variables
-  const [courseDetails, setCourseDetails] = useState<CourseDetails | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isNotFound, setIsNotFound] = useState(false);
-  // State for file sorting
-  const [fileSortKey, setFileSortKey] = useState<'name' | 'size'>('name'); // Default sort by name
-  const [fileSortOrder, setFileSortOrder] = useState<'asc' | 'desc'>('asc'); // Default ascending
-  // State for resource tabs + cohort filter
-  const [activeCategory, setActiveCategory] = useState<Category>('notes');
-  const [activeCohort, setActiveCohort] = useState<string>('all'); // 'all' or a cohort folder name
-
-  // Fetch data effect
-  useEffect(() => {
-    if (!slug) {
-      setIsLoading(false);
-      setIsNotFound(true);
-      return;
-    }
-    setIsLoading(true);
-    setIsNotFound(false);
-    setError(null);
-    setCourseDetails(null); // Clear previous data
-    fetchCourseDetails(slug)
-      .then(data => {
-        if (data === null) setIsNotFound(true);
-        else setCourseDetails(data);
-      })
-      .catch((err: unknown) => setError(err instanceof Error ? err.message : "Unknown error"))
-      .finally(() => setIsLoading(false));
-  }, [slug]);
-
-  // Track recently visited courses
-  useEffect(() => {
-    if (!slug) return;
-    try {
-      const key = "nexus_recent";
-      const recent: string[] = JSON.parse(localStorage.getItem(key) || "[]");
-      const updated = [slug, ...recent.filter((s) => s !== slug)].slice(0, 10);
-      localStorage.setItem(key, JSON.stringify(updated));
-    } catch {}
-  }, [slug]);
-
-  // Files default to the "notes" category when the API didn't tag them (legacy data).
-  const categoryOf = (f: CourseFile): Category => f.category ?? 'notes';
-
-  // --- Which tabs to show (only categories that actually have files) ---
-  const availableCategories = useMemo(() => {
-    const present = new Set((courseDetails?.files ?? []).map(categoryOf));
-    return CATEGORY_TABS.filter((t) => present.has(t.key));
-  }, [courseDetails?.files]);
-
-  // When data loads (or the available tabs change), make sure the active tab exists.
-  useEffect(() => {
-    if (availableCategories.length === 0) return;
-    if (!availableCategories.some((t) => t.key === activeCategory)) {
-      setActiveCategory(availableCategories[0].key);
-    }
-  }, [availableCategories, activeCategory]);
-
-  // --- Cohorts available within the active category (newest first) ---
-  const availableCohorts = useMemo(() => {
-    const cohorts = new Set(
-      (courseDetails?.files ?? [])
-        .filter((f) => categoryOf(f) === activeCategory && f.cohort)
-        .map((f) => f.cohort as string)
+  let details;
+  try {
+    details = await getCourseDetails(slug);
+  } catch (e) {
+    const message = e instanceof Error ? e.message : "Unknown error";
+    return (
+      <div className="max-w-4xl mx-auto">
+        <Link href="/" className="text-primary hover:underline mb-6 inline-block text-sm">← Back</Link>
+        <ErrorDisplay message="Could Not Load Course Details" details={message} />
+      </div>
     );
-    return Array.from(cohorts).sort((a, b) => b.localeCompare(a));
-  }, [courseDetails?.files, activeCategory]);
+  }
 
-  // --- Memoize the filtered + sorted files list for the active tab ---
-  const sortedFiles = useMemo(() => {
-    if (!courseDetails?.files) return [];
-
-    const filesToSort = courseDetails.files.filter((f) => {
-      if (categoryOf(f) !== activeCategory) return false;
-      if (activeCohort !== 'all' && f.cohort !== activeCohort) return false;
-      return true;
-    });
-
-    // Sort a copy based on current key and order
-    filesToSort.sort((a, b) => {
-      let comparison = 0;
-      if (fileSortKey === 'name') {
-        comparison = (a.name || '').localeCompare(b.name || '');
-      } else if (fileSortKey === 'size') {
-        comparison = (a.size ?? 0) - (b.size ?? 0);
-      }
-      return fileSortOrder === 'asc' ? comparison : -comparison;
-    });
-
-    return filesToSort;
-  }, [courseDetails?.files, activeCategory, activeCohort, fileSortKey, fileSortOrder]);
-
-
-  // --- Render Logic ---
-  if (isLoading) return <CourseDetailSkeleton />;
-  if (error) return (
-    <div className="max-w-4xl mx-auto">
-      <Link href="/" className="text-primary hover:underline mb-6 inline-block text-sm"> ← Back </Link>
-      <ErrorDisplay message={`Could Not Load Course Details`} details={error} />
-    </div>
-  );
-  if (isNotFound || !courseDetails) return (
-    <div className="max-w-4xl mx-auto">
-      <Link href="/" className="text-primary hover:underline mb-6 inline-block text-sm"> ← Back </Link>
-      <ErrorDisplay message="Course Not Found" details={`Course '${slug || 'requested'}' could not be found.`} />
-    </div>
-  );
-
-
-  // Data is ready
-  const { metadata /* files replaced by sortedFiles */ } = courseDetails;
-  const hasMoodleLinks = metadata.moodleCourseUrl || metadata.moodleForumUrl || metadata.moodleAssignmentsUrl;
-
-  // --- Function to handle file sort toggle ---
-  const handleFileSort = (key: 'name' | 'size') => {
-    if (key === fileSortKey) {
-      // Toggle order if same key is clicked
-      setFileSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
-    } else {
-      // Switch to new key and default to ascending
-      setFileSortKey(key);
-      setFileSortOrder('asc');
-    }
-  };
-
-  // Use deterministic selection for background pattern
-  const deterministicSum = metadata.code.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const Pattern = PATTERNS[deterministicSum % PATTERNS.length];
-
-  return (
-    <div className="space-y-8 pb-20 animate-fade-in">
-      {/* --- Coursera-style Hero Header --- */}
-      <section className="relative -mt-8 pt-24 pb-20 overflow-hidden">
-        {/* Abstract Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F1721] to-background border-b border-white/5" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 blur-[130px] rounded-full" />
-
-        {/* Pattern Overlay */}
-        <div className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center transform scale-150 rotate-12 pointer-events-none">
-          {Pattern}
-        </div>
-
-        <div className="section-container relative z-10">
-          <Link
-            href="/"
-            className="inline-flex items-center text-xs font-semibold text-primary hover:text-primary-light uppercase tracking-widest mb-8 transition-colors"
-          >
-            ← Back to All Courses
-          </Link>
-
-          <div className="max-w-4xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-semibold rounded-lg border border-primary/20 tracking-widest uppercase">
-                {metadata.code}
-              </span>
-              {metadata.level && (
-                <span className="px-3 py-1 bg-white/5 text-foreground/70 text-xs font-bold rounded-lg border border-white/5 tracking-widest uppercase">
-                  Level {metadata.level}
-                </span>
-              )}
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-semibold text-white leading-tightest mb-6 tracking-tight">
-              {metadata.title}
-            </h1>
-
-            <div className="flex flex-wrap items-center gap-6 text-sm">
-              <div className="flex items-center gap-3 text-white">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/20">
-                  <UserIcon className="w-5 h-5 text-primary" />
-                </div>
-                <span className="font-semibold tracking-tight">By {metadata.instructor || "NUTM Faculty"}</span>
-              </div>
-              <div className="h-4 w-px bg-white/10 hidden sm:block" />
-              <div className="flex items-center gap-3 text-foreground/50 font-semibold uppercase tracking-widest text-[10px]">
-                <span className="px-2 py-0.5 bg-white/5 rounded-md border border-white/5">{metadata.credits || 3} Credits</span>
-                <span className="px-2 py-0.5 bg-white/5 rounded-md border border-white/5">Semester {metadata.semester || "I"}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- Main Content Grid --- */}
-      <section className="section-container">
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Main Content (Resources) */}
-          <div className="lg:flex-grow space-y-12">
-            {/* Description Section */}
-            <div>
-              <h2 className="text-sm font-semibold text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
-                <BookOpenIcon className="w-4 h-4 text-primary" />
-                Course Overview
-              </h2>
-              <p className="text-xl text-foreground/50 max-w-2xl font-medium leading-relaxed mb-8 italic">
-                {courseDetails.metadata.description}
-              </p>
-
-              {/* Action Bar */}
-              <div className="flex flex-wrap gap-4">
-                {courseDetails.metadata.moodleCourseUrl && (
-                  <a
-                    href={courseDetails.metadata.moodleCourseUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold text-xs uppercase tracking-widest transition-all border border-white/5 flex items-center gap-2"
-                  >
-                    Enter Moodle Core
-                    <ArrowTopRightOnSquareIcon className="w-4 h-4" />
-                  </a>
-                )}
-              </div>
-            </div>
-
-
-            {/* Resources Section */}
-            <div className="coursera-card bg-surface-1/40 p-1">
-              <div className="p-6 border-b border-white/5 flex flex-wrap justify-between items-center gap-4">
-                <h2 className="text-lg font-semibold text-white tracking-tight">
-                  Learning <span className="text-primary italic">Resources</span>
-                </h2>
-
-                {sortedFiles && sortedFiles.length > 1 && (
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => handleFileSort('name')}
-                      className={`text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all uppercase tracking-widest ${fileSortKey === 'name' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/70 hover:bg-surface-3'}`}
-                    >
-                      Name {fileSortKey === 'name' && (fileSortOrder === 'asc' ? '↑' : '↓')}
-                    </button>
-                    <button
-                      onClick={() => handleFileSort('size')}
-                      className={`text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all uppercase tracking-widest ${fileSortKey === 'size' ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/70 hover:bg-surface-3'}`}
-                    >
-                      Size {fileSortKey === 'size' && (fileSortOrder === 'asc' ? '↑' : '↓')}
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Category tabs + cohort filter */}
-              {availableCategories.length > 0 && (
-                <div className="px-6 py-4 border-b border-white/5 flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    {availableCategories.map((tab) => (
-                      <button
-                        key={tab.key}
-                        onClick={() => { setActiveCategory(tab.key); setActiveCohort('all'); }}
-                        className={`text-[11px] font-semibold px-4 py-2 rounded-lg border transition-all uppercase tracking-widest ${activeCategory === tab.key ? 'bg-primary/20 border-primary/40 text-primary' : 'bg-surface-2 border-white/5 text-foreground/70 hover:bg-surface-3'}`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
-
-                  {availableCohorts.length > 0 && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-semibold text-foreground/60 uppercase tracking-widest">Cohort</span>
-                      <select
-                        value={activeCohort}
-                        onChange={(e) => setActiveCohort(e.target.value)}
-                        className="text-[11px] font-bold bg-surface-2 border border-white/5 text-foreground/80 rounded-lg px-3 py-2 focus:outline-none focus:border-primary/40 hover:bg-surface-3 transition-all cursor-pointer"
-                      >
-                        <option value="all">All cohorts</option>
-                        {availableCohorts.map((c) => (
-                          <option key={c} value={c}>{formatCohort(c)}</option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              <div className="p-2">
-                {sortedFiles && sortedFiles.length > 0 ? (
-                  <div className="space-y-1">
-                    {sortedFiles.map((file) => {
-                      const fileName = file?.name || 'Unnamed File';
-                      const IconComponent = getFileIcon(fileName);
-                      return (
-                        <a
-                          key={`${fileName}-${file.url || ''}`}
-                          href={file.url || '#'}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`flex items-center justify-between p-4 rounded-xl hover:bg-white/5 transition-all group ${!file.url ? 'opacity-50 pointer-events-none' : ''}`}
-                        >
-                          <div className="flex items-center gap-4 min-w-0">
-                            <div className="w-10 h-10 rounded-lg bg-surface-2 flex items-center justify-center group-hover:bg-primary/10 group-hover:scale-110 transition-all">
-                              <IconComponent className="w-5 h-5 text-foreground/70 group-hover:text-primary transition-colors" />
-                            </div>
-                            <div className="min-w-0">
-                              <p className="text-sm font-bold text-foreground/80 group-hover:text-white truncate" title={fileName}>
-                                {fileName}
-                              </p>
-                              <span className="text-[10px] font-bold text-foreground/55 uppercase tracking-widest">
-                                {fileName.split('.').pop()}{file.cohort ? ` · ${formatCohort(file.cohort)}` : ' Resource'}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-4 flex-shrink-0">
-                            <span className="text-[10px] font-bold text-foreground/60">
-                              {formatBytes(file.size)}
-                            </span>
-                            <ArrowTopRightOnSquareIcon className="w-4 h-4 text-foreground/55 group-hover:text-primary transition-colors" />
-                          </div>
-                        </a>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <EmptyState
-                    title="Nothing here yet"
-                    message={
-                      activeCohort !== 'all'
-                        ? `No ${CATEGORY_TABS.find((t) => t.key === activeCategory)?.label.toLowerCase() ?? 'files'} for ${formatCohort(activeCohort)}.`
-                        : `No ${CATEGORY_TABS.find((t) => t.key === activeCategory)?.label.toLowerCase() ?? 'resources'} available for this course yet.`
-                    }
-                  />
-                )}
-              </div>
-            </div>
-
-            {/* Video Lectures */}
-            {metadata.youtubePlaylistId && (
-              <div className="space-y-6">
-                <h2 className="text-sm font-semibold text-white uppercase tracking-[0.2em] flex items-center gap-2">
-                  <span className="w-4 h-4 bg-red-500 rounded flex items-center justify-center">
-                    <span className="border-l-4 border-l-white border-y-4 border-y-transparent ml-0.5" />
-                  </span>
-                  Full Lecture Playlist
-                </h2>
-                <div className="aspect-video rounded-3xl overflow-hidden border border-white/5 bg-surface-1 shadow-2xl">
-                  <iframe
-                    src={`https://www.youtube.com/embed/videoseries?list=${metadata.youtubePlaylistId}`}
-                    title="YouTube video playlist player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    className="w-full h-full"
-                    loading="lazy"
-                  ></iframe>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Sidebar (Quick Actions & Metadata) */}
-          <aside className="lg:w-80 space-y-8 flex-shrink-0">
-            {/* Quick Actions (Enroll/Moodle) */}
-            <div className="p-8 rounded-3xl bg-surface-1 border border-white/5 shadow-2xl space-y-6">
-              <h3 className="text-xs font-semibold text-white uppercase tracking-[0.2em]">Quick Links</h3>
-
-              <div className="space-y-3">
-                {metadata.moodleCourseUrl && (
-                  <a
-                    href={metadata.moodleCourseUrl}
-                    target="_blank"
-                    className="w-full h-14 bg-primary hover:bg-primary-light !text-white text-[11px] font-semibold rounded-xl flex items-center justify-center transition-all uppercase tracking-[0.15em] gap-3 shadow-xl shadow-primary/30 active:scale-95"
-                  >
-                    Moodle Page <ArrowTopRightOnSquareIcon className="w-4 h-4 !text-white" />
-                  </a>
-                )}
-                {metadata.moodleForumUrl && (
-                  <a
-                    href={metadata.moodleForumUrl}
-                    target="_blank"
-                    className="w-full h-14 bg-surface-2 hover:bg-surface-3 text-foreground/80 text-xs font-semibold rounded-xl flex items-center justify-center transition-all uppercase tracking-widest border border-white/5"
-                  >
-                    Discussion Forum
-                  </a>
-                )}
-                {metadata.moodleAssignmentsUrl && (
-                  <a
-                    href={metadata.moodleAssignmentsUrl}
-                    target="_blank"
-                    className="w-full h-14 bg-surface-2 hover:bg-surface-3 text-foreground/80 text-xs font-semibold rounded-xl flex items-center justify-center transition-all uppercase tracking-widest border border-white/5"
-                  >
-                    View Assignments
-                  </a>
-                )}
-              </div>
-
-              <div className="pt-6 border-t border-white/5">
-                <p className="text-[11px] text-foreground/70 leading-relaxed font-medium">
-                  Resources on this page are fetched in real-time. Contact Faculty for missing file requests.
-                </p>
-              </div>
-            </div>
-
-            {/* Detailed Metadata Folder */}
-            <div className="space-y-6 px-4">
-              <div>
-                <h4 className="text-[10px] font-semibold text-primary uppercase tracking-widest mb-3">Academic Info</h4>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-[10px] font-bold text-foreground/60 uppercase">Departments</p>
-                    <p className="text-sm font-bold text-foreground/80">{metadata.departments?.join(', ') || 'General'}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold text-foreground/60 uppercase">Level</p>
-                    <p className="text-sm font-bold text-foreground/80">{metadata.level || 'Unknown'} Level</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold text-foreground/60 uppercase">Semester</p>
-                    <p className="text-sm font-bold text-foreground/80">Semester {metadata.semester || 'I'}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </div>
-  );
+  if (!details) notFound();
+  return <CourseDetailClient details={details} slug={slug} />;
 }
