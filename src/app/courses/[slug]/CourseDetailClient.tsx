@@ -129,7 +129,7 @@ export default function CourseDetailClient({ details, slug }: { details: CourseD
     <div className="space-y-8 pb-20 animate-fade-in">
       {/* --- Hero Header --- */}
       <section className="relative -mt-8 pt-24 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F1721] to-background border-b border-white/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-surface-1 to-background border-b border-white/5" />
         <div className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center transform scale-150 rotate-12 pointer-events-none">
           {Pattern}
         </div>

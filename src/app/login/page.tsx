@@ -25,7 +25,7 @@ function LoginForm() {
     : null;
 
   return (
-    <div className="bg-surface-1/40 backdrop-blur-2xl border border-white/5 rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-10 shadow-2xl shadow-black/50 text-center">
+    <div className="bg-surface-1/40 backdrop-blur-2xl border border-white/5 rounded-3xl p-8 sm:p-10 shadow-2xl shadow-black/50 text-center">
 
       {/* Logo Section */}
       <div className="flex flex-col items-center mb-8 sm:mb-10">
@@ -101,7 +101,7 @@ export default function LoginPage() {
     <div className="min-h-[70vh] flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
       <div className="w-full max-w-md relative z-10 animate-fade-in">
         <Suspense fallback={
-          <div className="bg-surface-1/40 backdrop-blur-2xl border border-white/5 rounded-[2rem] p-12 text-center shadow-2xl">
+          <div className="bg-surface-1/40 backdrop-blur-2xl border border-white/5 rounded-3xl p-12 text-center shadow-2xl">
             <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-xs font-semibold text-foreground/70 uppercase tracking-widest">Initializing...</p>
           </div>

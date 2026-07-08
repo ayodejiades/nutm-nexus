@@ -18,8 +18,11 @@ Nothing here is committed/pushed yet unless noted.
 - [x] **#11 Dedupe course "Quick Links"** — Forum/Assignments buttons render only when their URL differs from the others.
 - [x] **#13 Per-course OG metadata** — `generateMetadata` emits per-course `og:title`/`description` (verified in built HTML). *Optional follow-up:* a bespoke per-course OG **image** (code+title on the card) via `courses/[slug]/opengraph-image.tsx`.
 
+## Done (cont.)
+- [x] **#10 (part 1) — killed the one-offs**: no more hardcoded green, `#1B222B`, `#0F1721`, `scale-120`, `text-[9px]`, or arbitrary `rounded-[2rem]/[2.5rem]`. All verified absent.
+
 ## Next up
-- [ ] **#10 Consolidate design tokens** (~1h) — one green (kill hardcoded `rgba(34,197,94)`), two radii, drop `bg-[#1B222B]` & `scale-120`, define a 6-step type scale, remove the 9px tier.
+- [ ] **#10 (part 2) — collapse the scales** (do with app running, needs eyeballing): radii still span `lg/xl/2xl/3xl` (~57 uses) → pick two tiers (controls vs cards) + keep `full`. Micro-label type still uses `text-[10px]` (37×) / `[11px]` (8×) → migrate onto the Tailwind scale (`text-xs`+). Both change nearly every component's look, so verify visually rather than blind-sweep.
 - [ ] Remove now-unused API routes `src/app/api/courses/*` (home + detail read the lib directly now) — or keep if you still want a JSON endpoint.
 - [ ] **#13 (optional)** bespoke per-course OG image.
 

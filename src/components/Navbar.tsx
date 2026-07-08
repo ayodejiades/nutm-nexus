@@ -52,7 +52,7 @@ export default function Navbar() {
                 <span className="text-lg sm:text-xl font-semibold text-white tracking-tighter uppercase">
                   NUTM
                 </span>
-                <span className="text-[9px] sm:text-xs font-bold text-primary tracking-[0.2em] uppercase">
+                <span className="text-[10px] sm:text-xs font-bold text-primary tracking-[0.2em] uppercase">
                   Nexus
                 </span>
               </div>

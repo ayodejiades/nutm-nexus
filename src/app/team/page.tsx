@@ -113,7 +113,7 @@ export default function TeamPage() {
 
               {/* Role badge */}
               <div className="absolute top-4 left-4">
-                <span className="px-2.5 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-lg text-[9px] font-semibold text-white/60 uppercase tracking-widest">
+                <span className="px-2.5 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-lg text-[10px] font-semibold text-white/60 uppercase tracking-widest">
                   {idx === 0 ? "Lead" : "Member"}
                 </span>
               </div>
